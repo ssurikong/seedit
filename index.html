@@ -46,6 +46,11 @@ nav.dark-mode{
   border-color:rgba(255,255,255,.06);
 }
 .nl{font-family:var(--en);font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.8px;text-decoration:none;transition:color .2s;}
+  .nav-logo{
+  height:42px;
+  width:auto;
+  display:block;
+}
 nav.dark-mode .nl{color:#fff;}
 .nl .g{color:var(--ltb);}
 .nm{display:flex;gap:36px;list-style:none;}
@@ -447,7 +452,9 @@ footer{border-top:1px solid var(--g100);padding:32px 60px;display:flex;justify-c
 
 <!-- ══ NAV ══ -->
 <nav id="mainNav">
-  <a href="#" class="nl">SEED<span class="g">it</span></a>
+  <a href="#" class="nl">
+  <img src="logo.png" alt="SEEDit Logo" class="nav-logo">
+</a>
   <ul class="nm">
     <li><a href="#about">About</a></li>
     <li><a href="#framework">Framework</a></li>
