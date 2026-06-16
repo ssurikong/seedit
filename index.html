@@ -22,6 +22,16 @@ body{font-family:var(--kr);background:var(--w);color:var(--ink);-webkit-font-smo
 nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 56px;background:rgba(255,255,255,.92);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,.05);transition:background .3s,border-color .3s;}
 nav.dk{background:rgba(9,21,16,.94);border-color:rgba(255,255,255,.06);}
 .nl{font-family:var(--en);font-size:20px;font-weight:900;color:var(--ink);letter-spacing:-.9px;text-decoration:none;transition:color .2s;}
+  .logo-wrap{
+  display:flex;
+  align-items:center;
+}
+
+.logo-img{
+  height:28px;
+  width:auto;
+  display:block;
+}
 nav.dk .nl{color:#fff;}
 .nl .g{color:var(--ltb);}
 .nm{display:flex;gap:32px;list-style:none;}
@@ -113,7 +123,7 @@ h1 em{font-style:normal;color:var(--ltb);}
 }
 .fwhover-kr{
   font-family:var(--kr);
-  font-size:clamp(40px,4.5vw,72px);
+  font-size:clamp(28px,3vw,52px);
   font-weight:700;color:#fff;
   letter-spacing:-2px;line-height:1.1;
   margin-bottom:14px;
@@ -265,7 +275,11 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="nl">SEED<span class="g">it</span></a>
+  <a href="#" class="nl logo-wrap">
+  <img src="./images/seedit-logo.png"
+       alt="SEEDit"
+       class="logo-img">
+</a>
   <ul class="nm">
     <li><a href="#about">About</a></li>
     <li><a href="#framework">Framework</a></li>
