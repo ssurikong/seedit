@@ -5,461 +5,260 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SEEDit — Agricultural SCM Operating Partner</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --ink:#0f1f1a;
-  --ink2:#1a3028;
-  --leaf:#3a7d0f;
-  --lt:#5ca31b;
-  --ltb:#78cf2f;
-  --pale:#e5f4d0;
-  --w:#fff;
-  --g50:#f5f6f4;
-  --g100:#eaece7;
-  --g200:#d4d8d0;
-  --g400:#92978d;
-  --g600:#5e6359;
-  --en:'Inter',sans-serif;
-  --kr:'Noto Sans KR',sans-serif;
+  --ink:#0a1710; --ink2:#142418;
+  --leaf:#2d6b0a; --lt:#4e9614; --ltb:#6dc422;
+  --pale:#dff0c4;
+  --w:#fff; --g50:#f4f6f2; --g100:#e8ece4; --g200:#ced4c8; --g400:#8a9183; --g600:#565d50;
+  --en:'Inter',sans-serif; --kr:'Noto Sans KR',sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
-  --ease2:cubic-bezier(.4,0,.2,1);
-  --dur:.65s;
 }
 html{scroll-behavior:smooth;}
 body{font-family:var(--kr);background:var(--w);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 
-/* ══ NAVBAR ══════════════════════════════════ */
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:900;
-  height:64px;display:flex;align-items:center;justify-content:space-between;
-  padding:0 60px;
-  background:rgba(255,255,255,.9);
-  backdrop-filter:blur(24px) saturate(200%);
-  -webkit-backdrop-filter:blur(24px) saturate(200%);
-  border-bottom:1px solid rgba(0,0,0,.05);
-  transition:background .3s,border-color .3s;
-}
-nav.dark-mode{
-  background:rgba(15,31,26,.92);
-  border-color:rgba(255,255,255,.06);
-}
-.nl{font-family:var(--en);font-size:20px;font-weight:700;color:var(--ink);letter-spacing:-.8px;text-decoration:none;transition:color .2s;}
-  .nav-logo{
-  height:60px;
-  width:auto;
-  display:block;
-}
-nav.dark-mode .nl{color:#fff;}
+/* ─── NAV ─── */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 56px;background:rgba(255,255,255,.92);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,.05);transition:all .3s;}
+nav.dk{background:rgba(10,23,16,.92);border-color:rgba(255,255,255,.06);}
+.nl{font-family:var(--en);font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.8px;text-decoration:none;transition:color .2s;}
+nav.dk .nl{color:#fff;}
 .nl .g{color:var(--ltb);}
-.nm{display:flex;gap:36px;list-style:none;}
-.nm a{font-family:var(--en);font-size:13px;font-weight:400;color:var(--g600);text-decoration:none;letter-spacing:-.1px;transition:color .15s;}
-nav.dark-mode .nm a{color:rgba(255,255,255,.45);}
-.nm a:hover{color:var(--ink);}
-nav.dark-mode .nm a:hover{color:#fff;}
-.nc{font-family:var(--en);font-size:13px;font-weight:500;background:var(--ink);color:#fff;padding:9px 22px;border-radius:8px;text-decoration:none;letter-spacing:-.1px;transition:opacity .15s,background .3s;}
-nav.dark-mode .nc{background:#fff;color:var(--ink);}
+.nm{display:flex;gap:32px;list-style:none;}
+.nm a{font-family:var(--en);font-size:13px;color:var(--g600);text-decoration:none;transition:color .15s;}
+nav.dk .nm a{color:rgba(255,255,255,.4);}
+.nm a:hover{color:var(--ink);}nav.dk .nm a:hover{color:#fff;}
+.nc{font-family:var(--en);font-size:13px;font-weight:600;background:var(--ink);color:#fff;padding:9px 22px;border-radius:8px;text-decoration:none;transition:opacity .15s,background .3s;}
+nav.dk .nc{background:#fff;color:var(--ink);}
 .nc:hover{opacity:.82;}
 
-/* ══ HERO ══════════════════════════════════ */
-#hw{position:relative;min-height:100vh;background:var(--ink);overflow:hidden;}
+/* ─── HERO ─── */
+#hw{position:relative;height:100vh;min-height:700px;background:var(--ink);overflow:hidden;}
+#hc{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
+/* Left vignette for text legibility */
+#hov{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(10,23,16,.96) 0%,rgba(10,23,16,.85) 35%,rgba(10,23,16,.45) 65%,rgba(10,23,16,.05) 100%);}
+#hw::after{content:'';position:absolute;bottom:0;left:0;right:0;height:180px;background:linear-gradient(to bottom,transparent,rgba(10,23,16,.7));z-index:2;pointer-events:none;}
 
-/* Canvas (particle network) */
-#hc{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none;}
-
-/* Multi-layer overlay: deep left, transparent right */
-#hov{
-  position:absolute;inset:0;z-index:1;
-  background:
-    linear-gradient(108deg,
-      rgba(15,31,26,.97) 0%,
-      rgba(15,31,26,.9) 32%,
-      rgba(15,31,26,.62) 55%,
-      rgba(15,31,26,.22) 80%,
-      rgba(15,31,26,.08) 100%
-    );
-}
-
-/* Bottom vignette */
-#hw::after{
-  content:'';position:absolute;bottom:0;left:0;right:0;
-  height:200px;
-  background:linear-gradient(to bottom,transparent,rgba(15,31,26,.7));
-  z-index:2;pointer-events:none;
-}
-
-#hero{
-  position:relative;z-index:3;
-  min-height:100vh;
-  padding:152px 60px 100px;
-  display:grid;grid-template-columns:1.05fr .95fr;
-  align-items:center;gap:56px;
-  max-width:1380px;margin:0 auto;
-}
-
-/* Left */
-.h-kicker{
-  display:inline-flex;align-items:center;gap:10px;
-  font-family:var(--en);font-size:11px;font-weight:500;
-  letter-spacing:2.5px;text-transform:uppercase;
-  color:var(--ltb);margin-bottom:36px;
-}
-.h-kicker::before{content:'';width:22px;height:1px;background:var(--ltb);}
-
-h1.hh{
-  font-size:clamp(46px,5vw,76px);
-  font-weight:700;line-height:1.06;
-  letter-spacing:-3px;color:#fff;
-  margin-bottom:28px;
-}
+#hero{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;padding:0 56px;max-width:820px;}
+.h-kicker{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--ltb);margin-bottom:32px;display:flex;align-items:center;gap:10px;}
+.h-kicker::before{content:'';width:24px;height:1px;background:var(--ltb);}
+h1.hh{font-size:clamp(52px,5.5vw,88px);font-weight:900;line-height:1.0;letter-spacing:-4px;color:#fff;margin-bottom:24px;}
 h1.hh em{font-style:normal;color:var(--ltb);}
-
-.h-sub{
-  font-size:17px;font-weight:300;
-  color:rgba(255,255,255,.44);
-  line-height:1.8;max-width:390px;margin-bottom:52px;
-}
-
+.h-sub{font-size:18px;font-weight:300;color:rgba(255,255,255,.42);line-height:1.7;max-width:380px;margin-bottom:48px;}
 .h-acts{display:flex;gap:16px;align-items:center;}
-.bw{
-  font-family:var(--en);font-size:14px;font-weight:500;
-  background:#fff;color:var(--ink);
-  padding:14px 30px;border-radius:10px;
-  text-decoration:none;
-  transition:opacity .15s,transform .2s var(--ease);
-  letter-spacing:-.2px;
-}
+.bw{font-family:var(--en);font-size:14px;font-weight:600;background:#fff;color:var(--ink);padding:14px 32px;border-radius:10px;text-decoration:none;transition:opacity .15s,transform .2s var(--ease);}
 .bw:hover{opacity:.88;transform:translateY(-2px);}
-.bg{
-  font-family:var(--en);font-size:14px;font-weight:400;
-  color:rgba(255,255,255,.4);text-decoration:none;
-  display:flex;align-items:center;gap:6px;transition:color .15s;
-}
+.bg{font-family:var(--en);font-size:14px;color:rgba(255,255,255,.4);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s;}
 .bg:hover{color:#fff;}
-.bg svg{transition:transform .22s var(--ease);}
+.bg svg{transition:transform .2s var(--ease);}
 .bg:hover svg{transform:translateX(4px);}
 
-/* Right: glass metric cards */
-.h-right{display:flex;flex-direction:column;gap:10px;}
-.hmr{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.hmc{
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:18px;padding:26px 26px 22px;
-  backdrop-filter:blur(16px);
-  -webkit-backdrop-filter:blur(16px);
-  transition:background .2s,border-color .22s;
-}
-.hmc:hover{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.16);}
-.hmc-v{font-family:var(--en);font-size:42px;font-weight:600;color:#fff;letter-spacing:-2.5px;line-height:1;margin-bottom:8px;}
-.hmc-v sup{font-size:17px;font-weight:400;color:var(--ltb);vertical-align:super;letter-spacing:0;}
-.hmc-l{font-size:13px;color:rgba(255,255,255,.3);font-weight:300;}
-.hmc.s2{grid-column:span 2;}
-.hmc-row{display:flex;align-items:center;justify-content:space-between;}
-.hmc-pill{
-  font-family:var(--en);font-size:11px;font-weight:500;
-  letter-spacing:.6px;text-transform:uppercase;
-  background:rgba(120,207,47,.18);color:var(--ltb);
-  padding:5px 13px;border-radius:20px;
-}
+/* Hero right stats — floating glass */
+.h-stats{position:absolute;right:56px;top:50%;transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:10px;}
+.hs{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px 24px 18px;backdrop-filter:blur(16px);min-width:170px;transition:border-color .2s,background .2s;}
+.hs:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.15);}
+.hs-v{font-family:var(--en);font-size:38px;font-weight:700;color:#fff;letter-spacing:-2px;line-height:1;margin-bottom:6px;}
+.hs-v sup{font-size:15px;color:var(--ltb);vertical-align:super;font-weight:400;}
+.hs-l{font-size:12px;color:rgba(255,255,255,.3);font-weight:300;}
+.hs-badge{font-family:var(--en);font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;background:rgba(109,196,34,.18);color:var(--ltb);padding:4px 10px;border-radius:20px;}
 
-/* Scroll hint */
-.h-scroll{
-  position:absolute;bottom:44px;left:60px;z-index:3;
-  display:flex;align-items:center;gap:12px;
-}
-.h-sline{width:1px;height:44px;background:linear-gradient(to bottom,rgba(255,255,255,.3),transparent);animation:sl 2.4s ease-in-out infinite;}
-@keyframes sl{0%,100%{opacity:.2;transform:scaleY(.4) translateY(-10px);}55%{opacity:1;transform:scaleY(1) translateY(0);}}
-.h-scroll span{font-family:var(--en);font-size:10px;letter-spacing:2.5px;color:rgba(255,255,255,.18);text-transform:uppercase;}
+.h-scroll{position:absolute;bottom:40px;left:56px;z-index:3;display:flex;align-items:center;gap:12px;}
+.h-sline{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.3),transparent);animation:sl 2.4s ease-in-out infinite;}
+@keyframes sl{0%,100%{opacity:.2;transform:scaleY(.4) translateY(-8px);}55%{opacity:1;transform:none;}}
+.h-scroll span{font-family:var(--en);font-size:10px;letter-spacing:2.5px;color:rgba(255,255,255,.16);text-transform:uppercase;}
 
-/* ══ ABOUT ══════════════════════════════════ */
-#about{
-  border-top:1px solid var(--g100);
-  padding:136px 60px;
-  max-width:1380px;margin:0 auto;
-  display:grid;grid-template-columns:400px 1fr;gap:120px;align-items:start;
-}
-.ey{font-family:var(--en);font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--leaf);margin-bottom:22px;}
-.sec-h{font-size:40px;font-weight:700;letter-spacing:-1.5px;line-height:1.18;color:var(--ink);}
-.about-r{display:flex;flex-direction:column;gap:28px;padding-top:6px;}
-.about-r p{font-size:16px;line-height:1.95;color:var(--g600);font-weight:300;}
-.about-r strong{color:var(--ink);font-weight:500;}
-.about-rule{width:32px;height:2px;background:var(--lt);}
-/* About pillars */
-.about-pillars{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:8px;
-}
-.ap{
-  background:var(--g50);border:1px solid var(--g100);
-  border-radius:14px;padding:20px 18px;
-  transition:border-color .2s,box-shadow .2s;
-}
-.ap:hover{border-color:var(--lt);box-shadow:0 6px 24px rgba(15,31,26,.08);}
-.ap-icon{
-  width:32px;height:32px;border-radius:8px;
-  background:var(--pale);display:flex;align-items:center;justify-content:center;
-  color:var(--leaf);margin-bottom:12px;
-}
-.ap-t{font-size:13px;font-weight:500;color:var(--ink);margin-bottom:4px;}
-.ap-d{font-size:12px;color:var(--g600);font-weight:300;line-height:1.5;}
+/* ─── ABOUT ─── */
+#about{padding:120px 56px;max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;border-top:1px solid var(--g100);}
+.ey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--leaf);margin-bottom:20px;}
+.sec-h{font-size:clamp(36px,3.5vw,54px);font-weight:800;letter-spacing:-2px;line-height:1.08;color:var(--ink);}
+.about-body{margin-top:20px;}
+.about-body p{font-size:16px;color:var(--g600);font-weight:300;line-height:1.85;max-width:460px;}
+.about-body strong{color:var(--ink);font-weight:500;}
+.astats{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.as{background:var(--g50);border:1px solid var(--g100);border-radius:16px;padding:22px 20px 18px;transition:border-color .2s,box-shadow .2s,transform .2s var(--ease);}
+.as:hover{border-color:var(--g200);box-shadow:0 8px 28px rgba(10,23,16,.06);transform:translateY(-3px);}
+.as-v{font-family:var(--en);font-size:34px;font-weight:700;color:var(--ink);letter-spacing:-2px;line-height:1;margin-bottom:5px;}
+.as-v span{font-size:14px;font-weight:400;color:var(--ltb);}
+.as-l{font-size:12px;color:var(--g600);font-weight:300;}
 
-/* ══ FRAMEWORK ══════════════════════════════════ */
-#framework{background:var(--ink);padding:120px 0 0;overflow:hidden;}
-
-.fw-top{
-  max-width:1380px;margin:0 auto;
-  padding:0 60px 80px;
-  display:flex;justify-content:space-between;align-items:flex-end;
-}
-.fw-ey{font-family:var(--en);font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.22);margin-bottom:18px;}
-.fw-h{font-size:40px;font-weight:700;letter-spacing:-1.5px;color:#fff;line-height:1.18;}
-.fw-r{font-size:14px;color:rgba(255,255,255,.22);max-width:210px;text-align:right;line-height:1.9;font-weight:300;}
-
-/* Network stage */
-.fw-stage{max-width:1380px;margin:0 auto;padding:0 44px;position:relative;}
-
-/* Tooltip */
-.fw-tip{
-  position:absolute;top:0;left:0;
-  pointer-events:none;z-index:20;
-  opacity:0;transform:translateY(10px) scale(.96);
-  transition:opacity .22s var(--ease),transform .22s var(--ease);
-}
+/* ─── FRAMEWORK ─── */
+#framework{background:var(--ink);padding:120px 0;overflow:hidden;}
+.fw-top{max-width:1380px;margin:0 auto;padding:0 56px 72px;display:flex;justify-content:space-between;align-items:flex-end;}
+.fw-ey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:18px;}
+.fw-h{font-size:clamp(32px,3vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;line-height:1.15;}
+.fw-desc{font-size:14px;color:rgba(255,255,255,.22);max-width:200px;text-align:right;line-height:1.85;font-weight:300;}
+/* SVG network */
+.fw-net{max-width:1380px;margin:0 auto;padding:0 48px;position:relative;}
+.fw-tip{position:absolute;pointer-events:none;z-index:20;opacity:0;transform:translateY(8px) scale(.96);transition:opacity .18s var(--ease),transform .18s var(--ease);}
 .fw-tip.show{opacity:1;transform:none;}
-.fw-tip-box{
-  background:rgba(20,42,32,.94);
-  border:1px solid rgba(120,207,47,.22);
-  border-radius:12px;padding:14px 20px;
-  backdrop-filter:blur(20px);
-  white-space:nowrap;
-}
-.fw-tw{font-family:var(--en);font-size:15px;font-weight:600;color:#fff;margin-bottom:4px;letter-spacing:-.3px;}
-.fw-tt{font-size:12px;color:rgba(255,255,255,.42);font-weight:300;}
-
-/* SVG nodes */
-.fn{cursor:pointer;}
-.fn .ro{fill:none;stroke:rgba(255,255,255,.06);stroke-width:1;transition:stroke .28s,r .28s;}
-.fn .rm{fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.1);stroke-width:1;transition:fill .28s,stroke .28s,stroke-width .28s;}
-.fn .gl{
-  font-family:Inter,sans-serif;font-size:62px;font-weight:700;
-  fill:rgba(255,255,255,.2);
-  dominant-baseline:central;text-anchor:middle;
-  transition:fill .28s,font-size .28s;
-  letter-spacing:-2px;
-}
-.fn .wl{
-  font-family:Inter,sans-serif;font-size:11px;font-weight:500;
-  fill:rgba(255,255,255,.18);letter-spacing:.6px;
-  text-anchor:middle;transition:fill .28s;
-}
-.fn:hover .ro{stroke:rgba(120,207,47,.4);}
-.fn:hover .rm{fill:rgba(120,207,47,.1);stroke:rgba(120,207,47,.5);}
-.fn:hover .gl{fill:rgba(255,255,255,.75);}
-.fn:hover .wl{fill:rgba(255,255,255,.6);}
-.fn.act .ro{stroke:rgba(120,207,47,.5);}
-.fn.act .rm{fill:rgba(120,207,47,.14);stroke:rgba(120,207,47,.7);stroke-width:1.5;}
-.fn.act .gl{fill:var(--ltb);}
-.fn.act .wl{fill:rgba(255,255,255,.7);}
-
-/* connector */
+.fw-tb{background:rgba(18,38,26,.96);border:1px solid rgba(109,196,34,.24);border-radius:12px;padding:13px 18px;backdrop-filter:blur(20px);white-space:nowrap;}
+.fw-tw{font-family:var(--en);font-size:14px;font-weight:600;color:#fff;margin-bottom:3px;}
+.fw-tt{font-size:12px;color:rgba(255,255,255,.4);}
+.fn{cursor:default;}
+.fn .ro{fill:none;stroke:rgba(255,255,255,.06);transition:stroke .22s;}
+.fn .rm{fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.1);stroke-width:1;transition:fill .22s,stroke .22s;}
+.fn .gl{font-family:Inter,sans-serif;font-size:64px;font-weight:900;fill:rgba(255,255,255,.22);dominant-baseline:central;text-anchor:middle;transition:fill .22s;letter-spacing:-3px;}
+.fn .wl{font-family:Inter,sans-serif;font-size:11px;font-weight:500;fill:rgba(255,255,255,.18);letter-spacing:.6px;text-anchor:middle;transition:fill .22s;}
+.fn:hover .ro{stroke:rgba(109,196,34,.4);}
+.fn:hover .rm{fill:rgba(109,196,34,.1);stroke:rgba(109,196,34,.5);}
+.fn:hover .gl{fill:var(--ltb);}
+.fn:hover .wl{fill:rgba(255,255,255,.65);}
 .fc{stroke:rgba(255,255,255,.07);stroke-width:1;stroke-dasharray:4 7;fill:none;}
 .fp{fill:none;stroke-width:1.5;stroke-dasharray:16 220;}
+/* Keyword row */
+.fw-row{max-width:1380px;margin:0 auto;padding:60px 56px 0;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,.06);}
+.fw-cell{background:var(--ink);padding:32px 24px 36px;transition:background .2s;}
+.fw-cell:hover{background:rgba(255,255,255,.04);}
+.fw-cl{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2px;color:var(--ltb);text-transform:uppercase;margin-bottom:12px;}
+.fw-cw{font-family:var(--en);font-size:18px;font-weight:700;color:#fff;letter-spacing:-.4px;margin-bottom:8px;}
+.fw-ck{font-size:13px;color:rgba(255,255,255,.3);font-weight:300;line-height:1.55;}
 
-/* ══ VALUE SECTIONS ══════════════════════════════════ */
-.vw{background:var(--ink);}
-.vs{
-  max-width:1380px;margin:0 auto;
-  padding:116px 60px;
-  display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center;
-  border-top:1px solid rgba(255,255,255,.055);
-  scroll-margin-top:72px;
-}
-.vs.ev .vl{order:2;}.vs.ev .vr{order:1;}
+/* ─── WHY — 6 STORY SECTIONS ─── */
+/* Each section is full-width, distinct visual theme */
 
-/* Left text */
-.vs-n{font-family:var(--en);font-size:11px;font-weight:500;letter-spacing:2.5px;color:var(--ltb);text-transform:uppercase;margin-bottom:16px;}
-.vs-bg{font-family:var(--en);font-size:130px;font-weight:700;line-height:.82;letter-spacing:-8px;color:rgba(255,255,255,.035);display:block;margin-bottom:-28px;user-select:none;}
-.vs-ti{font-family:var(--en);font-size:54px;font-weight:700;letter-spacing:-2.5px;line-height:1.04;color:#fff;margin-bottom:14px;}
-.vs-tg{font-size:16px;color:var(--ltb);font-weight:400;margin-bottom:22px;letter-spacing:-.1px;}
-.vs-de{font-size:15px;line-height:1.92;color:rgba(255,255,255,.38);font-weight:300;margin-bottom:32px;max-width:420px;}
-.vs-de strong{color:rgba(255,255,255,.72);font-weight:500;}
-.vs-chips{display:flex;flex-wrap:wrap;gap:8px;}
-.chip{font-family:var(--en);font-size:12px;border:1px solid rgba(255,255,255,.1);color:rgba(255,255,255,.32);padding:6px 14px;border-radius:20px;transition:border-color .2s,color .2s;cursor:default;}
-.chip:hover{border-color:var(--ltb);color:var(--ltb);}
+/* Section common */
+.ws{position:relative;overflow:hidden;}
+.ws-inner{max-width:1380px;margin:0 auto;padding:120px 56px;}
 
-/* Right: metric grid */
-.vg{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.vc{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.07);
-  border-radius:16px;padding:24px 22px 20px;
-  transition:background .2s,border-color .2s;
-}
-.vc:hover{background:rgba(255,255,255,.08);border-color:rgba(120,207,47,.22);box-shadow:0 0 0 1px rgba(120,207,47,.08);}
-.vc.s2{grid-column:span 2;}
-.vc-ic{
-  width:30px;height:30px;border-radius:8px;
-  background:rgba(120,207,47,.1);border:1px solid rgba(120,207,47,.18);
-  display:flex;align-items:center;justify-content:center;
-  color:var(--ltb);margin-bottom:16px;
-}
-.vc-v{font-family:var(--en);font-size:30px;font-weight:600;color:#fff;letter-spacing:-1.5px;line-height:1;margin-bottom:6px;}
-.vc-v .u{font-size:14px;font-weight:400;color:var(--ltb);letter-spacing:0;}
-.vc-l{font-size:12px;color:rgba(255,255,255,.28);font-weight:300;line-height:1.5;}
-.vc-kw{font-family:var(--en);font-size:22px;font-weight:600;color:#fff;letter-spacing:-.5px;margin-bottom:6px;}
+/* WS1 — 수도권 즉시 대응 — Deep Green */
+.ws1{background:linear-gradient(135deg,#0a1f12 0%,#0f2d18 60%,#122a16 100%);}
+.ws1 .ws-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.ws-num{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;color:rgba(255,255,255,.2);text-transform:uppercase;margin-bottom:24px;}
+.ws-h{font-size:clamp(40px,4vw,68px);font-weight:900;line-height:1.0;letter-spacing:-3px;color:#fff;margin-bottom:20px;}
+.ws-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.75;max-width:400px;}
+.ws-tag{display:inline-block;margin-top:24px;font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.45);padding:7px 16px;border-radius:20px;}
 
-/* ══ WHY SEEDIT ══════════════════════════════════ */
-#why{
-  max-width:1380px;margin:0 auto;
-  padding:136px 60px;border-top:1px solid var(--g100);
-}
-.why-intro{display:grid;grid-template-columns:400px 1fr;gap:80px;margin-bottom:72px;align-items:start;}
-.why-h{font-size:40px;font-weight:700;letter-spacing:-1.5px;line-height:1.18;}
-.why-sub{font-size:16px;line-height:1.9;color:var(--g600);font-weight:300;padding-top:6px;max-width:480px;}
-.why-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
-.wyc{
-  border:1px solid var(--g100);border-radius:20px;padding:40px 32px 36px;
-  transition:border-color .25s,box-shadow .25s,transform .28s var(--ease),background .25s;
-  display:flex;flex-direction:column;gap:16px;
-  position:relative;overflow:hidden;
-}
-.wyc::before{
-  content:'';position:absolute;left:0;top:24px;bottom:24px;
-  width:2px;background:var(--g200);border-radius:0 2px 2px 0;
-  transition:background .25s,top .25s,bottom .25s;
-}
-.wyc:hover{border-color:var(--g200);box-shadow:0 16px 56px rgba(15,31,26,.09);transform:translateY(-5px);background:var(--g50);}
-.wyc:hover::before{background:var(--lt);top:16px;bottom:16px;}
-.wyc-icon{
-  width:42px;height:42px;border-radius:11px;
-  background:var(--g50);border:1px solid var(--g100);
-  display:flex;align-items:center;justify-content:center;color:var(--ink);
-}
-.wyc-t{font-size:17px;font-weight:600;color:var(--ink);letter-spacing:-.3px;}
-.wyc-d{font-size:14px;color:var(--g600);font-weight:300;line-height:1.7;}
-.wyc-tag{
-  font-family:var(--en);font-size:11px;font-weight:500;
-  letter-spacing:.5px;text-transform:uppercase;
-  background:var(--pale);color:var(--leaf);
-  padding:4px 11px;border-radius:20px;align-self:flex-start;
-  margin-top:auto;
-}
+/* Map graphic for ws1 */
+.ws1-map{position:relative;height:340px;display:flex;align-items:center;justify-content:center;}
+.ws1-map svg{width:100%;height:100%;}
 
-/* ══ PROCESS ══════════════════════════════════ */
-#process{background:var(--g50);border-top:1px solid var(--g100);padding:136px 60px;}
+/* WS2 — 24h 긴급 — Dark with lime accent */
+.ws2{background:#111;}
+.ws2 .ws-inner{display:flex;flex-direction:column;align-items:center;text-align:center;padding:140px 56px;}
+.ws2-big{font-family:var(--en);font-size:clamp(80px,14vw,200px);font-weight:900;line-height:.85;letter-spacing:-8px;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.12);margin-bottom:48px;position:relative;}
+.ws2-big em{position:absolute;inset:0;color:var(--ltb);-webkit-text-stroke:0;font-style:normal;clip-path:inset(0 0 0 0);animation:ws2clip 3.5s ease-in-out infinite;}
+@keyframes ws2clip{0%,100%{clip-path:inset(0 100% 0 0);}50%{clip-path:inset(0 0% 0 0);}}
+.ws2 .ws-h{color:#fff;}
+.ws2 .ws-sub{color:rgba(255,255,255,.4);margin:0 auto;}
+
+/* WS3 — 산지 네트워크 — Deep forest */
+.ws3{background:linear-gradient(160deg,#081610 0%,#0e2218 50%,#0c1e15 100%);}
+.ws3 .ws-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center;}
+.ws3-visual{position:relative;height:360px;}
+
+/* WS4 — 공급망 통합 — Slate dark */
+.ws4{background:#0d1117;}
+.ws4 .ws-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;}
+.ws4-flow{display:flex;flex-direction:column;gap:0;}
+.flow-step{display:flex;align-items:center;gap:20px;padding:20px 24px;border:1px solid rgba(255,255,255,.06);border-radius:12px;margin-bottom:8px;transition:background .2s,border-color .2s;}
+.flow-step:hover{background:rgba(255,255,255,.04);border-color:rgba(109,196,34,.2);}
+.flow-n{font-family:var(--en);font-size:11px;font-weight:600;color:rgba(255,255,255,.2);width:24px;flex-shrink:0;letter-spacing:1px;}
+.flow-t{font-size:14px;font-weight:500;color:rgba(255,255,255,.75);}
+.flow-d{font-size:12px;color:rgba(255,255,255,.3);font-weight:300;margin-top:2px;}
+.flow-arr{margin-left:auto;color:rgba(109,196,34,.4);}
+
+/* WS5 — 현장 실행력 — Near black */
+.ws5{background:#0c0c0c;}
+.ws5 .ws-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.ws5-nums{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.ws5-num{padding:28px 24px;}
+.ws5-num-v{font-family:var(--en);font-size:52px;font-weight:900;color:#fff;letter-spacing:-3px;line-height:1;margin-bottom:8px;}
+.ws5-num-v span{color:var(--ltb);}
+.ws5-num-l{font-size:13px;color:rgba(255,255,255,.35);font-weight:300;}
+.ws5-divider{border-top:1px solid rgba(255,255,255,.06);}
+
+/* WS6 — 빠른 의사결정 — Ink with green pulse */
+.ws6{background:var(--ink);}
+.ws6 .ws-inner{text-align:center;padding:140px 56px;}
+.ws6-ring{display:flex;align-items:center;justify-content:center;margin:0 auto 60px;position:relative;width:240px;height:240px;}
+.ws6-ring-svg{position:absolute;inset:0;width:100%;height:100%;}
+.ws6-center{font-family:var(--en);font-size:18px;font-weight:700;color:#fff;text-align:center;}
+.ws6-center span{display:block;font-size:11px;color:rgba(255,255,255,.3);font-weight:300;margin-top:4px;}
+
+/* ─── PROCESS ─── */
+#process{background:var(--g50);border-top:1px solid var(--g100);padding:120px 56px;}
 .proc-in{max-width:1380px;margin:0 auto;}
-.proc-h{font-size:40px;font-weight:700;letter-spacing:-1.5px;margin-bottom:80px;}
+.proc-h{font-size:clamp(32px,3vw,44px);font-weight:800;letter-spacing:-2px;margin-bottom:72px;}
 .proc-tr{display:grid;grid-template-columns:repeat(6,1fr);position:relative;}
-.proc-tr::before{content:'';position:absolute;top:24px;left:calc(100%/12);right:calc(100%/12);height:1px;background:var(--g200);}
+.proc-tr::before{content:'';position:absolute;top:23px;left:calc(100%/12);right:calc(100%/12);height:1px;background:var(--g200);}
 .proc-st{display:flex;flex-direction:column;align-items:center;gap:16px;position:relative;z-index:1;}
-.proc-d{
-  width:48px;height:48px;border-radius:50%;
-  background:#fff;border:1px solid var(--g200);
-  display:flex;align-items:center;justify-content:center;
-  font-family:var(--en);font-size:11px;font-weight:500;color:var(--g400);
-  transition:all .25s var(--ease);
-}
+.proc-d{width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--g200);display:flex;align-items:center;justify-content:center;font-family:var(--en);font-size:11px;font-weight:500;color:var(--g400);transition:all .25s var(--ease);}
 .proc-st:hover .proc-d{background:var(--ink);border-color:var(--ink);color:#fff;transform:scale(1.12);}
 .proc-d.hi{background:var(--leaf);border-color:var(--leaf);color:#fff;}
 .proc-nm{font-size:14px;font-weight:500;color:var(--ink);}
 .proc-sb{font-size:12px;color:var(--g400);text-align:center;line-height:1.55;font-weight:300;}
 
-/* ══ CONTACT ══════════════════════════════════ */
-#contact{
-  max-width:1380px;margin:0 auto;
-  padding:140px 60px;
-  display:grid;grid-template-columns:1fr 1fr;gap:120px;align-items:start;
-  border-top:1px solid var(--g100);
-}
-.c-ey{font-family:var(--en);font-size:11px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--leaf);margin-bottom:20px;}
-.c-h{font-size:clamp(32px,3vw,52px);font-weight:700;letter-spacing:-2px;line-height:1.1;color:var(--ink);margin-bottom:20px;}
-.c-sub{font-size:16px;color:var(--g600);font-weight:300;line-height:1.85;margin-bottom:44px;max-width:360px;}
+/* ─── CONTACT ─── */
+#contact{max-width:1380px;margin:0 auto;padding:140px 56px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;border-top:1px solid var(--g100);}
+.c-ey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--leaf);margin-bottom:20px;}
+.c-h{font-size:clamp(32px,3vw,50px);font-weight:800;letter-spacing:-2px;line-height:1.1;color:var(--ink);margin-bottom:20px;}
+.c-sub{font-size:16px;color:var(--g600);font-weight:300;line-height:1.85;margin-bottom:44px;}
 .c-bds{display:flex;flex-wrap:wrap;gap:8px;}
 .c-bd{font-family:var(--en);font-size:12px;background:var(--g50);border:1px solid var(--g100);color:var(--g600);padding:6px 14px;border-radius:20px;}
 .cf{display:flex;flex-direction:column;gap:14px;}
 .cf-r{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .ff{display:flex;flex-direction:column;gap:7px;}
 .ff label{font-family:var(--en);font-size:11px;font-weight:500;color:var(--g600);letter-spacing:.3px;}
-.ff input,.ff textarea,.ff select{
-  font-family:var(--kr);font-size:14px;font-weight:300;
-  background:var(--g50);border:1px solid var(--g100);
-  border-radius:10px;padding:13px 16px;color:var(--ink);
-  outline:none;appearance:none;
-  transition:border-color .15s,box-shadow .15s,background .15s;
-}
-.ff input:focus,.ff textarea:focus,.ff select:focus{
-  border-color:var(--ink);
-  box-shadow:0 0 0 3px rgba(15,31,26,.07);
-  background:#fff;
-}
-.ff textarea{min-height:116px;resize:none;}
-.cf-sub{
-  font-family:var(--en);font-size:14px;font-weight:500;
-  background:var(--ink);color:#fff;
-  border:none;border-radius:10px;padding:15px;
-  cursor:pointer;transition:opacity .15s,transform .2s var(--ease);width:100%;
-}
+.ff input,.ff textarea,.ff select{font-family:var(--kr);font-size:14px;font-weight:300;background:var(--g50);border:1px solid var(--g100);border-radius:10px;padding:13px 16px;color:var(--ink);outline:none;appearance:none;transition:border-color .15s,box-shadow .15s,background .15s;}
+.ff input:focus,.ff textarea:focus,.ff select:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(10,23,16,.07);background:#fff;}
+.ff textarea{min-height:110px;resize:none;}
+.cf-sub{font-family:var(--en);font-size:14px;font-weight:600;background:var(--ink);color:#fff;border:none;border-radius:10px;padding:15px;cursor:pointer;width:100%;transition:opacity .15s,transform .2s var(--ease);}
 .cf-sub:hover{opacity:.84;transform:translateY(-1px);}
 
-/* ══ FOOTER ══════════════════════════════════ */
-footer{border-top:1px solid var(--g100);padding:32px 60px;display:flex;justify-content:space-between;align-items:center;}
-.f-logo{font-family:var(--en);font-size:17px;font-weight:700;color:var(--ink);letter-spacing:-.7px;}
+/* ─── FOOTER ─── */
+footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-content:space-between;align-items:center;}
+.f-logo{font-family:var(--en);font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.8px;}
 .f-logo span{color:var(--ltb);}
 .f-copy{font-size:12px;color:var(--g400);font-weight:300;}
-.f-ls{display:flex;gap:24px;}
+.f-ls{display:flex;gap:20px;}
 .f-ls a{font-size:12px;color:var(--g400);text-decoration:none;transition:color .15s;}
 .f-ls a:hover{color:var(--ink);}
 
-/* ══ SCROLL REVEAL ══════════════════════════════════ */
-.rv{opacity:0;transform:translateY(22px);transition:opacity var(--dur) var(--ease),transform var(--dur) var(--ease);}
+/* ─── REVEAL ─── */
+.rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
 .rv.on{opacity:1;transform:none;}
-.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}.d5{transition-delay:.5s;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
 
-/* ══ MOBILE ══════════════════════════════════ */
+/* ─── MOBILE ─── */
 @media(max-width:1024px){
   nav{padding:0 24px;}.nm{display:none;}
-  #hero{grid-template-columns:1fr;padding:130px 24px 80px;gap:48px;}
-  .h-right{display:none;}.h-scroll{display:none;}
-  #about{grid-template-columns:1fr;padding:80px 24px;gap:48px;}
-  .about-pillars{grid-template-columns:1fr;}
-  .fw-top{padding:0 24px 60px;flex-direction:column;align-items:flex-start;gap:16px;}
-  .fw-r{text-align:left;max-width:100%;}
-  .fw-stage{padding:0 16px;}
-  .vs{grid-template-columns:1fr;padding:80px 24px;gap:48px;}
-  /* 모바일: 텍스트(vl) 항상 위, 카드(vr) 항상 아래 */
-  .vs .vl{order:1;}
-  .vs .vr{order:2;}
-  .vs.ev .vl{order:1;}
-  .vs.ev .vr{order:2;}
-  .vs-bg{font-size:88px;}.vs-ti{font-size:40px;}
-  .why-intro{grid-template-columns:1fr;gap:24px;margin-bottom:56px;}
-  .why-grid{grid-template-columns:1fr 1fr;}
+  #hero{padding:0 24px;}
+  .h-stats{display:none;}.h-scroll{display:none;}
+  #about{grid-template-columns:1fr;padding:80px 24px;gap:40px;}
+  .fw-top{padding:0 24px 56px;flex-direction:column;align-items:flex-start;gap:16px;}
+  .fw-desc{text-align:left;max-width:100%;}
+  .fw-net{padding:0 16px;}
+  .fw-row{grid-template-columns:repeat(2,1fr);padding:48px 24px 0;}
+  .ws-inner{padding:80px 24px!important;}
+  .ws1 .ws-inner,.ws3 .ws-inner,.ws4 .ws-inner,.ws5 .ws-inner{grid-template-columns:1fr!important;}
+  .ws1-map,.ws3-visual{height:240px;}
+  .ws2 .ws-inner,.ws6 .ws-inner{padding:100px 24px!important;}
   #process{padding:80px 24px;}
-  .proc-tr{grid-template-columns:repeat(3,1fr);gap:36px;}
+  .proc-tr{grid-template-columns:repeat(3,1fr);gap:32px;}
   .proc-tr::before{display:none;}
-  #contact{grid-template-columns:1fr;padding:80px 24px;gap:60px;}
+  #contact{grid-template-columns:1fr;padding:80px 24px;gap:56px;}
   footer{flex-direction:column;gap:12px;text-align:center;padding:28px 24px;}.f-ls{display:none;}
 }
 @media(max-width:640px){
-  h1.hh{font-size:44px;letter-spacing:-2px;}
-  .why-grid{grid-template-columns:1fr;}
+  h1.hh{font-size:48px;letter-spacing:-2.5px;}
+  .fw-row{grid-template-columns:1fr;}
+  .ws5-nums{grid-template-columns:1fr 1fr;}
   .cf-r{grid-template-columns:1fr;}
+  .astats{grid-template-columns:1fr 1fr;}
 }
 </style>
 </head>
 <body>
 
-<!-- ══ NAV ══ -->
-<nav id="mainNav">
-  <a href="#" class="nl">
-  <img src="logo.png" alt="SEEDit Logo" class="nav-logo">
-</a>
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nl">SEED<span class="g">it</span></a>
   <ul class="nm">
     <li><a href="#about">About</a></li>
     <li><a href="#framework">Framework</a></li>
     <li><a href="#why">Why SEEDit</a></li>
-    <li><a href="#process">프로세스</a></li>
+    <li><a href="#process">Process</a></li>
   </ul>
   <a href="#contact" class="nc">문의하기</a>
 </nav>
@@ -468,53 +267,23 @@ footer{border-top:1px solid var(--g100);padding:32px 60px;display:flex;justify-c
 <div id="hw">
   <canvas id="hc"></canvas>
   <div id="hov"></div>
-
-  <section id="hero">
-    <div class="rv">
-      <div class="h-kicker">Agricultural SCM Operating Partner</div>
-      <h1 class="hh">
-        품질을 관리하고,<br>
-        <em>공급망을</em><br>
-        움직입니다.
-      </h1>
-      <p class="h-sub">
-        고객사의 농산물 공급망을 운영하고<br>
-        성장시키는 SCM 전문기업
-      </p>
-      <div class="h-acts">
-        <a href="#contact" class="bw">파트너십 문의</a>
-        <a href="#about" class="bg">SEEDit 알아보기
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-        </a>
-      </div>
+  <div id="hero">
+    <div class="h-kicker">Agricultural SCM Operating Partner</div>
+    <h1 class="hh">공급망을<br><em>움직입니다.</em></h1>
+    <p class="h-sub">산지부터 납품까지 — 농산물 공급망 전 과정을 운영하는 SCM 전문기업</p>
+    <div class="h-acts">
+      <a href="#contact" class="bw">파트너십 문의</a>
+      <a href="#about" class="bg">더 알아보기
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
+      </a>
     </div>
-    <div class="h-right rv d2">
-      <div class="hmr">
-        <div class="hmc">
-          <div class="hmc-v">15<sup>톤</sup></div>
-          <div class="hmc-l">일 평균 생산량</div>
-        </div>
-        <div class="hmc">
-          <div class="hmc-v">14<sup>명</sup></div>
-          <div class="hmc-l">전문 운영 인력</div>
-        </div>
-      </div>
-      <div class="hmc s2">
-        <div class="hmc-row">
-          <div>
-            <div class="hmc-v" style="font-size:26px;letter-spacing:-1px;margin-bottom:8px;">수도권 운영거점</div>
-            <div class="hmc-l">산지부터 납품까지 one-stop 운영</div>
-          </div>
-          <div class="hmc-pill">SCM Specialist</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <div class="h-scroll">
-    <div class="h-sline"></div>
-    <span>Scroll</span>
   </div>
+  <div class="h-stats">
+    <div class="hs"><div class="hs-v">15<sup>톤</sup></div><div class="hs-l">일 평균 처리량</div></div>
+    <div class="hs"><div class="hs-v">14<sup>명</sup></div><div class="hs-l">전문 운영 인력</div></div>
+    <div class="hs"><div class="hs-badge">SCM Specialist</div><div class="hs-l" style="margin-top:8px;">수도권 운영거점 확보</div></div>
+  </div>
+  <div class="h-scroll"><div class="h-sline"></div><span>Scroll</span></div>
 </div>
 
 <!-- ══ ABOUT ══ -->
@@ -522,403 +291,259 @@ footer{border-top:1px solid var(--g100);padding:32px 60px;display:flex;justify-c
 <section id="about">
   <div class="rv">
     <div class="ey">About SEEDit</div>
-    <h2 class="sec-h">공급망 운영<br>그 자체입니다.</h2>
+    <h2 class="sec-h">공급망 운영,<br>그 자체입니다.</h2>
+    <div class="about-body"><p><strong>산지 수급부터 품질관리, 생산, 출고까지</strong> — 공급망 전 과정을 직접 운영하는 SCM 전문기업입니다.</p></div>
   </div>
-  <div class="about-r rv d1">
-    <p>
-      SEEDit은 <strong>고객사의 농산물 공급망을 운영하고 성장시키는 SCM 전문기업</strong>입니다.
-      단순히 농산물을 선별하고 포장하는 업체가 아닙니다.
-    </p>
-    <div class="about-rule"></div>
-    <p>
-      <strong>산지 수급부터 품질관리, 생산, 출고까지</strong> 공급망 전 과정을 직접 운영하며,
-      데이터 기반의 빠른 의사결정과 현장 전문성을 결합해
-      고객사가 본업에 집중할 수 있도록 공급망 전반을 책임집니다.
-    </p>
-    <div class="about-pillars rv d2">
-      <div class="ap">
-        <div class="ap-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
-        </div>
-        <div class="ap-t">전문성</div>
-        <div class="ap-d">품질·시장·산지 특성에 대한 깊은 운영 경험</div>
-      </div>
-      <div class="ap">
-        <div class="ap-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg>
-        </div>
-        <div class="ap-t">신뢰성</div>
-        <div class="ap-d">납기 준수, 품질 일관성, 투명한 보고 체계</div>
-      </div>
-      <div class="ap">
-        <div class="ap-icon">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-        </div>
-        <div class="ap-t">실행력</div>
-        <div class="ap-d">빠른 의사결정, 긴급 대응, 유연한 운영 구조</div>
-      </div>
-    </div>
+  <div class="astats rv d1">
+    <div class="as"><div class="as-v">15<span>톤</span></div><div class="as-l">일 평균 처리량</div></div>
+    <div class="as"><div class="as-v">14<span>명</span></div><div class="as-l">전문 운영 인력</div></div>
+    <div class="as"><div class="as-v">365<span>일</span></div><div class="as-l">연중 안정 공급</div></div>
+    <div class="as"><div class="as-v">6<span>단계</span></div><div class="as-l">통합 관리 프로세스</div></div>
   </div>
 </section>
 </div>
 
 <!-- ══ FRAMEWORK ══ -->
 <section id="framework">
-
   <div class="fw-top rv">
-    <div>
-      <div class="fw-ey">SEEDit Framework</div>
-      <h2 class="fw-h">SEEDit은<br>하나의 공급망입니다.</h2>
-    </div>
-    <p class="fw-r">브랜드 이름 속 6글자가<br>연결된 공급망 구조를<br>상징합니다.<br>각 원을 클릭하면<br>상세 내용으로 이동합니다.</p>
+    <div><div class="fw-ey">SEEDit Framework</div><h2 class="fw-h">브랜드에 담긴<br>6가지 운영 원칙</h2></div>
+    <p class="fw-desc">6글자가 공급망의 연결 구조를 상징합니다.</p>
   </div>
-
-  <div class="fw-stage rv d1">
-    <!-- tooltip -->
-    <div class="fw-tip" id="fwTip">
-      <div class="fw-tip-box">
-        <div class="fw-tw" id="fwTw"></div>
-        <div class="fw-tt" id="fwTt"></div>
-      </div>
-    </div>
-
-    <!-- viewBox: 1140 wide, 6 nodes cx=95,285,475,665,855,1045 gap=190 r=76 -->
+  <div class="fw-net rv d1" style="position:relative;">
+    <div class="fw-tip" id="fwTip"><div class="fw-tb"><div class="fw-tw" id="fwTw"></div><div class="fw-tt" id="fwTt"></div></div></div>
     <svg id="fwSvg" viewBox="0 0 1140 220" width="100%" style="display:block;overflow:visible;">
-      <defs>
-        <filter id="fg1" x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur stdDeviation="14" result="b"/>
-          <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-        </filter>
-        <radialGradient id="rg0" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stop-color="rgba(120,207,47,.18)"/>
-          <stop offset="100%" stop-color="rgba(120,207,47,0)"/>
-        </radialGradient>
-      </defs>
-
-      <!-- Connectors — gap=190 so edges: 95+66=161 → 285-66=219 → gap 58px -->
+      <defs><filter id="fg"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
       <line class="fc" x1="162" y1="100" x2="218" y2="100"/>
       <line class="fc" x1="352" y1="100" x2="408" y2="100"/>
       <line class="fc" x1="542" y1="100" x2="598" y2="100"/>
       <line class="fc" x1="732" y1="100" x2="788" y2="100"/>
       <line class="fc" x1="922" y1="100" x2="978" y2="100"/>
-
-      <!-- Animated flow pulses -->
-      <line class="fp" x1="162" y1="100" x2="218" y2="100" stroke="rgba(120,207,47,.6)" stroke-dashoffset="0"><animate attributeName="stroke-dashoffset" from="0" to="-232" dur="2s" repeatCount="indefinite"/></line>
-      <line class="fp" x1="352" y1="100" x2="408" y2="100" stroke="rgba(120,207,47,.6)" stroke-dashoffset="-40"><animate attributeName="stroke-dashoffset" from="-40" to="-272" dur="2s" repeatCount="indefinite"/></line>
-      <line class="fp" x1="542" y1="100" x2="598" y2="100" stroke="rgba(120,207,47,.6)" stroke-dashoffset="-80"><animate attributeName="stroke-dashoffset" from="-80" to="-312" dur="2s" repeatCount="indefinite"/></line>
-      <line class="fp" x1="732" y1="100" x2="788" y2="100" stroke="rgba(120,207,47,.6)" stroke-dashoffset="-120"><animate attributeName="stroke-dashoffset" from="-120" to="-352" dur="2s" repeatCount="indefinite"/></line>
-      <line class="fp" x1="922" y1="100" x2="978" y2="100" stroke="rgba(120,207,47,.6)" stroke-dashoffset="-160"><animate attributeName="stroke-dashoffset" from="-160" to="-392" dur="2s" repeatCount="indefinite"/></line>
-
-      <!-- NODE S cx=95 -->
-      <g class="fn" id="fn0" onclick="goTo('vs-s')" onmouseenter="showTip(event,0)" onmouseleave="hideTip()">
-        <circle cx="95" cy="100" r="82" class="ro"/>
-        <circle cx="95" cy="100" r="66" class="rm"/>
-        <text x="95" y="100" class="gl">S</text>
-        <text x="95" y="176" class="wl">SUPPLY</text>
-      </g>
-      <!-- NODE E1 cx=285 -->
-      <g class="fn" id="fn1" onclick="goTo('vs-e1')" onmouseenter="showTip(event,1)" onmouseleave="hideTip()">
-        <circle cx="285" cy="100" r="82" class="ro"/>
-        <circle cx="285" cy="100" r="66" class="rm"/>
-        <text x="285" y="100" class="gl">E</text>
-        <text x="285" y="176" class="wl">EFFICIENCY</text>
-      </g>
-      <!-- NODE E2 cx=475 -->
-      <g class="fn" id="fn2" onclick="goTo('vs-e2')" onmouseenter="showTip(event,2)" onmouseleave="hideTip()">
-        <circle cx="475" cy="100" r="82" class="ro"/>
-        <circle cx="475" cy="100" r="66" class="rm"/>
-        <text x="475" y="100" class="gl">E</text>
-        <text x="475" y="176" class="wl">EXPERTISE</text>
-      </g>
-      <!-- NODE D cx=665 -->
-      <g class="fn" id="fn3" onclick="goTo('vs-d')" onmouseenter="showTip(event,3)" onmouseleave="hideTip()">
-        <circle cx="665" cy="100" r="82" class="ro"/>
-        <circle cx="665" cy="100" r="66" class="rm"/>
-        <text x="665" y="100" class="gl">D</text>
-        <text x="665" y="176" class="wl">DYNAMIC</text>
-      </g>
-      <!-- NODE i cx=855 -->
-      <g class="fn" id="fn4" onclick="goTo('vs-i')" onmouseenter="showTip(event,4)" onmouseleave="hideTip()">
-        <circle cx="855" cy="100" r="82" class="ro"/>
-        <circle cx="855" cy="100" r="66" class="rm"/>
-        <text x="855" y="100" class="gl">i</text>
-        <text x="855" y="176" class="wl">INTEGRATION</text>
-      </g>
-      <!-- NODE t cx=1045 -->
-      <g class="fn" id="fn5" onclick="goTo('vs-t')" onmouseenter="showTip(event,5)" onmouseleave="hideTip()">
-        <circle cx="1045" cy="100" r="82" class="ro"/>
-        <circle cx="1045" cy="100" r="66" class="rm"/>
-        <text x="1045" y="100" class="gl">t</text>
-        <text x="1045" y="176" class="wl">TRUST</text>
-      </g>
+      <line class="fp" x1="162" y1="100" x2="218" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="0"><animate attributeName="stroke-dashoffset" from="0" to="-232" dur="2s" repeatCount="indefinite"/></line>
+      <line class="fp" x1="352" y1="100" x2="408" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-40"><animate attributeName="stroke-dashoffset" from="-40" to="-272" dur="2s" repeatCount="indefinite"/></line>
+      <line class="fp" x1="542" y1="100" x2="598" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-80"><animate attributeName="stroke-dashoffset" from="-80" to="-312" dur="2s" repeatCount="indefinite"/></line>
+      <line class="fp" x1="732" y1="100" x2="788" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-120"><animate attributeName="stroke-dashoffset" from="-120" to="-352" dur="2s" repeatCount="indefinite"/></line>
+      <line class="fp" x1="922" y1="100" x2="978" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-160"><animate attributeName="stroke-dashoffset" from="-160" to="-392" dur="2s" repeatCount="indefinite"/></line>
+      <g class="fn" onmouseenter="showTip(event,0)" onmouseleave="hideTip()"><circle cx="95" cy="100" r="82" class="ro"/><circle cx="95" cy="100" r="66" class="rm"/><text x="95" y="100" class="gl">S</text><text x="95" y="176" class="wl">SUPPLY</text></g>
+      <g class="fn" onmouseenter="showTip(event,1)" onmouseleave="hideTip()"><circle cx="285" cy="100" r="82" class="ro"/><circle cx="285" cy="100" r="66" class="rm"/><text x="285" y="100" class="gl">E</text><text x="285" y="176" class="wl">EFFICIENCY</text></g>
+      <g class="fn" onmouseenter="showTip(event,2)" onmouseleave="hideTip()"><circle cx="475" cy="100" r="82" class="ro"/><circle cx="475" cy="100" r="66" class="rm"/><text x="475" y="100" class="gl">E</text><text x="475" y="176" class="wl">EXPANSION</text></g>
+      <g class="fn" onmouseenter="showTip(event,3)" onmouseleave="hideTip()"><circle cx="665" cy="100" r="82" class="ro"/><circle cx="665" cy="100" r="66" class="rm"/><text x="665" y="100" class="gl">D</text><text x="665" y="176" class="wl">DATA</text></g>
+      <g class="fn" onmouseenter="showTip(event,4)" onmouseleave="hideTip()"><circle cx="855" cy="100" r="82" class="ro"/><circle cx="855" cy="100" r="66" class="rm"/><text x="855" y="100" class="gl">i</text><text x="855" y="176" class="wl">INNOVATION</text></g>
+      <g class="fn" onmouseenter="showTip(event,5)" onmouseleave="hideTip()"><circle cx="1045" cy="100" r="82" class="ro"/><circle cx="1045" cy="100" r="66" class="rm"/><text x="1045" y="100" class="gl">t</text><text x="1045" y="176" class="wl">TECHNOLOGY</text></g>
     </svg>
   </div>
-
-  <!-- 6 value sections -->
-  <div class="vw">
-
-    <!-- S -->
-    <div class="vs" id="vs-s">
-      <div class="vl rv">
-        <div class="vs-n">01 · S</div>
-        <span class="vs-bg">S</span>
-        <div class="vs-ti">Supply</div>
-        <div class="vs-tg">공급망이 경쟁력입니다</div>
-        <p class="vs-de">안정적인 산지 네트워크와 정밀한 수급 역량으로 고객사의 비즈니스 기반을 지탱합니다. <strong>수급 불안정이 곧 비즈니스 리스크인 시대, SEEDit이 그 리스크를 관리합니다.</strong></p>
-        <div class="vs-chips"><span class="chip">산지 직거래</span><span class="chip">계절 대응</span><span class="chip">리스크 헷지</span><span class="chip">물량 유연성</span></div>
-      </div>
-      <div class="vr rv d1">
-        <div class="vg">
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
-            <div class="vc-kw">직접 산지</div>
-            <div class="vc-l">전국 주산지 네트워크</div>
-          </div>
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg></div>
-            <div class="vc-v">365<span class="u">일</span></div>
-            <div class="vc-l">연중 안정 공급</div>
-          </div>
-          <div class="vc s2">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-            <div class="vc-v">15<span class="u">톤+</span></div>
-            <div class="vc-l">일 평균 처리 물량 · 안정적 수급 체계 운영</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- E1 -->
-    <div class="vs ev" id="vs-e1">
-      <div class="vr rv d1">
-        <div class="vg">
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-            <div class="vc-v">14<span class="u">명</span></div>
-            <div class="vc-l">운영 인력</div>
-          </div>
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
-            <div class="vc-v">15<span class="u">톤</span></div>
-            <div class="vc-l">일 평균 생산량</div>
-          </div>
-          <div class="vc s2">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-            <div class="vc-kw">Lean Ops</div>
-            <div class="vc-l">표준화 운영 · 낭비 제거 · 비용 최적화</div>
-          </div>
-        </div>
-      </div>
-      <div class="vl rv">
-        <div class="vs-n">02 · E</div>
-        <span class="vs-bg">E</span>
-        <div class="vs-ti">Efficiency</div>
-        <div class="vs-tg">더 적게, 더 크게</div>
-        <p class="vs-de">적은 인원으로 더 큰 가치를 만듭니다. <strong>린(Lean)한 운영 구조와 표준화된 프로세스</strong>로 비용과 속도를 동시에 최적화합니다.</p>
-        <div class="vs-chips"><span class="chip">공정 표준화</span><span class="chip">낭비 제거</span><span class="chip">비용 최적화</span><span class="chip">현장 전문성</span></div>
-      </div>
-    </div>
-
-    <!-- E2 -->
-    <div class="vs" id="vs-e2">
-      <div class="vl rv">
-        <div class="vs-n">03 · E</div>
-        <span class="vs-bg">E</span>
-        <div class="vs-ti">Expertise</div>
-        <div class="vs-tg">경험이 곧 경쟁력</div>
-        <p class="vs-de">시장을 이해하는 경험이 경쟁력입니다. <strong>품질 기준, 시장 변동성, 산지 특성</strong>에 대한 깊은 이해로 정확하고 신속하게 대응합니다.</p>
-        <div class="vs-chips"><span class="chip">품질 기준 설계</span><span class="chip">시장 인텔리전스</span><span class="chip">불량률 관리</span><span class="chip">규격 표준화</span></div>
-      </div>
-      <div class="vr rv d1">
-        <div class="vg">
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg></div>
-            <div class="vc-kw">QC 전담</div>
-            <div class="vc-l">품질관리 전문 인력</div>
-          </div>
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
-            <div class="vc-kw">Data</div>
-            <div class="vc-l">데이터 기반 품질 관리</div>
-          </div>
-          <div class="vc s2">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg></div>
-            <div class="vc-v">즉각<span class="u"> 대응</span></div>
-            <div class="vc-l">품질 이슈 · 시장 변동 신속 대응 체계</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- D -->
-    <div class="vs ev" id="vs-d">
-      <div class="vr rv d1">
-        <div class="vg">
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-            <div class="vc-v">24<span class="u">h</span></div>
-            <div class="vc-l">긴급 발주 대응</div>
-          </div>
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
-            <div class="vc-kw">Flat</div>
-            <div class="vc-l">수평적 의사결정 구조</div>
-          </div>
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-            <div class="vc-kw">Agile</div>
-            <div class="vc-l">시장 변화 즉각 대응</div>
-          </div>
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-            <div class="vc-kw">Fast</div>
-            <div class="vc-l">신규 거래처 신속 적응</div>
-          </div>
-        </div>
-      </div>
-      <div class="vl rv">
-        <div class="vs-n">04 · D</div>
-        <span class="vs-bg">D</span>
-        <div class="vs-ti">Dynamic</div>
-        <div class="vs-tg">젊고 빠르게</div>
-        <p class="vs-de">젊고 빠르게 움직입니다. <strong>수평적 조직 문화와 빠른 의사결정 구조</strong>로 긴급 발주, 신규 거래처 적응, 시장 변화에 즉각 대응합니다.</p>
-        <div class="vs-chips"><span class="chip">24h 긴급 대응</span><span class="chip">빠른 의사결정</span><span class="chip">신규 적응</span><span class="chip">애자일 운영</span></div>
-      </div>
-    </div>
-
-    <!-- i -->
-    <div class="vs" id="vs-i">
-      <div class="vl rv">
-        <div class="vs-n">05 · i</div>
-        <span class="vs-bg">i</span>
-        <div class="vs-ti">Integration</div>
-        <div class="vs-tg">하나로 연결합니다</div>
-        <p class="vs-de">공급망을 하나로 연결합니다. <strong>산지부터 납품까지 전 과정을 통합 운영</strong>하여 정보 단절 없는 원활한 흐름을 만듭니다.</p>
-        <div class="vs-chips"><span class="chip">End-to-End</span><span class="chip">원스톱 운영</span><span class="chip">데이터 연동</span><span class="chip">가시성 확보</span></div>
-      </div>
-      <div class="vr rv d1">
-        <div class="vg">
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 1v4M12 19v4M4.22 4.22l2.83 2.83M16.95 16.95l2.83 2.83M1 12h4M19 12h4M4.22 19.78l2.83-2.83M16.95 7.05l2.83-2.83"/></svg></div>
-            <div class="vc-v">6<span class="u">단계</span></div>
-            <div class="vc-l">통합 관리 프로세스</div>
-          </div>
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg></div>
-            <div class="vc-v">1<span class="u">창구</span></div>
-            <div class="vc-l">원스톱 파트너십</div>
-          </div>
-          <div class="vc s2">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg></div>
-            <div class="vc-kw">End-to-End</div>
-            <div class="vc-l">공급망 전 구간 가시성 · 정보 단절 없는 운영</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- t -->
-    <div class="vs ev" id="vs-t">
-      <div class="vr rv d1">
-        <div class="vg">
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
-            <div class="vc-kw">장기 파트너</div>
-            <div class="vc-l">지속적 관계 지향</div>
-          </div>
-          <div class="vc">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></div>
-            <div class="vc-kw">투명 운영</div>
-            <div class="vc-l">전 과정 보고 체계</div>
-          </div>
-          <div class="vc s2">
-            <div class="vc-ic"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg></div>
-            <div class="vc-kw">Co-Growth</div>
-            <div class="vc-l">고객사 성장이 SEEDit의 성과 · 장기 파트너십 기반</div>
-          </div>
-        </div>
-      </div>
-      <div class="vl rv">
-        <div class="vs-n">06 · t</div>
-        <span class="vs-bg">t</span>
-        <div class="vs-ti">Trust</div>
-        <div class="vs-tg">함께 성장하는 파트너</div>
-        <p class="vs-de">성장을 함께 만드는 파트너. <strong>고객사의 성공이 SEEDit의 성과</strong>입니다. 단기 거래가 아닌 장기 파트너십으로 지속 가능한 성장을 함께 만들어 갑니다.</p>
-        <div class="vs-chips"><span class="chip">장기 계약</span><span class="chip">투명한 보고</span><span class="chip">책임 운영</span><span class="chip">공동 성장</span></div>
-      </div>
-    </div>
-
-  </div><!-- /vw -->
+  <div class="fw-row rv d2">
+    <div class="fw-cell" style="border-top:2px solid #2d6b0a;"><div class="fw-cl">S · Supply</div><div class="fw-cw">공급망 경쟁력</div><div class="fw-ck">산지 직거래 · 연중 안정 공급 · 리스크 관리</div></div>
+    <div class="fw-cell" style="border-top:2px solid #3d7f12;"><div class="fw-cl">E · Efficiency</div><div class="fw-cw">린 운영</div><div class="fw-ck">공정 표준화 · 비용 최적화 · 14명 / 15톤</div></div>
+    <div class="fw-cell" style="border-top:2px solid #4e9614;"><div class="fw-cl">E · Expansion</div><div class="fw-cw">성장 확장</div><div class="fw-ck">거래처 확대 · 카테고리 다각화 · 규모 성장</div></div>
+    <div class="fw-cell" style="border-top:2px solid #5ca31b;"><div class="fw-cl">D · Data</div><div class="fw-cw">데이터 기반</div><div class="fw-ck">수요 예측 · 품질 지표 · 공급망 가시성</div></div>
+    <div class="fw-cell" style="border-top:2px solid #6dc422;"><div class="fw-cl">i · Innovation</div><div class="fw-cw">지속 개선</div><div class="fw-ck">프로세스 혁신 · 빠른 실험 · 현장 피드백</div></div>
+    <div class="fw-cell" style="border-top:2px solid #7fd42e;"><div class="fw-cl">t · Technology</div><div class="fw-cw">SCM 디지털화</div><div class="fw-ck">운영 자동화 · 디지털 전환 · 플랫폼 연동</div></div>
+  </div>
 </section>
 
-<!-- ══ WHY SEEDIT (재구성) ══ -->
-<section id="why">
-  <div class="why-intro rv">
-    <div>
-      <div class="ey">Why SEEDit</div>
-      <h2 class="why-h">고객이<br>SEEDit을<br>선택하는 이유</h2>
+<!-- ══ WHY SEEDIT — 6 STORY SECTIONS ══ -->
+<div id="why">
+
+<!-- WS1: 수도권 즉시 대응 — Deep Green -->
+<section class="ws ws1">
+  <div class="ws-inner">
+    <div class="rv">
+      <div class="ws-num">01 / 06 &nbsp;·&nbsp; 수도권 즉시 대응</div>
+      <h2 class="ws-h">수도권<br>어디든,<br>즉시.</h2>
+      <p class="ws-sub">수도권 운영거점을 기반으로 당일 납기 대응이 가능합니다.</p>
+      <span class="ws-tag">Location Advantage</span>
     </div>
-    <p class="why-sub">
-      SEEDit은 단순한 협력사가 아니라<br>
-      <strong style="color:var(--ink)">고객사의 공급망을 직접 운영하는 파트너</strong>입니다.<br><br>
-      수도권 시장 경험, 긴급 대응 역량, 산지 네트워크,<br>
-      그리고 빠른 조직 문화가 SEEDit의 차별점입니다.
-    </p>
-  </div>
-  <div class="why-grid">
-    <div class="wyc rv">
-      <div class="wyc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <div class="wyc-t">수도권 시장 대응</div>
-      <div class="wyc-d">수도권 주요 고객사 대응 경험과 물류 거점을 보유합니다.</div>
-      <div class="wyc-tag">Location</div>
-    </div>
-    <div class="wyc rv d1">
-      <div class="wyc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
-      <div class="wyc-t">긴급 발주 대응 역량</div>
-      <div class="wyc-d">24시간 내 긴급 수주 대응 체계로 고객사 리스크를 최소화합니다.</div>
-      <div class="wyc-tag">Speed</div>
-    </div>
-    <div class="wyc rv d2">
-      <div class="wyc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7z"/><circle cx="12" cy="9" r="2.5"/></svg></div>
-      <div class="wyc-t">산지 네트워크 운영</div>
-      <div class="wyc-d">전국 주산지와의 직거래 네트워크로 안정적인 원물 공급을 보장합니다.</div>
-      <div class="wyc-tag">Network</div>
-    </div>
-    <div class="wyc rv d3">
-      <div class="wyc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg></div>
-      <div class="wyc-t">공급망 통합 관리</div>
-      <div class="wyc-d">산지부터 납품까지 단일 파트너가 전 과정을 운영합니다.</div>
-      <div class="wyc-tag">Integration</div>
-    </div>
-    <div class="wyc rv d4">
-      <div class="wyc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/></svg></div>
-      <div class="wyc-t">현장 중심 실행력</div>
-      <div class="wyc-d">계획이 아닌 실행 중심 조직. 현장에서 문제를 직접 해결합니다.</div>
-      <div class="wyc-tag">Execution</div>
-    </div>
-    <div class="wyc rv d5">
-      <div class="wyc-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div>
-      <div class="wyc-t">빠른 의사결정</div>
-      <div class="wyc-d">수평적 조직 구조로 불필요한 보고 단계 없이 즉각 실행합니다.</div>
-      <div class="wyc-tag">Agile</div>
+    <div class="ws1-map rv d1">
+      <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg">
+        <!-- Abstract metro map nodes -->
+        <defs>
+          <radialGradient id="mg" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="rgba(109,196,34,.15)"/>
+            <stop offset="100%" stop-color="rgba(109,196,34,0)"/>
+          </radialGradient>
+        </defs>
+        <!-- Hub glow -->
+        <circle cx="170" cy="150" r="80" fill="url(#mg)"/>
+        <!-- Network lines -->
+        <line x1="170" y1="150" x2="80" y2="80" stroke="rgba(109,196,34,.25)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="170" y1="150" x2="260" y2="80" stroke="rgba(109,196,34,.25)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="170" y1="150" x2="60" y2="190" stroke="rgba(109,196,34,.25)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="170" y1="150" x2="280" y2="200" stroke="rgba(109,196,34,.25)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="170" y1="150" x2="170" y2="40" stroke="rgba(109,196,34,.25)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="170" y1="150" x2="130" y2="250" stroke="rgba(109,196,34,.2)" stroke-width="1" stroke-dasharray="4 4"/>
+        <!-- Outer nodes -->
+        <circle cx="80" cy="80" r="6" fill="rgba(109,196,34,.35)" stroke="rgba(109,196,34,.5)" stroke-width="1"/>
+        <circle cx="260" cy="80" r="6" fill="rgba(109,196,34,.3)" stroke="rgba(109,196,34,.4)" stroke-width="1"/>
+        <circle cx="60" cy="190" r="5" fill="rgba(109,196,34,.28)" stroke="rgba(109,196,34,.35)" stroke-width="1"/>
+        <circle cx="280" cy="200" r="5" fill="rgba(109,196,34,.28)" stroke="rgba(109,196,34,.35)" stroke-width="1"/>
+        <circle cx="170" cy="40" r="5" fill="rgba(109,196,34,.25)" stroke="rgba(109,196,34,.3)" stroke-width="1"/>
+        <circle cx="130" cy="250" r="4" fill="rgba(109,196,34,.2)" stroke="rgba(109,196,34,.28)" stroke-width="1"/>
+        <!-- Center hub -->
+        <circle cx="170" cy="150" r="22" fill="rgba(10,23,16,.8)" stroke="rgba(109,196,34,.6)" stroke-width="1.5"/>
+        <circle cx="170" cy="150" r="10" fill="rgba(109,196,34,.8)">
+          <animate attributeName="r" values="10;14;10" dur="2.5s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values="1;.5;1" dur="2.5s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Labels -->
+        <text x="80" y="70" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter,sans-serif">인천</text>
+        <text x="260" y="70" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter,sans-serif">서울 동부</text>
+        <text x="48" y="205" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter,sans-serif">경기 남부</text>
+        <text x="292" y="215" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter,sans-serif">경기 동부</text>
+        <text x="170" y="32" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter,sans-serif">서울 북부</text>
+        <text x="170" y="162" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter,sans-serif" font-weight="600">SEEDit</text>
+      </svg>
     </div>
   </div>
 </section>
+
+<!-- WS2: 24h 긴급 — Dark with huge typography -->
+<section class="ws ws2">
+  <div class="ws-inner">
+    <div class="ws2-big" aria-hidden="true">24H<em>24H</em></div>
+    <div class="rv">
+      <div class="ws-num">02 / 06 &nbsp;·&nbsp; 긴급 발주 대응</div>
+      <h2 class="ws-h" style="font-size:clamp(36px,4vw,60px);">어떤 긴급 상황도<br>24시간 내 처리합니다.</h2>
+      <p class="ws-sub" style="margin:0 auto;">수평적 의사결정 구조로 긴급 수주를 즉각 처리합니다.</p>
+    </div>
+  </div>
+</section>
+
+<!-- WS3: 산지 네트워크 — Deep forest -->
+<section class="ws ws3">
+  <div class="ws-inner">
+    <div class="rv">
+      <div class="ws-num">03 / 06 &nbsp;·&nbsp; 산지 직접 네트워크</div>
+      <h2 class="ws-h">전국 산지,<br>직접 연결.</h2>
+      <p class="ws-sub">중간 단계 없이 전국 주산지와 직거래 네트워크를 운영합니다. 가격·물량·품질을 동시에 통제합니다.</p>
+      <span class="ws-tag">Direct Network</span>
+    </div>
+    <div class="ws3-visual rv d1">
+      <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
+        <!-- Flowing supply chain -->
+        <defs>
+          <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="rgba(109,196,34,.4)"/>
+            <stop offset="100%" stop-color="rgba(109,196,34,.05)"/>
+          </linearGradient>
+        </defs>
+        <!-- Main flow path -->
+        <path d="M30 160 C80 80 140 80 180 160 C220 240 280 240 330 160" fill="none" stroke="rgba(109,196,34,.25)" stroke-width="1.5" stroke-dasharray="6 5"/>
+        <!-- Stage nodes -->
+        <g><circle cx="30" cy="160" r="18" fill="rgba(10,23,16,.9)" stroke="rgba(109,196,34,.4)" stroke-width="1.5"/>
+        <text x="30" y="164" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter,sans-serif" font-weight="600">산지</text></g>
+        <g><circle cx="120" cy="100" r="16" fill="rgba(10,23,16,.9)" stroke="rgba(109,196,34,.3)" stroke-width="1"/>
+        <text x="120" y="104" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.7)" font-family="Inter,sans-serif">선별</text></g>
+        <g><circle cx="180" cy="160" r="20" fill="rgba(10,23,16,.9)" stroke="rgba(109,196,34,.5)" stroke-width="1.5"/>
+        <text x="180" y="164" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter,sans-serif" font-weight="600">가공</text></g>
+        <g><circle cx="240" cy="220" r="16" fill="rgba(10,23,16,.9)" stroke="rgba(109,196,34,.3)" stroke-width="1"/>
+        <text x="240" y="224" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.7)" font-family="Inter,sans-serif">물류</text></g>
+        <g><circle cx="330" cy="160" r="18" fill="rgba(10,23,16,.9)" stroke="rgba(109,196,34,.4)" stroke-width="1.5"/>
+        <text x="330" y="164" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter,sans-serif" font-weight="600">납품</text></g>
+        <!-- Flow lines between -->
+        <line x1="48" y1="155" x2="104" y2="108" stroke="rgba(109,196,34,.2)" stroke-width="1"/>
+        <line x1="135" y1="107" x2="162" y2="148" stroke="rgba(109,196,34,.2)" stroke-width="1"/>
+        <line x1="198" y1="168" x2="226" y2="213" stroke="rgba(109,196,34,.2)" stroke-width="1"/>
+        <line x1="255" y1="213" x2="314" y2="166" stroke="rgba(109,196,34,.2)" stroke-width="1"/>
+        <!-- Pulse dot animation -->
+        <circle r="4" fill="rgba(109,196,34,.8)">
+          <animateMotion dur="4s" repeatCount="indefinite" path="M30 160 C80 80 140 80 180 160 C220 240 280 240 330 160"/>
+          <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- WS4: 공급망 통합 운영 — Dark slate -->
+<section class="ws ws4">
+  <div class="ws-inner">
+    <div class="rv">
+      <div class="ws-num">04 / 06 &nbsp;·&nbsp; 공급망 통합 운영</div>
+      <h2 class="ws-h" style="color:#fff;font-size:clamp(36px,3.5vw,60px);">하나의 파트너,<br>전체 공급망.</h2>
+      <p class="ws-sub">단일 창구로 전 과정을 책임지는 End-to-End 운영 파트너입니다.</p>
+    </div>
+    <div class="ws4-flow rv d1">
+      <div class="flow-step"><span class="flow-n">01</span><div><div class="flow-t">산지 수급</div><div class="flow-d">전국 주산지 직거래 네트워크</div></div><span class="flow-arr">→</span></div>
+      <div class="flow-step"><span class="flow-n">02</span><div><div class="flow-t">품질관리</div><div class="flow-d">규격 검수 · 선별 기준 적용</div></div><span class="flow-arr">→</span></div>
+      <div class="flow-step"><span class="flow-n">03</span><div><div class="flow-t">생산·포장</div><div class="flow-d">가공·라벨링·표준화 운영</div></div><span class="flow-arr">→</span></div>
+      <div class="flow-step"><span class="flow-n">04</span><div><div class="flow-t">출고·물류</div><div class="flow-d">재고 관리 · 배송 준비</div></div><span class="flow-arr">→</span></div>
+      <div class="flow-step"><span class="flow-n">05</span><div><div class="flow-t">납품·사후관리</div><div class="flow-d">납기 준수 · 피드백 반영</div></div><span class="flow-arr" style="color:var(--ltb);">✓</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WS5: 현장 실행력 — Near black, numbers bold -->
+<section class="ws ws5">
+  <div class="ws-inner">
+    <div class="rv">
+      <div class="ws-num">05 / 06 &nbsp;·&nbsp; 현장 중심 실행력</div>
+      <h2 class="ws-h" style="color:#fff;font-size:clamp(36px,3.5vw,60px);">계획이 아닌<br>실행입니다.</h2>
+      <p class="ws-sub" style="color:rgba(255,255,255,.35);">현장에서 바로 해결하는 조직. 보고보다 실행이 먼저입니다.</p>
+    </div>
+    <div class="ws5-nums rv d1">
+      <div class="ws5-num">
+        <div class="ws5-num-v">15<span>톤</span></div>
+        <div class="ws5-num-l">14명이 처리하는<br>일 평균 물량</div>
+      </div>
+      <div class="ws5-num ws5-divider" style="border-left:1px solid rgba(255,255,255,.06);padding-left:24px;">
+        <div class="ws5-num-v">6<span>단계</span></div>
+        <div class="ws5-num-l">단일 파트너가<br>책임지는 프로세스</div>
+      </div>
+      <div class="ws5-num" style="border-top:1px solid rgba(255,255,255,.06);padding-top:28px;">
+        <div class="ws5-num-v">24<span>h</span></div>
+        <div class="ws5-num-l">긴급 발주<br>대응 체계</div>
+      </div>
+      <div class="ws5-num" style="border-top:1px solid rgba(255,255,255,.06);border-left:1px solid rgba(255,255,255,.06);padding-top:28px;padding-left:24px;">
+        <div class="ws5-num-v">365<span>일</span></div>
+        <div class="ws5-num-l">연중 안정<br>공급 보장</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WS6: 빠른 의사결정 — Ink with ring -->
+<section class="ws ws6">
+  <div class="ws-inner">
+    <div class="ws6-ring rv">
+      <svg class="ws6-ring-svg" viewBox="0 0 240 240">
+        <circle cx="120" cy="120" r="108" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
+        <circle cx="120" cy="120" r="90" fill="none" stroke="rgba(109,196,34,.08)" stroke-width="1"/>
+        <circle cx="120" cy="120" r="72" fill="none" stroke="rgba(109,196,34,.14)" stroke-width="1"/>
+        <!-- Rotating arc -->
+        <circle cx="120" cy="120" r="108" fill="none" stroke="rgba(109,196,34,.5)" stroke-width="1.5" stroke-dasharray="60 620" stroke-dashoffset="0">
+          <animateTransform attributeName="transform" type="rotate" from="0 120 120" to="360 120 120" dur="8s" repeatCount="indefinite"/>
+        </circle>
+        <!-- Dots on rings -->
+        <circle cx="228" cy="120" r="4" fill="var(--ltb)">
+          <animateTransform attributeName="transform" type="rotate" from="0 120 120" to="360 120 120" dur="8s" repeatCount="indefinite"/>
+        </circle>
+        <circle cx="210" cy="120" r="3" fill="rgba(109,196,34,.4)">
+          <animateTransform attributeName="transform" type="rotate" from="180 120 120" to="540 120 120" dur="5s" repeatCount="indefinite"/>
+        </circle>
+      </svg>
+      <div class="ws6-center">Flat Org<span>수평적 조직 구조</span></div>
+    </div>
+    <div class="rv d1">
+      <div class="ws-num" style="color:rgba(255,255,255,.2);">06 / 06 &nbsp;·&nbsp; 빠른 의사결정</div>
+      <h2 class="ws-h" style="color:#fff;font-size:clamp(36px,3.5vw,60px);">불필요한 단계<br>없이 실행합니다.</h2>
+      <p class="ws-sub">수평적 조직으로 긴급 상황에 즉각 대응. 고객사 요청에서 실행까지 최단 경로로 움직입니다.</p>
+    </div>
+  </div>
+</section>
+
+</div><!-- /why -->
 
 <!-- ══ PROCESS ══ -->
 <section id="process">
   <div class="proc-in">
-    <div class="rv">
-      <div class="ey">Process</div>
-      <h2 class="proc-h">공급망 전 과정을 책임집니다</h2>
-    </div>
+    <div class="rv"><div class="ey">Process</div><h2 class="proc-h">공급망 전 과정을<br>책임집니다</h2></div>
     <div class="proc-tr">
-      <div class="proc-st rv"><div class="proc-d">01</div><div class="proc-nm">산지</div><div class="proc-sb">주산지 직접<br>네트워크</div></div>
-      <div class="proc-st rv d1"><div class="proc-d">02</div><div class="proc-nm">수급</div><div class="proc-sb">수요 예측<br>& 조달</div></div>
-      <div class="proc-st rv d2"><div class="proc-d hi">03</div><div class="proc-nm">품질관리</div><div class="proc-sb">규격 검수<br>& 선별</div></div>
-      <div class="proc-st rv d3"><div class="proc-d">04</div><div class="proc-nm">생산</div><div class="proc-sb">가공·포장<br>& 라벨링</div></div>
-      <div class="proc-st rv d4"><div class="proc-d">05</div><div class="proc-nm">출고</div><div class="proc-sb">재고관리<br>& 배송 준비</div></div>
-      <div class="proc-st rv d4"><div class="proc-d">06</div><div class="proc-nm">납품</div><div class="proc-sb">납기 준수<br>& 사후 대응</div></div>
+      <div class="proc-st rv"><div class="proc-d">01</div><div class="proc-nm">산지</div><div class="proc-sb">직접<br>네트워크</div></div>
+      <div class="proc-st rv d1"><div class="proc-d">02</div><div class="proc-nm">수급</div><div class="proc-sb">예측<br>& 조달</div></div>
+      <div class="proc-st rv d2"><div class="proc-d hi">03</div><div class="proc-nm">품질관리</div><div class="proc-sb">검수<br>& 선별</div></div>
+      <div class="proc-st rv d3"><div class="proc-d">04</div><div class="proc-nm">생산</div><div class="proc-sb">포장<br>& 라벨링</div></div>
+      <div class="proc-st rv d4"><div class="proc-d">05</div><div class="proc-nm">출고</div><div class="proc-sb">재고<br>& 배송</div></div>
+      <div class="proc-st rv d4"><div class="proc-d">06</div><div class="proc-nm">납품</div><div class="proc-sb">납기<br>& 사후관리</div></div>
     </div>
   </div>
 </section>
@@ -928,12 +553,8 @@ footer{border-top:1px solid var(--g100);padding:32px 60px;display:flex;justify-c
   <div class="rv">
     <div class="c-ey">Get in touch</div>
     <h2 class="c-h">공급망 파트너를<br>찾고 계신가요?</h2>
-    <p class="c-sub">귀사의 농산물 공급망 현황을 공유해 주세요.<br>SEEDit이 최적의 운영 방안을 제안드립니다.</p>
-    <div class="c-bds">
-      <span class="c-bd">공급망 위탁 운영</span>
-      <span class="c-bd">품질관리 컨설팅</span>
-      <span class="c-bd">산지 수급 협력</span>
-    </div>
+    <p class="c-sub">귀사의 공급망 현황을 알려주세요. SEEDit이 최적의 방안을 제안드립니다.</p>
+    <div class="c-bds"><span class="c-bd">공급망 위탁 운영</span><span class="c-bd">품질관리 컨설팅</span><span class="c-bd">산지 수급 협력</span></div>
   </div>
   <form class="cf rv d1" onsubmit="handleSubmit(event)">
     <div class="cf-r">
@@ -944,289 +565,96 @@ footer{border-top:1px solid var(--g100);padding:32px 60px;display:flex;justify-c
       <div class="ff"><label>연락처</label><input type="tel" placeholder="010-0000-0000"></div>
       <div class="ff"><label>이메일</label><input type="email" placeholder="name@company.com"></div>
     </div>
-    <div class="ff">
-      <label>문의 유형</label>
-      <select><option value="">선택해 주세요</option><option>공급망 위탁 운영</option><option>품질관리 컨설팅</option><option>산지 수급 협력</option><option>기타 문의</option></select>
-    </div>
-    <div class="ff"><label>문의 내용</label><textarea placeholder="현재 공급망 운영 현황 및 문의 사항을 자유롭게 작성해 주세요."></textarea></div>
+    <div class="ff"><label>문의 유형</label><select><option value="">선택해 주세요</option><option>공급망 위탁 운영</option><option>품질관리 컨설팅</option><option>산지 수급 협력</option><option>기타 문의</option></select></div>
+    <div class="ff"><label>문의 내용</label><textarea placeholder="현재 공급망 운영 현황 및 문의 사항을 적어주세요."></textarea></div>
     <button type="submit" class="cf-sub">문의 보내기</button>
   </form>
 </section>
 
-<!-- ══ FOOTER ══ -->
 <footer>
   <div class="f-logo">SEED<span>it</span></div>
   <div class="f-copy">© 2025 SEEDit Inc. Agricultural SCM Operating Partner</div>
-  <div class="f-ls">
-    <a href="#">개인정보처리방침</a>
-    <a href="#">이용약관</a>
-  </div>
+  <div class="f-ls"><a href="#">개인정보처리방침</a><a href="#">이용약관</a></div>
 </footer>
 
 <script>
-/* ══════════════════════════════════════════════════════
-   HERO CANVAS — animated SCM network with scene icons
-══════════════════════════════════════════════════════ */
+/* ── HERO CANVAS: Dense SCM network ── */
 (function(){
-  const canvas = document.getElementById('hc');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, particles=[], mainNodes=[], secondaryNodes=[], frame=0;
-  const LTA = a => `rgba(120,207,47,${a})`;
-  const WA  = a => `rgba(255,255,255,${a})`;
+  const cv=document.getElementById('hc');
+  if(!cv)return;
+  const cx2=cv.getContext('2d');
+  let W,H,pts=[],nodes=[],sec=[],fr=0;
+  const L=a=>`rgba(109,196,34,${a})`;
+  const W2=a=>`rgba(255,255,255,${a})`;
+  const ST=[{l:'산지',rx:.10,ic:'farm'},{l:'품질검수',rx:.24,ic:'check'},{l:'선별포장',rx:.40,ic:'box'},{l:'물류',rx:.58,ic:'truck'},{l:'출고',rx:.74,ic:'shelf'},{l:'데이터',rx:.90,ic:'data'}];
 
-  const STAGES = [
-    {label:'산지',     rx:.10, icon:'farm'},
-    {label:'품질검수', rx:.24, icon:'check'},
-    {label:'선별포장', rx:.40, icon:'box'},
-    {label:'물류',     rx:.58, icon:'truck'},
-    {label:'출고',     rx:.74, icon:'shelf'},
-    {label:'데이터',   rx:.90, icon:'data'},
-  ];
+  function resize(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;init();}
 
-  function resize(){
-    W = canvas.width  = canvas.offsetWidth;
-    H = canvas.height = canvas.offsetHeight;
-    initNodes();
+  function init(){
+    nodes=ST.map((s,i)=>({rx:s.rx,x:s.rx*W,y:H*.52,l:s.l,ic:s.ic,pulse:i*Math.PI/3,a:.58-i*.03}));
+    sec=[];for(let i=0;i<5;i++){const rx=ST[i].rx+(ST[i+1].rx-ST[i].rx)/2;sec.push({rx,x:rx*W,y:H*.52+(i%2===0?-55:55),a:.18,pulse:Math.PI+i*.7});}
+    pts=[];for(let i=0;i<180;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.12,r:Math.random()*1.2+.2,a:Math.random()*.11+.02,p:Math.random()*Math.PI*2});
   }
 
-  function initNodes(){
-    mainNodes = STAGES.map((s,i)=>({
-      rx:s.rx, x:s.rx*W, y:H*.52,
-      label:s.label, icon:s.icon,
-      pulse:i*Math.PI/3, alpha:.58-i*.03,
-    }));
-    secondaryNodes = [];
-    for(let i=0;i<5;i++){
-      const rx = STAGES[i].rx+(STAGES[i+1].rx-STAGES[i].rx)/2;
-      secondaryNodes.push({ rx, x:rx*W, y:H*.52+(i%2===0?-55:55), alpha:.18, pulse:Math.PI+i*.7 });
+  function icon(x,y,t,a){
+    cx2.save();cx2.strokeStyle=L(a);cx2.lineWidth=1;cx2.lineCap='round';cx2.lineJoin='round';cx2.translate(x,y);
+    switch(t){
+      case'farm':cx2.beginPath();cx2.moveTo(0,6);cx2.bezierCurveTo(-6,0,-6,-8,0,-10);cx2.bezierCurveTo(6,-8,6,0,0,6);cx2.stroke();cx2.beginPath();cx2.moveTo(0,6);cx2.lineTo(0,-4);cx2.stroke();break;
+      case'check':cx2.strokeRect(-6,-8,12,14);cx2.beginPath();cx2.moveTo(-3,-1);cx2.lineTo(0,3);cx2.lineTo(5,-4);cx2.stroke();break;
+      case'box':cx2.strokeRect(-6,-7,12,12);cx2.beginPath();cx2.moveTo(-6,0);cx2.lineTo(6,0);cx2.moveTo(0,-7);cx2.lineTo(0,0);cx2.stroke();break;
+      case'truck':cx2.strokeRect(-8,-5,11,8);cx2.beginPath();cx2.moveTo(3,-5);cx2.lineTo(8,-5);cx2.lineTo(8,3);cx2.lineTo(3,3);cx2.stroke();cx2.beginPath();cx2.arc(-4,5,2.5,0,Math.PI*2);cx2.stroke();cx2.beginPath();cx2.arc(5,5,2.5,0,Math.PI*2);cx2.stroke();break;
+      case'shelf':for(let r=0;r<3;r++){cx2.beginPath();cx2.moveTo(-6,-6+r*5);cx2.lineTo(6,-6+r*5);cx2.stroke();}cx2.beginPath();cx2.moveTo(-6,-6);cx2.lineTo(-6,8);cx2.moveTo(6,-6);cx2.lineTo(6,8);cx2.stroke();break;
+      case'data':[[-5,8],[-1,12],[3,6],[7,10]].forEach(([dx,dh])=>{cx2.beginPath();cx2.moveTo(dx,6);cx2.lineTo(dx,-dh+6);cx2.stroke();});break;
     }
-    particles = [];
-    for(let i=0;i<160;i++){
-      particles.push({
-        x:Math.random()*W, y:Math.random()*H,
-        vx:(Math.random()-.5)*.22, vy:(Math.random()-.5)*.13,
-        r:Math.random()*1.3+.25, alpha:Math.random()*.12+.02,
-        pulse:Math.random()*Math.PI*2,
-      });
-    }
-  }
-
-  function drawIcon(x,y,type,alpha){
-    ctx.save();
-    ctx.strokeStyle=LTA(alpha); ctx.lineWidth=1;
-    ctx.lineCap='round'; ctx.lineJoin='round';
-    ctx.translate(x,y);
-    switch(type){
-      case 'farm':
-        ctx.beginPath(); ctx.moveTo(0,6); ctx.bezierCurveTo(-6,0,-6,-8,0,-10); ctx.bezierCurveTo(6,-8,6,0,0,6); ctx.stroke();
-        ctx.beginPath(); ctx.moveTo(0,6); ctx.lineTo(0,-4); ctx.stroke();
-        break;
-      case 'check':
-        ctx.strokeRect(-6,-8,12,14);
-        ctx.beginPath(); ctx.moveTo(-3,-1); ctx.lineTo(0,3); ctx.lineTo(5,-4); ctx.stroke();
-        break;
-      case 'box':
-        ctx.strokeRect(-6,-7,12,12);
-        ctx.beginPath(); ctx.moveTo(-6,0); ctx.lineTo(6,0); ctx.moveTo(0,-7); ctx.lineTo(0,0); ctx.stroke();
-        break;
-      case 'truck':
-        ctx.strokeRect(-8,-5,11,8);
-        ctx.beginPath(); ctx.moveTo(3,-5); ctx.lineTo(8,-5); ctx.lineTo(8,3); ctx.lineTo(3,3); ctx.stroke();
-        ctx.beginPath(); ctx.arc(-4,5,2.5,0,Math.PI*2); ctx.stroke();
-        ctx.beginPath(); ctx.arc(5,5,2.5,0,Math.PI*2); ctx.stroke();
-        break;
-      case 'shelf':
-        for(let r=0;r<3;r++){ ctx.beginPath(); ctx.moveTo(-6,-6+r*5); ctx.lineTo(6,-6+r*5); ctx.stroke(); }
-        ctx.beginPath(); ctx.moveTo(-6,-6); ctx.lineTo(-6,8); ctx.moveTo(6,-6); ctx.lineTo(6,8); ctx.stroke();
-        break;
-      case 'data':
-        [[-5,8],[-1,12],[3,6],[7,10]].forEach(([dx,dh])=>{
-          ctx.beginPath(); ctx.moveTo(dx,6); ctx.lineTo(dx,-dh+6); ctx.stroke();
-        });
-        break;
-    }
-    ctx.restore();
+    cx2.restore();
   }
 
   function draw(){
-    ctx.clearRect(0,0,W,H);
-    frame++;
-
-    mainNodes.forEach(n=>n.x=n.rx*W);
-    secondaryNodes.forEach(n=>n.x=n.rx*W);
-
-    // Subtle grid
-    ctx.save();
-    ctx.strokeStyle=WA(.018); ctx.lineWidth=.5;
-    const gs=72;
-    for(let x=0;x<W;x+=gs){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
-    for(let y=0;y<H;y+=gs){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-    ctx.restore();
-
-    // Backbone
-    ctx.setLineDash([3,9]); ctx.strokeStyle=WA(.05); ctx.lineWidth=1;
-    ctx.beginPath(); ctx.moveTo(mainNodes[0].x,mainNodes[0].y);
-    mainNodes.forEach(n=>ctx.lineTo(n.x,n.y)); ctx.stroke();
-    ctx.setLineDash([]);
-
-    // Secondary legs
-    secondaryNodes.forEach((sn,i)=>{
-      ctx.setLineDash([2,6]); ctx.strokeStyle=WA(.04); ctx.lineWidth=.7;
-      ctx.beginPath(); ctx.moveTo(mainNodes[i].x,mainNodes[i].y);
-      ctx.lineTo(sn.x,sn.y); ctx.lineTo(mainNodes[i+1].x,mainNodes[i+1].y);
-      ctx.stroke(); ctx.setLineDash([]);
-      const p=Math.sin(frame*.035+sn.pulse)*.5+.5;
-      ctx.beginPath(); ctx.arc(sn.x,sn.y,4+p*2,0,Math.PI*2);
-      ctx.strokeStyle=LTA(.12+p*.06); ctx.lineWidth=1; ctx.stroke();
-      ctx.beginPath(); ctx.arc(sn.x,sn.y,2,0,Math.PI*2);
-      ctx.fillStyle=LTA(.2+p*.1); ctx.fill();
-    });
-
-    // Backbone pulses
-    for(let i=0;i<mainNodes.length-1;i++){
-      const a=mainNodes[i],b=mainNodes[i+1];
-      for(let p=0;p<3;p++){
-        const t=((frame*.0028+i*.18+p*.33)%1);
-        const fi=Math.min(t*5,1),fo=Math.min((1-t)*5,1),al=fi*fo*(.48-i*.03);
-        const px=a.x+(b.x-a.x)*t,py=a.y+(b.y-a.y)*t;
-        ctx.beginPath(); ctx.arc(px,py,2+Math.sin(t*Math.PI)*2.2,0,Math.PI*2);
-        ctx.fillStyle=LTA(al); ctx.fill();
-      }
-    }
-
-    // Particle connections
-    for(let i=0;i<particles.length;i++){
-      for(let j=i+1;j<particles.length;j++){
-        const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<75){ctx.beginPath();ctx.strokeStyle=LTA(.028*(1-d/75));ctx.lineWidth=.4;ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.stroke();}
-      }
-    }
-
-    // Stage→particle lines
-    mainNodes.forEach(mn=>{
-      particles.forEach(p=>{
-        const dx=mn.x-p.x,dy=mn.y-p.y,d=Math.sqrt(dx*dx+dy*dy);
-        if(d<120){ctx.beginPath();ctx.strokeStyle=LTA(.038*(1-d/120));ctx.lineWidth=.4;ctx.moveTo(mn.x,mn.y);ctx.lineTo(p.x,p.y);ctx.stroke();}
-      });
-    });
-
-    // Ambient particles
-    particles.forEach(p=>{
-      p.x+=p.vx; p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1; if(p.y<0||p.y>H)p.vy*=-1;
-      ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=LTA(p.alpha); ctx.fill();
-    });
-
-    // Main stage nodes
-    mainNodes.forEach((n,i)=>{
-      const pulse=Math.sin(frame*.038+n.pulse)*.5+.5;
-      const g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,52);
-      g.addColorStop(0,LTA(.13+pulse*.07)); g.addColorStop(1,LTA(0));
-      ctx.beginPath(); ctx.arc(n.x,n.y,52,0,Math.PI*2); ctx.fillStyle=g; ctx.fill();
-      ctx.setLineDash([4,4]);
-      ctx.beginPath(); ctx.arc(n.x,n.y,32+pulse*4,0,Math.PI*2);
-      ctx.strokeStyle=LTA(.1+pulse*.06); ctx.lineWidth=1; ctx.stroke();
-      ctx.setLineDash([]);
-      ctx.beginPath(); ctx.arc(n.x,n.y,20,0,Math.PI*2);
-      ctx.strokeStyle=LTA(.22+pulse*.1); ctx.lineWidth=1; ctx.stroke();
-      ctx.beginPath(); ctx.arc(n.x,n.y,5+pulse*2,0,Math.PI*2);
-      ctx.fillStyle=LTA(n.alpha); ctx.fill();
-      drawIcon(n.x,n.y-2,n.icon,n.alpha*.85);
-      ctx.font='300 10px Inter,sans-serif'; ctx.fillStyle=WA(.2); ctx.textAlign='center';
-      ctx.fillText(n.label,n.x,n.y+54);
-      ctx.font='500 9px Inter,sans-serif'; ctx.fillStyle=WA(.1);
-      ctx.fillText(`0${i+1}`,n.x,n.y-46);
-    });
+    cx2.clearRect(0,0,W,H);fr++;
+    nodes.forEach(n=>n.x=n.rx*W);sec.forEach(n=>n.x=n.rx*W);
+    /* grid */cx2.strokeStyle=W2(.016);cx2.lineWidth=.5;
+    for(let x=0;x<W;x+=72){cx2.beginPath();cx2.moveTo(x,0);cx2.lineTo(x,H);cx2.stroke();}
+    for(let y=0;y<H;y+=72){cx2.beginPath();cx2.moveTo(0,y);cx2.lineTo(W,y);cx2.stroke();}
+    /* backbone */cx2.setLineDash([3,9]);cx2.strokeStyle=W2(.05);cx2.lineWidth=1;cx2.beginPath();cx2.moveTo(nodes[0].x,nodes[0].y);nodes.forEach(n=>cx2.lineTo(n.x,n.y));cx2.stroke();cx2.setLineDash([]);
+    /* secondary */sec.forEach((sn,i)=>{cx2.setLineDash([2,6]);cx2.strokeStyle=W2(.04);cx2.lineWidth=.7;cx2.beginPath();cx2.moveTo(nodes[i].x,nodes[i].y);cx2.lineTo(sn.x,sn.y);cx2.lineTo(nodes[i+1].x,nodes[i+1].y);cx2.stroke();cx2.setLineDash([]);const p=Math.sin(fr*.035+sn.pulse)*.5+.5;cx2.beginPath();cx2.arc(sn.x,sn.y,4+p*2,0,Math.PI*2);cx2.strokeStyle=L(.12+p*.06);cx2.lineWidth=1;cx2.stroke();cx2.beginPath();cx2.arc(sn.x,sn.y,2,0,Math.PI*2);cx2.fillStyle=L(.2+p*.1);cx2.fill();});
+    /* pulses */for(let i=0;i<nodes.length-1;i++){const a=nodes[i],b=nodes[i+1];for(let p=0;p<3;p++){const t=((fr*.0028+i*.18+p*.33)%1);const fi=Math.min(t*5,1),fo=Math.min((1-t)*5,1),al=fi*fo*(.48-i*.03);cx2.beginPath();cx2.arc(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,2+Math.sin(t*Math.PI)*2.2,0,Math.PI*2);cx2.fillStyle=L(al);cx2.fill();}}
+    /* particle connections */for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<72){cx2.beginPath();cx2.strokeStyle=L(.025*(1-d/72));cx2.lineWidth=.35;cx2.moveTo(pts[i].x,pts[i].y);cx2.lineTo(pts[j].x,pts[j].y);cx2.stroke();}}
+    /* node→particle */nodes.forEach(n=>pts.forEach(p=>{const dx=n.x-p.x,dy=n.y-p.y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){cx2.beginPath();cx2.strokeStyle=L(.032*(1-d/110));cx2.lineWidth=.35;cx2.moveTo(n.x,n.y);cx2.lineTo(p.x,p.y);cx2.stroke();}}));
+    /* particles */pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;cx2.beginPath();cx2.arc(p.x,p.y,p.r,0,Math.PI*2);cx2.fillStyle=L(p.a);cx2.fill();});
+    /* main nodes */nodes.forEach((n,i)=>{const pulse=Math.sin(fr*.038+n.pulse)*.5+.5;const g=cx2.createRadialGradient(n.x,n.y,0,n.x,n.y,52);g.addColorStop(0,L(.13+pulse*.07));g.addColorStop(1,L(0));cx2.beginPath();cx2.arc(n.x,n.y,52,0,Math.PI*2);cx2.fillStyle=g;cx2.fill();cx2.setLineDash([4,4]);cx2.beginPath();cx2.arc(n.x,n.y,32+pulse*4,0,Math.PI*2);cx2.strokeStyle=L(.1+pulse*.06);cx2.lineWidth=1;cx2.stroke();cx2.setLineDash([]);cx2.beginPath();cx2.arc(n.x,n.y,20,0,Math.PI*2);cx2.strokeStyle=L(.22+pulse*.1);cx2.lineWidth=1;cx2.stroke();cx2.beginPath();cx2.arc(n.x,n.y,5+pulse*2,0,Math.PI*2);cx2.fillStyle=L(n.a);cx2.fill();icon(n.x,n.y-2,n.ic,n.a*.85);cx2.font='300 10px Inter,sans-serif';cx2.fillStyle=W2(.18);cx2.textAlign='center';cx2.fillText(n.l,n.x,n.y+52);cx2.font='500 9px Inter,sans-serif';cx2.fillStyle=W2(.09);cx2.fillText(`0${i+1}`,n.x,n.y-44);});
   }
-
-  function loop(){ requestAnimationFrame(loop); draw(); }
-  window.addEventListener('resize', resize);
-  resize();
-  loop();
+  function loop(){requestAnimationFrame(loop);draw();}
+  window.addEventListener('resize',resize);resize();loop();
 })();
 
-/* ══════════════════════════════════════════════════════
-   NAV — dark mode when hero visible
-══════════════════════════════════════════════════════ */
-const mainNav = document.getElementById('mainNav');
-const heroEl  = document.getElementById('hw');
-if(mainNav && heroEl){
-  const navObs = new IntersectionObserver(entries=>{
-    entries.forEach(e=>mainNav.classList.toggle('dark-mode', e.isIntersecting));
-  },{threshold:.1});
-  navObs.observe(heroEl);
-}
+/* ── NAV dark mode ── */
+const nav=document.getElementById('nav'),hw=document.getElementById('hw');
+if(nav&&hw){new IntersectionObserver(e=>e.forEach(x=>nav.classList.toggle('dk',x.isIntersecting)),{threshold:.05}).observe(hw);}
 
-/* ══════════════════════════════════════════════════════
-   FRAMEWORK tooltip
-══════════════════════════════════════════════════════ */
-const FW = [
-  {w:'Supply',      t:'공급망이 경쟁력입니다'},
-  {w:'Efficiency',  t:'더 적게, 더 크게'},
-  {w:'Expertise',   t:'경험이 곧 경쟁력'},
-  {w:'Dynamic',     t:'젊고 빠르게'},
-  {w:'Integration', t:'하나로 연결합니다'},
-  {w:'Trust',       t:'함께 성장하는 파트너'},
-];
-const FCX = [95,285,475,665,855,1045];
-
-function showTip(evt, idx){
-  const tip=document.getElementById('fwTip');
-  const svg=document.getElementById('fwSvg');
-  if(!tip||!svg) return;
-  const sr=svg.getBoundingClientRect();
-  const pr=svg.parentElement.getBoundingClientRect();
-  const sc=sr.width/1140;
-  const nx=FCX[idx]*sc;
-  const tw=200;
-  let left=sr.left-pr.left+nx-tw/2;
-  left=Math.max(8,Math.min(left,pr.width-tw-8));
-  tip.style.left=left+'px';
-  tip.style.top=(sr.top-pr.top-76)+'px';
-  document.getElementById('fwTw').textContent=FW[idx].w;
-  document.getElementById('fwTt').textContent=FW[idx].t;
+/* ── Framework tooltip ── */
+const FW=[{w:'Supply',t:'공급망 경쟁력'},{w:'Efficiency',t:'린 운영'},{w:'Expansion',t:'성장 확장'},{w:'Data',t:'데이터 기반'},{w:'Innovation',t:'지속 개선'},{w:'Technology',t:'SCM 디지털화'}];
+const FCX=[95,285,475,665,855,1045];
+function showTip(evt,idx){
+  const tip=document.getElementById('fwTip'),svg=document.getElementById('fwSvg');
+  if(!tip||!svg)return;
+  const sr=svg.getBoundingClientRect(),pr=svg.parentElement.getBoundingClientRect(),sc=sr.width/1140,nx=FCX[idx]*sc,tw=190;
+  let left=sr.left-pr.left+nx-tw/2;left=Math.max(8,Math.min(left,pr.width-tw-8));
+  tip.style.left=left+'px';tip.style.top=(sr.top-pr.top-72)+'px';
+  document.getElementById('fwTw').textContent=FW[idx].w;document.getElementById('fwTt').textContent=FW[idx].t;
   tip.classList.add('show');
 }
-function hideTip(){ const t=document.getElementById('fwTip'); if(t) t.classList.remove('show'); }
+function hideTip(){const t=document.getElementById('fwTip');if(t)t.classList.remove('show');}
 
-/* ══════════════════════════════════════════════════════
-   ANCHOR SCROLL
-══════════════════════════════════════════════════════ */
-function goTo(id){
-  const el=document.getElementById(id);
-  if(el) el.scrollIntoView({behavior:'smooth',block:'start'});
-}
+/* ── Scroll reveal ── */
+new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.07}).observe;
+const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.07});
+document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
 
-/* ══════════════════════════════════════════════════════
-   ACTIVE NODE (scroll-linked)
-══════════════════════════════════════════════════════ */
-const SEC=['vs-s','vs-e1','vs-e2','vs-d','vs-i','vs-t'];
-function setAct(i){
-  document.querySelectorAll('.fn').forEach((g,j)=>g.classList.toggle('act',j===i));
-}
-const secObs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{ if(e.isIntersecting){ const i=SEC.indexOf(e.target.id); if(i!==-1) setAct(i); } });
-},{rootMargin:'-25% 0px -65% 0px'});
-SEC.forEach(id=>{ const el=document.getElementById(id); if(el) secObs.observe(el); });
-
-/* ══════════════════════════════════════════════════════
-   SCROLL REVEAL
-══════════════════════════════════════════════════════ */
-const rvObs=new IntersectionObserver(e=>{
-  e.forEach(x=>{ if(x.isIntersecting) x.target.classList.add('on'); });
-},{threshold:.07});
-document.querySelectorAll('.rv').forEach(el=>rvObs.observe(el));
-
-/* ══════════════════════════════════════════════════════
-   FORM
-══════════════════════════════════════════════════════ */
+/* ── Form ── */
 function handleSubmit(e){
-  e.preventDefault();
-  const b=e.target.querySelector('.cf-sub');
-  b.textContent='전송 완료 ✓'; b.style.background='var(--leaf)'; b.disabled=true;
-  setTimeout(()=>{ b.textContent='문의 보내기'; b.style.background=''; b.disabled=false; e.target.reset(); },3000);
+  e.preventDefault();const b=e.target.querySelector('.cf-sub');
+  b.textContent='전송 완료 ✓';b.style.background='var(--leaf)';b.disabled=true;
+  setTimeout(()=>{b.textContent='문의 보내기';b.style.background='';b.disabled=false;e.target.reset();},3000);
 }
 </script>
 </body>
