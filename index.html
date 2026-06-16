@@ -3,248 +3,260 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SEEDit — Agricultural SCM Operating Partner</title>
+<title>SEEDit — Agricultural SCM</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,300&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Noto+Sans+KR:wght@300;400;500;700&display=swap');
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --ink:#0a1710; --ink2:#142418;
-  --leaf:#2d6b0a; --lt:#4e9614; --ltb:#6dc422;
-  --pale:#dff0c4;
-  --w:#fff; --g50:#f4f6f2; --g100:#e8ece4; --g200:#ced4c8; --g400:#8a9183; --g600:#565d50;
+  --ink:#091510; --ink2:#0f2218;
+  --leaf:#2e6609; --lt:#4d9912; --ltb:#6dc422;
+  --w:#fff; --g50:#f4f6f1; --g100:#e8ece3; --g200:#cfd4c8; --g400:#8a9183; --g600:#575d50;
   --en:'Inter',sans-serif; --kr:'Noto Sans KR',sans-serif;
   --ease:cubic-bezier(.16,1,.3,1);
 }
 html{scroll-behavior:smooth;}
 body{font-family:var(--kr);background:var(--w);color:var(--ink);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
 
-/* ─── NAV ─── */
-nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 56px;background:rgba(255,255,255,.92);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,.05);transition:all .3s;}
-nav.dk{background:rgba(10,23,16,.92);border-color:rgba(255,255,255,.06);}
-.nl{font-family:var(--en);font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.8px;text-decoration:none;transition:color .2s;}
+/* ═══ NAV ═══ */
+nav{position:fixed;top:0;left:0;right:0;z-index:999;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 56px;background:rgba(255,255,255,.92);backdrop-filter:blur(20px) saturate(180%);border-bottom:1px solid rgba(0,0,0,.05);transition:background .3s,border-color .3s;}
+nav.dk{background:rgba(9,21,16,.94);border-color:rgba(255,255,255,.06);}
+.nl{font-family:var(--en);font-size:20px;font-weight:900;color:var(--ink);letter-spacing:-.9px;text-decoration:none;transition:color .2s;}
 nav.dk .nl{color:#fff;}
 .nl .g{color:var(--ltb);}
 .nm{display:flex;gap:32px;list-style:none;}
-.nm a{font-family:var(--en);font-size:13px;color:var(--g600);text-decoration:none;transition:color .15s;}
-nav.dk .nm a{color:rgba(255,255,255,.4);}
+.nm a{font-family:var(--en);font-size:13px;font-weight:400;color:var(--g600);text-decoration:none;transition:color .15s;}
+nav.dk .nm a{color:rgba(255,255,255,.38);}
 .nm a:hover{color:var(--ink);}nav.dk .nm a:hover{color:#fff;}
 .nc{font-family:var(--en);font-size:13px;font-weight:600;background:var(--ink);color:#fff;padding:9px 22px;border-radius:8px;text-decoration:none;transition:opacity .15s,background .3s;}
 nav.dk .nc{background:#fff;color:var(--ink);}
 .nc:hover{opacity:.82;}
 
-/* ─── HERO ─── */
-#hw{position:relative;height:100vh;min-height:700px;background:var(--ink);overflow:hidden;}
+/* ═══ HERO ═══ */
+#hw{position:relative;height:100vh;min-height:680px;background:var(--ink);overflow:hidden;}
 #hc{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
-/* Left vignette for text legibility */
-#hov{position:absolute;inset:0;z-index:1;background:linear-gradient(105deg,rgba(10,23,16,.96) 0%,rgba(10,23,16,.85) 35%,rgba(10,23,16,.45) 65%,rgba(10,23,16,.05) 100%);}
-#hw::after{content:'';position:absolute;bottom:0;left:0;right:0;height:180px;background:linear-gradient(to bottom,transparent,rgba(10,23,16,.7));z-index:2;pointer-events:none;}
-
+#hov{position:absolute;inset:0;z-index:1;background:linear-gradient(108deg,rgba(9,21,16,.97) 0%,rgba(9,21,16,.88) 34%,rgba(9,21,16,.48) 60%,rgba(9,21,16,.08) 100%);}
+#hw::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(transparent,rgba(9,21,16,.72));z-index:2;pointer-events:none;}
 #hero{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;padding:0 56px;max-width:820px;}
-.h-kicker{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--ltb);margin-bottom:32px;display:flex;align-items:center;gap:10px;}
-.h-kicker::before{content:'';width:24px;height:1px;background:var(--ltb);}
-h1.hh{font-size:clamp(52px,5.5vw,88px);font-weight:900;line-height:1.0;letter-spacing:-4px;color:#fff;margin-bottom:24px;}
-h1.hh em{font-style:normal;color:var(--ltb);}
-.h-sub{font-size:18px;font-weight:300;color:rgba(255,255,255,.42);line-height:1.7;max-width:380px;margin-bottom:48px;}
-.h-acts{display:flex;gap:16px;align-items:center;}
-.bw{font-family:var(--en);font-size:14px;font-weight:600;background:#fff;color:var(--ink);padding:14px 32px;border-radius:10px;text-decoration:none;transition:opacity .15s,transform .2s var(--ease);}
+.hk{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--ltb);margin-bottom:28px;display:flex;align-items:center;gap:10px;}
+.hk::before{content:'';width:22px;height:1px;background:var(--ltb);}
+h1{font-size:clamp(54px,6vw,96px);font-weight:900;line-height:1.04;letter-spacing:-4px;color:#fff;margin-bottom:22px;}
+h1 em{font-style:normal;color:var(--ltb);}
+.hs{font-size:17px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7;max-width:380px;margin-bottom:44px;}
+.ha{display:flex;gap:16px;align-items:center;}
+.bw{font-family:var(--en);font-size:14px;font-weight:600;background:#fff;color:var(--ink);padding:14px 30px;border-radius:10px;text-decoration:none;transition:opacity .15s,transform .2s var(--ease);}
 .bw:hover{opacity:.88;transform:translateY(-2px);}
-.bg{font-family:var(--en);font-size:14px;color:rgba(255,255,255,.4);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s;}
+.bg{font-family:var(--en);font-size:14px;color:rgba(255,255,255,.38);text-decoration:none;display:flex;align-items:center;gap:6px;transition:color .15s;}
 .bg:hover{color:#fff;}
 .bg svg{transition:transform .2s var(--ease);}
 .bg:hover svg{transform:translateX(4px);}
+/* Hero right metrics */
+.hm{position:absolute;right:56px;top:50%;transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:10px;}
+.hmc{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px 24px 18px;backdrop-filter:blur(16px);min-width:160px;transition:background .2s,border-color .2s;}
+.hmc:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.16);}
+.hmv{font-family:var(--en);font-size:38px;font-weight:700;color:#fff;letter-spacing:-2px;line-height:1;margin-bottom:6px;}
+.hmv sup{font-size:14px;color:var(--ltb);vertical-align:super;font-weight:400;}
+.hml{font-size:12px;color:rgba(255,255,255,.28);font-weight:300;}
+.hbadge{font-family:var(--en);font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;background:rgba(109,196,34,.16);color:var(--ltb);padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:8px;}
+/* Scroll cue */
+.hscr{position:absolute;bottom:40px;left:56px;z-index:3;display:flex;align-items:center;gap:12px;}
+.hsl{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.28),transparent);animation:sl 2.4s ease-in-out infinite;}
+@keyframes sl{0%,100%{opacity:.18;transform:scaleY(.4) translateY(-8px);}55%{opacity:1;transform:none;}}
+.hscr span{font-family:var(--en);font-size:10px;letter-spacing:2.5px;color:rgba(255,255,255,.14);text-transform:uppercase;}
 
-/* Hero right stats — floating glass */
-.h-stats{position:absolute;right:56px;top:50%;transform:translateY(-50%);z-index:3;display:flex;flex-direction:column;gap:10px;}
-.hs{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:22px 24px 18px;backdrop-filter:blur(16px);min-width:170px;transition:border-color .2s,background .2s;}
-.hs:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.15);}
-.hs-v{font-family:var(--en);font-size:38px;font-weight:700;color:#fff;letter-spacing:-2px;line-height:1;margin-bottom:6px;}
-.hs-v sup{font-size:15px;color:var(--ltb);vertical-align:super;font-weight:400;}
-.hs-l{font-size:12px;color:rgba(255,255,255,.3);font-weight:300;}
-.hs-badge{font-family:var(--en);font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;background:rgba(109,196,34,.18);color:var(--ltb);padding:4px 10px;border-radius:20px;}
-
-.h-scroll{position:absolute;bottom:40px;left:56px;z-index:3;display:flex;align-items:center;gap:12px;}
-.h-sline{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.3),transparent);animation:sl 2.4s ease-in-out infinite;}
-@keyframes sl{0%,100%{opacity:.2;transform:scaleY(.4) translateY(-8px);}55%{opacity:1;transform:none;}}
-.h-scroll span{font-family:var(--en);font-size:10px;letter-spacing:2.5px;color:rgba(255,255,255,.16);text-transform:uppercase;}
-
-/* ─── ABOUT ─── */
+/* ═══ ABOUT ═══ */
 #about{padding:120px 56px;max-width:1380px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;border-top:1px solid var(--g100);}
 .ey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--leaf);margin-bottom:20px;}
-.sec-h{font-size:clamp(36px,3.5vw,54px);font-weight:800;letter-spacing:-2px;line-height:1.08;color:var(--ink);}
-.about-body{margin-top:20px;}
-.about-body p{font-size:16px;color:var(--g600);font-weight:300;line-height:1.85;max-width:460px;}
-.about-body strong{color:var(--ink);font-weight:500;}
+.sh{font-size:clamp(36px,3.5vw,56px);font-weight:900;letter-spacing:-2.5px;line-height:1.06;color:var(--ink);}
+.ab{margin-top:20px;font-size:16px;color:var(--g600);font-weight:300;line-height:1.85;max-width:460px;}
+.ab strong{color:var(--ink);font-weight:500;}
 .astats{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-.as{background:var(--g50);border:1px solid var(--g100);border-radius:16px;padding:22px 20px 18px;transition:border-color .2s,box-shadow .2s,transform .2s var(--ease);}
-.as:hover{border-color:var(--g200);box-shadow:0 8px 28px rgba(10,23,16,.06);transform:translateY(-3px);}
-.as-v{font-family:var(--en);font-size:34px;font-weight:700;color:var(--ink);letter-spacing:-2px;line-height:1;margin-bottom:5px;}
-.as-v span{font-size:14px;font-weight:400;color:var(--ltb);}
-.as-l{font-size:12px;color:var(--g600);font-weight:300;}
+.as{background:var(--g50);border:1px solid var(--g100);border-radius:16px;padding:22px 20px 18px;transition:border-color .2s,box-shadow .2s,transform .22s var(--ease);}
+.as:hover{border-color:var(--g200);box-shadow:0 8px 28px rgba(9,21,16,.06);transform:translateY(-3px);}
+.asv{font-family:var(--en);font-size:34px;font-weight:700;color:var(--ink);letter-spacing:-2px;line-height:1;margin-bottom:5px;}
+.asv span{font-size:14px;font-weight:400;color:var(--ltb);}
+.asl{font-size:12px;color:var(--g600);font-weight:300;}
 
-/* ─── FRAMEWORK ─── */
+/* ═══ FRAMEWORK ═══ */
 #framework{background:var(--ink);padding:120px 0;overflow:hidden;}
-.fw-top{max-width:1380px;margin:0 auto;padding:0 56px 72px;display:flex;justify-content:space-between;align-items:flex-end;}
-.fw-ey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:18px;}
-.fw-h{font-size:clamp(32px,3vw,44px);font-weight:800;letter-spacing:-1.5px;color:#fff;line-height:1.15;}
-.fw-desc{font-size:14px;color:rgba(255,255,255,.22);max-width:200px;text-align:right;line-height:1.85;font-weight:300;}
-/* SVG network */
-.fw-net{max-width:1380px;margin:0 auto;padding:0 48px;position:relative;}
-.fw-tip{position:absolute;pointer-events:none;z-index:20;opacity:0;transform:translateY(8px) scale(.96);transition:opacity .18s var(--ease),transform .18s var(--ease);}
-.fw-tip.show{opacity:1;transform:none;}
-.fw-tb{background:rgba(18,38,26,.96);border:1px solid rgba(109,196,34,.24);border-radius:12px;padding:13px 18px;backdrop-filter:blur(20px);white-space:nowrap;}
-.fw-tw{font-family:var(--en);font-size:14px;font-weight:600;color:#fff;margin-bottom:3px;}
-.fw-tt{font-size:12px;color:rgba(255,255,255,.4);}
+.fwtop{max-width:1380px;margin:0 auto;padding:0 56px 64px;display:flex;justify-content:space-between;align-items:flex-end;}
+.fwey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:16px;}
+.fwh{font-size:clamp(32px,3vw,44px);font-weight:900;letter-spacing:-1.5px;color:#fff;line-height:1.12;}
+.fwdesc{font-size:13px;color:rgba(255,255,255,.2);max-width:190px;text-align:right;line-height:1.85;font-weight:300;}
+
+/* Network SVG stage */
+.fwnet{max-width:1380px;margin:0 auto;padding:0 48px;position:relative;}
+
+/* SVG classes */
 .fn{cursor:default;}
-.fn .ro{fill:none;stroke:rgba(255,255,255,.06);transition:stroke .22s;}
-.fn .rm{fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.1);stroke-width:1;transition:fill .22s,stroke .22s;}
-.fn .gl{font-family:Inter,sans-serif;font-size:64px;font-weight:900;fill:rgba(255,255,255,.22);dominant-baseline:central;text-anchor:middle;transition:fill .22s;letter-spacing:-3px;}
-.fn .wl{font-family:Inter,sans-serif;font-size:11px;font-weight:500;fill:rgba(255,255,255,.18);letter-spacing:.6px;text-anchor:middle;transition:fill .22s;}
-.fn:hover .ro{stroke:rgba(109,196,34,.4);}
-.fn:hover .rm{fill:rgba(109,196,34,.1);stroke:rgba(109,196,34,.5);}
+.fn .ro{fill:none;stroke:rgba(255,255,255,.06);transition:stroke .2s;}
+.fn .rm{fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.1);stroke-width:1;transition:fill .2s,stroke .2s,stroke-width .2s;}
+.fn .gl{font-family:Inter,sans-serif;font-size:66px;font-weight:900;fill:rgba(255,255,255,.2);dominant-baseline:central;text-anchor:middle;transition:fill .2s;letter-spacing:-3px;}
+.fn .wl{font-family:Inter,sans-serif;font-size:11px;font-weight:500;fill:rgba(255,255,255,.18);letter-spacing:.6px;text-anchor:middle;transition:fill .2s;}
+.fn:hover .ro{stroke:rgba(109,196,34,.38);}
+.fn:hover .rm{fill:rgba(109,196,34,.1);stroke:rgba(109,196,34,.48);}
 .fn:hover .gl{fill:var(--ltb);}
-.fn:hover .wl{fill:rgba(255,255,255,.65);}
+.fn:hover .wl{fill:rgba(255,255,255,.62);}
+.fn.act .ro{stroke:rgba(109,196,34,.5);}
+.fn.act .rm{fill:rgba(109,196,34,.14);stroke:rgba(109,196,34,.65);stroke-width:1.5;}
+.fn.act .gl{fill:var(--ltb);}
+.fn.act .wl{fill:rgba(255,255,255,.7);}
 .fc{stroke:rgba(255,255,255,.07);stroke-width:1;stroke-dasharray:4 7;fill:none;}
 .fp{fill:none;stroke-width:1.5;stroke-dasharray:16 220;}
-/* Keyword row */
-.fw-row{max-width:1380px;margin:0 auto;padding:60px 56px 0;display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:rgba(255,255,255,.06);}
-.fw-cell{background:var(--ink);padding:32px 24px 36px;transition:background .2s;}
-.fw-cell:hover{background:rgba(255,255,255,.04);}
-.fw-cl{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2px;color:var(--ltb);text-transform:uppercase;margin-bottom:12px;}
-.fw-cw{font-family:var(--en);font-size:18px;font-weight:700;color:#fff;letter-spacing:-.4px;margin-bottom:8px;}
-.fw-ck{font-size:13px;color:rgba(255,255,255,.3);font-weight:300;line-height:1.55;}
 
-/* ─── WHY — 6 STORY SECTIONS ─── */
-/* Each section is full-width, distinct visual theme */
+/* Framework hover panel */
+.fwhover{
+  max-width:1380px;margin:0 auto;
+  padding:52px 56px 88px;
+  border-top:1px solid rgba(255,255,255,.07);
+  min-height:120px;
+}
+.fwhover-kr{
+  font-family:var(--kr);
+  font-size:clamp(52px,6vw,96px);
+  font-weight:700;color:#fff;
+  letter-spacing:-3px;line-height:1;
+  margin-bottom:14px;
+  transition:opacity .15s;
+}
+.fwhover-word{
+  font-family:var(--en);font-size:15px;font-weight:400;
+  color:rgba(255,255,255,.28);letter-spacing:.2px;
+  transition:opacity .15s;
+}
+.fwhover.fading .fwhover-kr,
+.fwhover.fading .fwhover-word{opacity:0;}
 
-/* Section common */
+
+
+/* ═══ WHY — 6 STORY SECTIONS ═══ */
+/* Each section = full-width poster */
 .ws{position:relative;overflow:hidden;}
-.ws-inner{max-width:1380px;margin:0 auto;padding:120px 56px;}
 
-/* WS1 — 수도권 즉시 대응 — Deep Green */
-.ws1{background:linear-gradient(135deg,#0a1f12 0%,#0f2d18 60%,#122a16 100%);}
-.ws1 .ws-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-.ws-num{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;color:rgba(255,255,255,.2);text-transform:uppercase;margin-bottom:24px;}
-.ws-h{font-size:clamp(40px,4vw,68px);font-weight:900;line-height:1.0;letter-spacing:-3px;color:#fff;margin-bottom:20px;}
-.ws-sub{font-size:16px;font-weight:300;color:rgba(255,255,255,.45);line-height:1.75;max-width:400px;}
-.ws-tag{display:inline-block;margin-top:24px;font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.45);padding:7px 16px;border-radius:20px;}
+/* S1 — 수도권 즉시 대응 — Deep forest green */
+.ws1{background:linear-gradient(140deg,#091810 0%,#0e2a16 55%,#0c2314 100%);min-height:80vh;display:flex;align-items:center;}
+.ws1 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+/* S2 — 24h 긴급 — Pure black */
+.ws2{background:#0a0a0a;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;}
+.ws2 .wsi{max-width:1380px;margin:0 auto;padding:100px 56px;}
+/* S3 — 산지 네트워크 — Forest deep */
+.ws3{background:linear-gradient(160deg,#081510 0%,#0d2016 55%,#0b1c13 100%);min-height:80vh;display:flex;align-items:center;}
+.ws3 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+/* S4 — 공급망 통합 — Dark slate */
+.ws4{background:#0d1117;min-height:80vh;display:flex;align-items:center;}
+.ws4 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
+/* S5 — 현장 실행력 — Near-black */
+.ws5{background:#0b0b0b;min-height:70vh;display:flex;align-items:center;}
+.ws5 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+/* S6 — 빠른 의사결정 — Ink green */
+.ws6{background:var(--ink);min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;}
+.ws6 .wsi{max-width:1380px;margin:0 auto;padding:100px 56px;}
 
-/* Map graphic for ws1 */
-.ws1-map{position:relative;height:340px;display:flex;align-items:center;justify-content:center;}
-.ws1-map svg{width:100%;height:100%;}
+/* Shared text elements */
+.wnum{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.18);margin-bottom:24px;}
+.wh{font-size:clamp(44px,5vw,80px);font-weight:900;line-height:.96;letter-spacing:-3.5px;color:#fff;margin-bottom:18px;}
+.wsub{font-size:16px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.72;max-width:380px;}
+.wtag{display:inline-block;margin-top:24px;font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.38);padding:7px 16px;border-radius:20px;}
 
-/* WS2 — 24h 긴급 — Dark with lime accent */
-.ws2{background:#111;}
-.ws2 .ws-inner{display:flex;flex-direction:column;align-items:center;text-align:center;padding:140px 56px;}
-.ws2-big{font-family:var(--en);font-size:clamp(80px,14vw,200px);font-weight:900;line-height:.85;letter-spacing:-8px;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.12);margin-bottom:48px;position:relative;}
-.ws2-big em{position:absolute;inset:0;color:var(--ltb);-webkit-text-stroke:0;font-style:normal;clip-path:inset(0 0 0 0);animation:ws2clip 3.5s ease-in-out infinite;}
-@keyframes ws2clip{0%,100%{clip-path:inset(0 100% 0 0);}50%{clip-path:inset(0 0% 0 0);}}
-.ws2 .ws-h{color:#fff;}
-.ws2 .ws-sub{color:rgba(255,255,255,.4);margin:0 auto;}
+/* SVG visuals */
+.wsvg{width:100%;display:block;}
 
-/* WS3 — 산지 네트워크 — Deep forest */
-.ws3{background:linear-gradient(160deg,#081610 0%,#0e2218 50%,#0c1e15 100%);}
-.ws3 .ws-inner{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;align-items:center;}
-.ws3-visual{position:relative;height:360px;}
+/* WS2 big number */
+.ws2big{font-family:var(--en);font-size:clamp(100px,18vw,240px);font-weight:900;line-height:.82;letter-spacing:-12px;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.1);margin-bottom:40px;position:relative;user-select:none;}
+.ws2big em{position:absolute;inset:0;color:var(--ltb);-webkit-text-stroke:0;clip-path:inset(0 100% 0 0);animation:unveil 3.5s ease-in-out infinite;}
+@keyframes unveil{0%,15%{clip-path:inset(0 100% 0 0);}55%,70%{clip-path:inset(0 0% 0 0);}100%{clip-path:inset(0 100% 0 0);}}
 
-/* WS4 — 공급망 통합 — Slate dark */
-.ws4{background:#0d1117;}
-.ws4 .ws-inner{display:grid;grid-template-columns:1.2fr 1fr;gap:60px;align-items:center;}
-.ws4-flow{display:flex;flex-direction:column;gap:0;}
-.flow-step{display:flex;align-items:center;gap:20px;padding:20px 24px;border:1px solid rgba(255,255,255,.06);border-radius:12px;margin-bottom:8px;transition:background .2s,border-color .2s;}
-.flow-step:hover{background:rgba(255,255,255,.04);border-color:rgba(109,196,34,.2);}
-.flow-n{font-family:var(--en);font-size:11px;font-weight:600;color:rgba(255,255,255,.2);width:24px;flex-shrink:0;letter-spacing:1px;}
-.flow-t{font-size:14px;font-weight:500;color:rgba(255,255,255,.75);}
-.flow-d{font-size:12px;color:rgba(255,255,255,.3);font-weight:300;margin-top:2px;}
-.flow-arr{margin-left:auto;color:rgba(109,196,34,.4);}
+/* WS4 flow steps */
+.flowlist{display:flex;flex-direction:column;gap:6px;}
+.flowitem{display:flex;align-items:center;gap:18px;padding:18px 22px;border:1px solid rgba(255,255,255,.06);border-radius:12px;transition:background .18s,border-color .18s;}
+.flowitem:hover{background:rgba(255,255,255,.04);border-color:rgba(109,196,34,.18);}
+.fln{font-family:var(--en);font-size:11px;font-weight:600;color:rgba(255,255,255,.18);width:22px;flex-shrink:0;}
+.flt{font-size:14px;font-weight:500;color:rgba(255,255,255,.72);}
+.fld{font-size:12px;color:rgba(255,255,255,.28);font-weight:300;margin-top:2px;}
+.fla{margin-left:auto;color:rgba(109,196,34,.35);font-size:16px;}
 
-/* WS5 — 현장 실행력 — Near black */
-.ws5{background:#0c0c0c;}
-.ws5 .ws-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-.ws5-nums{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
-.ws5-num{padding:28px 24px;}
-.ws5-num-v{font-family:var(--en);font-size:52px;font-weight:900;color:#fff;letter-spacing:-3px;line-height:1;margin-bottom:8px;}
-.ws5-num-v span{color:var(--ltb);}
-.ws5-num-l{font-size:13px;color:rgba(255,255,255,.35);font-weight:300;}
-.ws5-divider{border-top:1px solid rgba(255,255,255,.06);}
+/* WS5 numbers */
+.ws5nums{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.ws5n{padding:28px;transition:background .15s;}
+.ws5n:hover{background:rgba(255,255,255,.03);}
+.ws5nv{font-family:var(--en);font-size:56px;font-weight:900;color:#fff;letter-spacing:-3px;line-height:1;margin-bottom:8px;}
+.ws5nv span{color:var(--ltb);font-size:24px;}
+.ws5nl{font-size:13px;color:rgba(255,255,255,.3);font-weight:300;line-height:1.5;}
+.ws5sep-h{border-top:1px solid rgba(255,255,255,.06);}
+.ws5sep-v{border-left:1px solid rgba(255,255,255,.06);}
 
-/* WS6 — 빠른 의사결정 — Ink with green pulse */
-.ws6{background:var(--ink);}
-.ws6 .ws-inner{text-align:center;padding:140px 56px;}
-.ws6-ring{display:flex;align-items:center;justify-content:center;margin:0 auto 60px;position:relative;width:240px;height:240px;}
-.ws6-ring-svg{position:absolute;inset:0;width:100%;height:100%;}
-.ws6-center{font-family:var(--en);font-size:18px;font-weight:700;color:#fff;text-align:center;}
-.ws6-center span{display:block;font-size:11px;color:rgba(255,255,255,.3);font-weight:300;margin-top:4px;}
+/* WS6 ring */
+.ws6ring{position:relative;width:220px;height:220px;margin:0 auto 52px;display:flex;align-items:center;justify-content:center;}
+.ws6rsvg{position:absolute;inset:0;width:100%;height:100%;}
+.ws6rc{text-align:center;}
+.ws6rc-t{font-family:var(--en);font-size:17px;font-weight:700;color:#fff;}
+.ws6rc-s{font-size:12px;color:rgba(255,255,255,.3);font-weight:300;margin-top:4px;}
 
-/* ─── PROCESS ─── */
+/* ═══ PROCESS ═══ */
 #process{background:var(--g50);border-top:1px solid var(--g100);padding:120px 56px;}
-.proc-in{max-width:1380px;margin:0 auto;}
-.proc-h{font-size:clamp(32px,3vw,44px);font-weight:800;letter-spacing:-2px;margin-bottom:72px;}
-.proc-tr{display:grid;grid-template-columns:repeat(6,1fr);position:relative;}
-.proc-tr::before{content:'';position:absolute;top:23px;left:calc(100%/12);right:calc(100%/12);height:1px;background:var(--g200);}
-.proc-st{display:flex;flex-direction:column;align-items:center;gap:16px;position:relative;z-index:1;}
-.proc-d{width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--g200);display:flex;align-items:center;justify-content:center;font-family:var(--en);font-size:11px;font-weight:500;color:var(--g400);transition:all .25s var(--ease);}
-.proc-st:hover .proc-d{background:var(--ink);border-color:var(--ink);color:#fff;transform:scale(1.12);}
-.proc-d.hi{background:var(--leaf);border-color:var(--leaf);color:#fff;}
-.proc-nm{font-size:14px;font-weight:500;color:var(--ink);}
-.proc-sb{font-size:12px;color:var(--g400);text-align:center;line-height:1.55;font-weight:300;}
+.procin{max-width:1380px;margin:0 auto;}
+.proch{font-size:clamp(32px,3vw,44px);font-weight:900;letter-spacing:-2px;margin-bottom:72px;}
+.proct{display:grid;grid-template-columns:repeat(6,1fr);position:relative;}
+.proct::before{content:'';position:absolute;top:23px;left:calc(100%/12);right:calc(100%/12);height:1px;background:var(--g200);}
+.procs{display:flex;flex-direction:column;align-items:center;gap:14px;position:relative;z-index:1;}
+.procd{width:46px;height:46px;border-radius:50%;background:#fff;border:1px solid var(--g200);display:flex;align-items:center;justify-content:center;font-family:var(--en);font-size:11px;font-weight:500;color:var(--g400);transition:all .22s var(--ease);}
+.procs:hover .procd{background:var(--ink);border-color:var(--ink);color:#fff;transform:scale(1.1);}
+.procd.hi{background:var(--leaf);border-color:var(--leaf);color:#fff;}
+.procn{font-size:14px;font-weight:500;color:var(--ink);}
+.procb{font-size:12px;color:var(--g400);text-align:center;line-height:1.5;font-weight:300;}
 
-/* ─── CONTACT ─── */
+/* ═══ CONTACT ═══ */
 #contact{max-width:1380px;margin:0 auto;padding:140px 56px;display:grid;grid-template-columns:1fr 1fr;gap:100px;align-items:start;border-top:1px solid var(--g100);}
-.c-ey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--leaf);margin-bottom:20px;}
-.c-h{font-size:clamp(32px,3vw,50px);font-weight:800;letter-spacing:-2px;line-height:1.1;color:var(--ink);margin-bottom:20px;}
-.c-sub{font-size:16px;color:var(--g600);font-weight:300;line-height:1.85;margin-bottom:44px;}
-.c-bds{display:flex;flex-wrap:wrap;gap:8px;}
-.c-bd{font-family:var(--en);font-size:12px;background:var(--g50);border:1px solid var(--g100);color:var(--g600);padding:6px 14px;border-radius:20px;}
+.cey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--leaf);margin-bottom:20px;}
+.ch{font-size:clamp(32px,3vw,52px);font-weight:900;letter-spacing:-2.5px;line-height:1.06;color:var(--ink);margin-bottom:20px;}
+.csub{font-size:16px;color:var(--g600);font-weight:300;line-height:1.85;margin-bottom:44px;}
+.cbds{display:flex;flex-wrap:wrap;gap:8px;}
+.cbd{font-family:var(--en);font-size:12px;background:var(--g50);border:1px solid var(--g100);color:var(--g600);padding:6px 14px;border-radius:20px;}
 .cf{display:flex;flex-direction:column;gap:14px;}
-.cf-r{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.cfr{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .ff{display:flex;flex-direction:column;gap:7px;}
 .ff label{font-family:var(--en);font-size:11px;font-weight:500;color:var(--g600);letter-spacing:.3px;}
 .ff input,.ff textarea,.ff select{font-family:var(--kr);font-size:14px;font-weight:300;background:var(--g50);border:1px solid var(--g100);border-radius:10px;padding:13px 16px;color:var(--ink);outline:none;appearance:none;transition:border-color .15s,box-shadow .15s,background .15s;}
-.ff input:focus,.ff textarea:focus,.ff select:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(10,23,16,.07);background:#fff;}
+.ff input:focus,.ff textarea:focus,.ff select:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(9,21,16,.07);background:#fff;}
 .ff textarea{min-height:110px;resize:none;}
-.cf-sub{font-family:var(--en);font-size:14px;font-weight:600;background:var(--ink);color:#fff;border:none;border-radius:10px;padding:15px;cursor:pointer;width:100%;transition:opacity .15s,transform .2s var(--ease);}
-.cf-sub:hover{opacity:.84;transform:translateY(-1px);}
+.cfsub{font-family:var(--en);font-size:14px;font-weight:600;background:var(--ink);color:#fff;border:none;border-radius:10px;padding:15px;cursor:pointer;width:100%;transition:opacity .15s,transform .18s var(--ease);}
+.cfsub:hover{opacity:.84;transform:translateY(-1px);}
 
-/* ─── FOOTER ─── */
+/* ═══ FOOTER ═══ */
 footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-content:space-between;align-items:center;}
-.f-logo{font-family:var(--en);font-size:18px;font-weight:800;color:var(--ink);letter-spacing:-.8px;}
-.f-logo span{color:var(--ltb);}
-.f-copy{font-size:12px;color:var(--g400);font-weight:300;}
-.f-ls{display:flex;gap:20px;}
-.f-ls a{font-size:12px;color:var(--g400);text-decoration:none;transition:color .15s;}
-.f-ls a:hover{color:var(--ink);}
+.flogo{font-family:var(--en);font-size:18px;font-weight:900;color:var(--ink);letter-spacing:-.8px;}
+.flogo span{color:var(--ltb);}
+.fcopy{font-size:12px;color:var(--g400);font-weight:300;}
+.fls{display:flex;gap:20px;}
+.fls a{font-size:12px;color:var(--g400);text-decoration:none;transition:color .15s;}
+.fls a:hover{color:var(--ink);}
 
-/* ─── REVEAL ─── */
-.rv{opacity:0;transform:translateY(20px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
+/* ═══ REVEAL ═══ */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);}
 .rv.on{opacity:1;transform:none;}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
 
-/* ─── MOBILE ─── */
+/* ═══ MOBILE ═══ */
 @media(max-width:1024px){
   nav{padding:0 24px;}.nm{display:none;}
-  #hero{padding:0 24px;}
-  .h-stats{display:none;}.h-scroll{display:none;}
+  #hero{padding:0 24px;}.hm{display:none;}.hscr{display:none;}
   #about{grid-template-columns:1fr;padding:80px 24px;gap:40px;}
-  .fw-top{padding:0 24px 56px;flex-direction:column;align-items:flex-start;gap:16px;}
-  .fw-desc{text-align:left;max-width:100%;}
-  .fw-net{padding:0 16px;}
-  .fw-row{grid-template-columns:repeat(2,1fr);padding:48px 24px 0;}
-  .ws-inner{padding:80px 24px!important;}
-  .ws1 .ws-inner,.ws3 .ws-inner,.ws4 .ws-inner,.ws5 .ws-inner{grid-template-columns:1fr!important;}
-  .ws1-map,.ws3-visual{height:240px;}
-  .ws2 .ws-inner,.ws6 .ws-inner{padding:100px 24px!important;}
-  #process{padding:80px 24px;}
-  .proc-tr{grid-template-columns:repeat(3,1fr);gap:32px;}
-  .proc-tr::before{display:none;}
-  #contact{grid-template-columns:1fr;padding:80px 24px;gap:56px;}
-  footer{flex-direction:column;gap:12px;text-align:center;padding:28px 24px;}.f-ls{display:none;}
+  .fwtop{padding:0 24px 52px;flex-direction:column;align-items:flex-start;gap:14px;}
+  .fwdesc{text-align:left;max-width:100%;}
+  .fwnet{padding:0 14px;}
+  .fwpanel{padding:0 24px;}
+  .fwpanel-grid{grid-template-columns:1fr;gap:24px;}
+  .ws1 .wsi,.ws3 .wsi,.ws4 .wsi,.ws5 .wsi{grid-template-columns:1fr!important;padding:80px 24px!important;}
+  .ws2 .wsi,.ws6 .wsi{padding:80px 24px!important;}
+  #process{padding:80px 24px;}.proct{grid-template-columns:repeat(3,1fr);gap:28px;}.proct::before{display:none;}
+  #contact{grid-template-columns:1fr;padding:80px 24px;gap:52px;}
+  footer{flex-direction:column;gap:12px;text-align:center;padding:28px 24px;}.fls{display:none;}
 }
 @media(max-width:640px){
-  h1.hh{font-size:48px;letter-spacing:-2.5px;}
-  .fw-row{grid-template-columns:1fr;}
-  .ws5-nums{grid-template-columns:1fr 1fr;}
-  .cf-r{grid-template-columns:1fr;}
+  h1{font-size:48px;letter-spacing:-2.5px;}
+  .wh{font-size:44px;letter-spacing:-2px;}
+  .ws5nums{grid-template-columns:1fr 1fr;}
+  .cfr{grid-template-columns:1fr;}
   .astats{grid-template-columns:1fr 1fr;}
 }
 </style>
@@ -263,56 +275,54 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
   <a href="#contact" class="nc">문의하기</a>
 </nav>
 
-<!-- ══ HERO ══ -->
+<!-- ═══ HERO ═══ -->
 <div id="hw">
   <canvas id="hc"></canvas>
   <div id="hov"></div>
   <div id="hero">
-    <div class="h-kicker">Agricultural SCM Operating Partner</div>
-    <h1 class="hh">공급망을<br><em>움직입니다.</em></h1>
-    <p class="h-sub">산지부터 납품까지 — 농산물 공급망 전 과정을 운영하는 SCM 전문기업</p>
-    <div class="h-acts">
+    <div class="hk">Agricultural SCM Operating Partner</div>
+    <h1>품질을 관리하고,<br><em>공급망을</em><br>운영합니다.</h1>
+    <p class="hs">산지부터 납품까지<br>공급망 전 과정을 책임집니다.</p>
+    <div class="ha">
       <a href="#contact" class="bw">파트너십 문의</a>
-      <a href="#about" class="bg">더 알아보기
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M8 3l4 4-4 4"/></svg>
-      </a>
+      <a href="#about" class="bg">더 알아보기<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
     </div>
   </div>
-  <div class="h-stats">
-    <div class="hs"><div class="hs-v">15<sup>톤</sup></div><div class="hs-l">일 평균 처리량</div></div>
-    <div class="hs"><div class="hs-v">14<sup>명</sup></div><div class="hs-l">전문 운영 인력</div></div>
-    <div class="hs"><div class="hs-badge">SCM Specialist</div><div class="hs-l" style="margin-top:8px;">수도권 운영거점 확보</div></div>
+  <div class="hm">
+    <div class="hmc"><div class="hmv">15<sup>톤</sup></div><div class="hml">일 평균 처리량</div></div>
+    <div class="hmc"><div class="hmv">14<sup>명</sup></div><div class="hml">전문 운영 인력</div></div>
+    <div class="hmc"><div class="hbadge">SCM Specialist</div><div class="hml">수도권 운영거점</div></div>
   </div>
-  <div class="h-scroll"><div class="h-sline"></div><span>Scroll</span></div>
+  <div class="hscr"><div class="hsl"></div><span>Scroll</span></div>
 </div>
 
-<!-- ══ ABOUT ══ -->
+<!-- ═══ ABOUT ═══ -->
 <div style="border-top:1px solid var(--g100)">
 <section id="about">
   <div class="rv">
     <div class="ey">About SEEDit</div>
-    <h2 class="sec-h">공급망 운영,<br>그 자체입니다.</h2>
-    <div class="about-body"><p><strong>산지 수급부터 품질관리, 생산, 출고까지</strong> — 공급망 전 과정을 직접 운영하는 SCM 전문기업입니다.</p></div>
+    <h2 class="sh">공급망 운영,<br>그 자체입니다.</h2>
+    <p class="ab"><strong>산지 수급부터 품질관리, 생산, 출고까지</strong> — 공급망 전 과정을 직접 운영하는 SCM 전문기업입니다.</p>
   </div>
   <div class="astats rv d1">
-    <div class="as"><div class="as-v">15<span>톤</span></div><div class="as-l">일 평균 처리량</div></div>
-    <div class="as"><div class="as-v">14<span>명</span></div><div class="as-l">전문 운영 인력</div></div>
-    <div class="as"><div class="as-v">365<span>일</span></div><div class="as-l">연중 안정 공급</div></div>
-    <div class="as"><div class="as-v">6<span>단계</span></div><div class="as-l">통합 관리 프로세스</div></div>
+    <div class="as"><div class="asv">15<span>톤</span></div><div class="asl">일 평균 처리량</div></div>
+    <div class="as"><div class="asv">14<span>명</span></div><div class="asl">전문 운영 인력</div></div>
+    <div class="as"><div class="asv">365<span>일</span></div><div class="asl">연중 안정 공급</div></div>
+    <div class="as"><div class="asv">6<span>단계</span></div><div class="asl">통합 관리 프로세스</div></div>
   </div>
 </section>
 </div>
 
-<!-- ══ FRAMEWORK ══ -->
+<!-- ═══ FRAMEWORK ═══ -->
 <section id="framework">
-  <div class="fw-top rv">
-    <div><div class="fw-ey">SEEDit Framework</div><h2 class="fw-h">브랜드에 담긴<br>6가지 운영 원칙</h2></div>
-    <p class="fw-desc">6글자가 공급망의 연결 구조를 상징합니다.</p>
+  <div class="fwtop rv">
+    <div><div class="fwey">SEEDit Framework</div><h2 class="fwh">SEEDit의<br>운영 철학</h2></div>
+    
   </div>
-  <div class="fw-net rv d1" style="position:relative;">
-    <div class="fw-tip" id="fwTip"><div class="fw-tb"><div class="fw-tw" id="fwTw"></div><div class="fw-tt" id="fwTt"></div></div></div>
-    <svg id="fwSvg" viewBox="0 0 1140 220" width="100%" style="display:block;overflow:visible;">
-      <defs><filter id="fg"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+
+  <!-- Network nodes -->
+  <div class="fwnet rv d1" id="fwnet" style="position:relative;">
+    <svg id="fwsvg" viewBox="0 0 1140 220" width="100%" style="display:block;overflow:visible;">
       <line class="fc" x1="162" y1="100" x2="218" y2="100"/>
       <line class="fc" x1="352" y1="100" x2="408" y2="100"/>
       <line class="fc" x1="542" y1="100" x2="598" y2="100"/>
@@ -323,336 +333,319 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
       <line class="fp" x1="542" y1="100" x2="598" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-80"><animate attributeName="stroke-dashoffset" from="-80" to="-312" dur="2s" repeatCount="indefinite"/></line>
       <line class="fp" x1="732" y1="100" x2="788" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-120"><animate attributeName="stroke-dashoffset" from="-120" to="-352" dur="2s" repeatCount="indefinite"/></line>
       <line class="fp" x1="922" y1="100" x2="978" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-160"><animate attributeName="stroke-dashoffset" from="-160" to="-392" dur="2s" repeatCount="indefinite"/></line>
-      <g class="fn" onmouseenter="showTip(event,0)" onmouseleave="hideTip()"><circle cx="95" cy="100" r="82" class="ro"/><circle cx="95" cy="100" r="66" class="rm"/><text x="95" y="100" class="gl">S</text><text x="95" y="176" class="wl">SUPPLY</text></g>
-      <g class="fn" onmouseenter="showTip(event,1)" onmouseleave="hideTip()"><circle cx="285" cy="100" r="82" class="ro"/><circle cx="285" cy="100" r="66" class="rm"/><text x="285" y="100" class="gl">E</text><text x="285" y="176" class="wl">EFFICIENCY</text></g>
-      <g class="fn" onmouseenter="showTip(event,2)" onmouseleave="hideTip()"><circle cx="475" cy="100" r="82" class="ro"/><circle cx="475" cy="100" r="66" class="rm"/><text x="475" y="100" class="gl">E</text><text x="475" y="176" class="wl">EXPANSION</text></g>
-      <g class="fn" onmouseenter="showTip(event,3)" onmouseleave="hideTip()"><circle cx="665" cy="100" r="82" class="ro"/><circle cx="665" cy="100" r="66" class="rm"/><text x="665" y="100" class="gl">D</text><text x="665" y="176" class="wl">DATA</text></g>
-      <g class="fn" onmouseenter="showTip(event,4)" onmouseleave="hideTip()"><circle cx="855" cy="100" r="82" class="ro"/><circle cx="855" cy="100" r="66" class="rm"/><text x="855" y="100" class="gl">i</text><text x="855" y="176" class="wl">INNOVATION</text></g>
-      <g class="fn" onmouseenter="showTip(event,5)" onmouseleave="hideTip()"><circle cx="1045" cy="100" r="82" class="ro"/><circle cx="1045" cy="100" r="66" class="rm"/><text x="1045" y="100" class="gl">t</text><text x="1045" y="176" class="wl">TECHNOLOGY</text></g>
+      <g class="fn" id="fn0" onmouseenter="hoverFw(event,0)" onmouseleave="leaveFw()"><circle cx="95" cy="100" r="82" class="ro"/><circle cx="95" cy="100" r="66" class="rm"/><text x="95" y="100" class="gl">S</text><text x="95" y="176" class="wl">SUPPLY</text></g>
+      <g class="fn" id="fn1" onmouseenter="hoverFw(event,1)" onmouseleave="leaveFw()"><circle cx="285" cy="100" r="82" class="ro"/><circle cx="285" cy="100" r="66" class="rm"/><text x="285" y="100" class="gl">E</text><text x="285" y="176" class="wl">EFFICIENCY</text></g>
+      <g class="fn" id="fn2" onmouseenter="hoverFw(event,2)" onmouseleave="leaveFw()"><circle cx="475" cy="100" r="82" class="ro"/><circle cx="475" cy="100" r="66" class="rm"/><text x="475" y="100" class="gl">E</text><text x="475" y="176" class="wl">EXPERTISE</text></g>
+      <g class="fn" id="fn3" onmouseenter="hoverFw(event,3)" onmouseleave="leaveFw()"><circle cx="665" cy="100" r="82" class="ro"/><circle cx="665" cy="100" r="66" class="rm"/><text x="665" y="100" class="gl">D</text><text x="665" y="176" class="wl">DYNAMIC</text></g>
+      <g class="fn" id="fn4" onmouseenter="hoverFw(event,4)" onmouseleave="leaveFw()"><circle cx="855" cy="100" r="82" class="ro"/><circle cx="855" cy="100" r="66" class="rm"/><text x="855" y="100" class="gl">i</text><text x="855" y="176" class="wl">INTEGRATION</text></g>
+      <g class="fn" id="fn5" onmouseenter="hoverFw(event,5)" onmouseleave="leaveFw()"><circle cx="1045" cy="100" r="82" class="ro"/><circle cx="1045" cy="100" r="66" class="rm"/><text x="1045" y="100" class="gl">t</text><text x="1045" y="176" class="wl">TRUST</text></g>
     </svg>
   </div>
-  <div class="fw-row rv d2">
-    <div class="fw-cell" style="border-top:2px solid #2d6b0a;"><div class="fw-cl">S · Supply</div><div class="fw-cw">공급망 경쟁력</div><div class="fw-ck">산지 직거래 · 연중 안정 공급 · 리스크 관리</div></div>
-    <div class="fw-cell" style="border-top:2px solid #3d7f12;"><div class="fw-cl">E · Efficiency</div><div class="fw-cw">린 운영</div><div class="fw-ck">공정 표준화 · 비용 최적화 · 14명 / 15톤</div></div>
-    <div class="fw-cell" style="border-top:2px solid #4e9614;"><div class="fw-cl">E · Expansion</div><div class="fw-cw">성장 확장</div><div class="fw-ck">거래처 확대 · 카테고리 다각화 · 규모 성장</div></div>
-    <div class="fw-cell" style="border-top:2px solid #5ca31b;"><div class="fw-cl">D · Data</div><div class="fw-cw">데이터 기반</div><div class="fw-ck">수요 예측 · 품질 지표 · 공급망 가시성</div></div>
-    <div class="fw-cell" style="border-top:2px solid #6dc422;"><div class="fw-cl">i · Innovation</div><div class="fw-cw">지속 개선</div><div class="fw-ck">프로세스 혁신 · 빠른 실험 · 현장 피드백</div></div>
-    <div class="fw-cell" style="border-top:2px solid #7fd42e;"><div class="fw-cl">t · Technology</div><div class="fw-cw">SCM 디지털화</div><div class="fw-ck">운영 자동화 · 디지털 전환 · 플랫폼 연동</div></div>
+
+  <!-- Framework hover panel -->
+  <div class="fwhover rv d2" id="fwhover">
+    <div class="fwhover-kr" id="fhkr">공급망 경쟁력</div>
+    <div class="fwhover-word" id="fhword">Supply</div>
   </div>
 </section>
 
-<!-- ══ WHY SEEDIT — 6 STORY SECTIONS ══ -->
+<!-- ═══ WHY — 6 POSTER SECTIONS ═══ -->
 <div id="why">
 
-<!-- WS1: 수도권 즉시 대응 — Deep Green -->
+<!-- 01: 수도권 즉시 대응 — Deep Forest -->
 <section class="ws ws1">
-  <div class="ws-inner">
+  <div class="wsi">
     <div class="rv">
-      <div class="ws-num">01 / 06 &nbsp;·&nbsp; 수도권 즉시 대응</div>
-      <h2 class="ws-h">수도권<br>어디든,<br>즉시.</h2>
-      <p class="ws-sub">수도권 운영거점을 기반으로 당일 납기 대응이 가능합니다.</p>
-      <span class="ws-tag">Location Advantage</span>
+      <div class="wnum">01 / 06</div>
+      <h2 class="wh">수도권,<br>즉시.</h2>
+      <p class="wsub">수도권 운영거점 기반 — 당일 납기 대응이 가능합니다.</p>
+      <span class="wtag">Location Advantage</span>
     </div>
-    <div class="ws1-map rv d1">
-      <svg viewBox="0 0 340 300" xmlns="http://www.w3.org/2000/svg">
-        <!-- Abstract metro map nodes -->
-        <defs>
-          <radialGradient id="mg" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stop-color="rgba(109,196,34,.15)"/>
-            <stop offset="100%" stop-color="rgba(109,196,34,0)"/>
-          </radialGradient>
-        </defs>
-        <!-- Hub glow -->
-        <circle cx="170" cy="150" r="80" fill="url(#mg)"/>
-        <!-- Network lines -->
-        <line x1="170" y1="150" x2="80" y2="80" stroke="rgba(109,196,34,.25)" stroke-width="1" stroke-dasharray="4 4"/>
-        <line x1="170" y1="150" x2="260" y2="80" stroke="rgba(109,196,34,.25)" stroke-width="1" stroke-dasharray="4 4"/>
-        <line x1="170" y1="150" x2="60" y2="190" stroke="rgba(109,196,34,.25)" stroke-width="1" stroke-dasharray="4 4"/>
-        <line x1="170" y1="150" x2="280" y2="200" stroke="rgba(109,196,34,.25)" stroke-width="1" stroke-dasharray="4 4"/>
-        <line x1="170" y1="150" x2="170" y2="40" stroke="rgba(109,196,34,.25)" stroke-width="1" stroke-dasharray="4 4"/>
-        <line x1="170" y1="150" x2="130" y2="250" stroke="rgba(109,196,34,.2)" stroke-width="1" stroke-dasharray="4 4"/>
-        <!-- Outer nodes -->
-        <circle cx="80" cy="80" r="6" fill="rgba(109,196,34,.35)" stroke="rgba(109,196,34,.5)" stroke-width="1"/>
-        <circle cx="260" cy="80" r="6" fill="rgba(109,196,34,.3)" stroke="rgba(109,196,34,.4)" stroke-width="1"/>
-        <circle cx="60" cy="190" r="5" fill="rgba(109,196,34,.28)" stroke="rgba(109,196,34,.35)" stroke-width="1"/>
-        <circle cx="280" cy="200" r="5" fill="rgba(109,196,34,.28)" stroke="rgba(109,196,34,.35)" stroke-width="1"/>
-        <circle cx="170" cy="40" r="5" fill="rgba(109,196,34,.25)" stroke="rgba(109,196,34,.3)" stroke-width="1"/>
-        <circle cx="130" cy="250" r="4" fill="rgba(109,196,34,.2)" stroke="rgba(109,196,34,.28)" stroke-width="1"/>
-        <!-- Center hub -->
-        <circle cx="170" cy="150" r="22" fill="rgba(10,23,16,.8)" stroke="rgba(109,196,34,.6)" stroke-width="1.5"/>
-        <circle cx="170" cy="150" r="10" fill="rgba(109,196,34,.8)">
-          <animate attributeName="r" values="10;14;10" dur="2.5s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values="1;.5;1" dur="2.5s" repeatCount="indefinite"/>
-        </circle>
-        <!-- Labels -->
-        <text x="80" y="70" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter,sans-serif">인천</text>
-        <text x="260" y="70" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter,sans-serif">서울 동부</text>
-        <text x="48" y="205" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter,sans-serif">경기 남부</text>
-        <text x="292" y="215" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter,sans-serif">경기 동부</text>
-        <text x="170" y="32" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.3)" font-family="Inter,sans-serif">서울 북부</text>
-        <text x="170" y="162" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter,sans-serif" font-weight="600">SEEDit</text>
+    <div class="rv d1" style="display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 320 280" width="320" height="280">
+        <defs><radialGradient id="rg1" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(109,196,34,.15)"/><stop offset="100%" stop-color="rgba(109,196,34,0)"/></radialGradient></defs>
+        <circle cx="160" cy="140" r="90" fill="url(#rg1)"/>
+        <line x1="160" y1="140" x2="72" y2="72" stroke="rgba(109,196,34,.22)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="160" y1="140" x2="248" y2="72" stroke="rgba(109,196,34,.22)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="160" y1="140" x2="52" y2="180" stroke="rgba(109,196,34,.22)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="160" y1="140" x2="268" y2="188" stroke="rgba(109,196,34,.22)" stroke-width="1" stroke-dasharray="4 4"/>
+        <line x1="160" y1="140" x2="160" y2="30" stroke="rgba(109,196,34,.2)" stroke-width="1" stroke-dasharray="4 4"/>
+        <circle cx="72" cy="72" r="5" fill="rgba(109,196,34,.3)" stroke="rgba(109,196,34,.45)" stroke-width="1"/>
+        <circle cx="248" cy="72" r="5" fill="rgba(109,196,34,.28)" stroke="rgba(109,196,34,.4)" stroke-width="1"/>
+        <circle cx="52" cy="180" r="4" fill="rgba(109,196,34,.24)" stroke="rgba(109,196,34,.35)" stroke-width="1"/>
+        <circle cx="268" cy="188" r="4" fill="rgba(109,196,34,.24)" stroke="rgba(109,196,34,.35)" stroke-width="1"/>
+        <circle cx="160" cy="30" r="4" fill="rgba(109,196,34,.22)" stroke="rgba(109,196,34,.3)" stroke-width="1"/>
+        <circle cx="160" cy="140" r="24" fill="rgba(9,21,16,.9)" stroke="rgba(109,196,34,.55)" stroke-width="1.5"/>
+        <circle cx="160" cy="140" r="10" fill="rgba(109,196,34,.85)"><animate attributeName="r" values="10;14;10" dur="2.5s" repeatCount="indefinite"/><animate attributeName="opacity" values="1;.5;1" dur="2.5s" repeatCount="indefinite"/></circle>
+        <text x="72" y="62" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.25)" font-family="Inter,sans-serif">인천</text>
+        <text x="248" y="62" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.25)" font-family="Inter,sans-serif">서울 동부</text>
+        <text x="40" y="196" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.25)" font-family="Inter,sans-serif">경기 남부</text>
+        <text x="280" y="204" text-anchor="middle" font-size="9" fill="rgba(255,255,255,.25)" font-family="Inter,sans-serif">경기 동부</text>
+        <text x="160" y="150" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter,sans-serif" font-weight="700">SEEDit</text>
       </svg>
     </div>
   </div>
 </section>
 
-<!-- WS2: 24h 긴급 — Dark with huge typography -->
+<!-- 02: 24h 긴급 — Pure Black + Big Type -->
 <section class="ws ws2">
-  <div class="ws-inner">
-    <div class="ws2-big" aria-hidden="true">24H<em>24H</em></div>
+  <div class="wsi">
+    <div class="ws2big" aria-hidden="true">24H<em>24H</em></div>
     <div class="rv">
-      <div class="ws-num">02 / 06 &nbsp;·&nbsp; 긴급 발주 대응</div>
-      <h2 class="ws-h" style="font-size:clamp(36px,4vw,60px);">어떤 긴급 상황도<br>24시간 내 처리합니다.</h2>
-      <p class="ws-sub" style="margin:0 auto;">수평적 의사결정 구조로 긴급 수주를 즉각 처리합니다.</p>
+      <div class="wnum">02 / 06</div>
+      <h2 class="wh" style="font-size:clamp(36px,4vw,60px);">어떤 긴급 상황도<br>24시간 내 처리합니다.</h2>
+      <p class="wsub" style="margin:0 auto;">수평적 의사결정 구조 — 긴급 수주 즉각 처리.</p>
     </div>
   </div>
 </section>
 
-<!-- WS3: 산지 네트워크 — Deep forest -->
+<!-- 03: 산지 네트워크 — Forest -->
 <section class="ws ws3">
-  <div class="ws-inner">
+  <div class="wsi">
     <div class="rv">
-      <div class="ws-num">03 / 06 &nbsp;·&nbsp; 산지 직접 네트워크</div>
-      <h2 class="ws-h">전국 산지,<br>직접 연결.</h2>
-      <p class="ws-sub">중간 단계 없이 전국 주산지와 직거래 네트워크를 운영합니다. 가격·물량·품질을 동시에 통제합니다.</p>
-      <span class="ws-tag">Direct Network</span>
+      <div class="wnum">03 / 06</div>
+      <h2 class="wh">전국 산지,<br>직접 연결.</h2>
+      <p class="wsub">중간 단계 없이 전국 주산지와 직거래. 가격·물량·품질을 동시에 통제합니다.</p>
+      <span class="wtag">Direct Network</span>
     </div>
-    <div class="ws3-visual rv d1">
-      <svg viewBox="0 0 360 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;">
-        <!-- Flowing supply chain -->
-        <defs>
-          <linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="rgba(109,196,34,.4)"/>
-            <stop offset="100%" stop-color="rgba(109,196,34,.05)"/>
-          </linearGradient>
-        </defs>
-        <!-- Main flow path -->
-        <path d="M30 160 C80 80 140 80 180 160 C220 240 280 240 330 160" fill="none" stroke="rgba(109,196,34,.25)" stroke-width="1.5" stroke-dasharray="6 5"/>
-        <!-- Stage nodes -->
-        <g><circle cx="30" cy="160" r="18" fill="rgba(10,23,16,.9)" stroke="rgba(109,196,34,.4)" stroke-width="1.5"/>
-        <text x="30" y="164" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter,sans-serif" font-weight="600">산지</text></g>
-        <g><circle cx="120" cy="100" r="16" fill="rgba(10,23,16,.9)" stroke="rgba(109,196,34,.3)" stroke-width="1"/>
-        <text x="120" y="104" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.7)" font-family="Inter,sans-serif">선별</text></g>
-        <g><circle cx="180" cy="160" r="20" fill="rgba(10,23,16,.9)" stroke="rgba(109,196,34,.5)" stroke-width="1.5"/>
-        <text x="180" y="164" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter,sans-serif" font-weight="600">가공</text></g>
-        <g><circle cx="240" cy="220" r="16" fill="rgba(10,23,16,.9)" stroke="rgba(109,196,34,.3)" stroke-width="1"/>
-        <text x="240" y="224" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.7)" font-family="Inter,sans-serif">물류</text></g>
-        <g><circle cx="330" cy="160" r="18" fill="rgba(10,23,16,.9)" stroke="rgba(109,196,34,.4)" stroke-width="1.5"/>
-        <text x="330" y="164" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter,sans-serif" font-weight="600">납품</text></g>
-        <!-- Flow lines between -->
-        <line x1="48" y1="155" x2="104" y2="108" stroke="rgba(109,196,34,.2)" stroke-width="1"/>
-        <line x1="135" y1="107" x2="162" y2="148" stroke="rgba(109,196,34,.2)" stroke-width="1"/>
-        <line x1="198" y1="168" x2="226" y2="213" stroke="rgba(109,196,34,.2)" stroke-width="1"/>
-        <line x1="255" y1="213" x2="314" y2="166" stroke="rgba(109,196,34,.2)" stroke-width="1"/>
-        <!-- Pulse dot animation -->
-        <circle r="4" fill="rgba(109,196,34,.8)">
-          <animateMotion dur="4s" repeatCount="indefinite" path="M30 160 C80 80 140 80 180 160 C220 240 280 240 330 160"/>
-          <animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite"/>
-        </circle>
+    <div class="rv d1" style="display:flex;align-items:center;justify-content:center;">
+      <svg viewBox="0 0 340 300" width="340" height="300">
+        <defs><linearGradient id="sg" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="rgba(109,196,34,.5)"/><stop offset="100%" stop-color="rgba(109,196,34,.05)"/></linearGradient></defs>
+        <path d="M30 150 C80 70 140 70 170 150 C200 230 260 230 310 150" fill="none" stroke="rgba(109,196,34,.2)" stroke-width="1.5" stroke-dasharray="6 5"/>
+        <g><circle cx="30" cy="150" r="18" fill="rgba(9,21,16,.92)" stroke="rgba(109,196,34,.4)" stroke-width="1.5"/><text x="30" y="154" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter" font-weight="600">산지</text></g>
+        <g><circle cx="110" cy="90" r="14" fill="rgba(9,21,16,.92)" stroke="rgba(109,196,34,.3)" stroke-width="1"/><text x="110" y="94" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.7)" font-family="Inter">선별</text></g>
+        <g><circle cx="170" cy="150" r="20" fill="rgba(9,21,16,.92)" stroke="rgba(109,196,34,.5)" stroke-width="1.5"/><text x="170" y="154" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter" font-weight="600">가공</text></g>
+        <g><circle cx="230" cy="212" r="14" fill="rgba(9,21,16,.92)" stroke="rgba(109,196,34,.3)" stroke-width="1"/><text x="230" y="216" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.7)" font-family="Inter">물류</text></g>
+        <g><circle cx="310" cy="150" r="18" fill="rgba(9,21,16,.92)" stroke="rgba(109,196,34,.4)" stroke-width="1.5"/><text x="310" y="154" text-anchor="middle" font-size="8" fill="rgba(109,196,34,.9)" font-family="Inter" font-weight="600">납품</text></g>
+        <line x1="46" y1="145" x2="97" y2="97" stroke="rgba(109,196,34,.18)" stroke-width="1"/>
+        <line x1="124" y1="97" x2="152" y2="142" stroke="rgba(109,196,34,.18)" stroke-width="1"/>
+        <line x1="188" y1="158" x2="217" y2="205" stroke="rgba(109,196,34,.18)" stroke-width="1"/>
+        <line x1="243" y1="204" x2="294" y2="157" stroke="rgba(109,196,34,.18)" stroke-width="1"/>
+        <circle r="4" fill="rgba(109,196,34,.85)"><animateMotion dur="4s" repeatCount="indefinite" path="M30 150 C80 70 140 70 170 150 C200 230 260 230 310 150"/><animate attributeName="opacity" values="0;1;1;0" dur="4s" repeatCount="indefinite"/></circle>
       </svg>
     </div>
   </div>
 </section>
 
-<!-- WS4: 공급망 통합 운영 — Dark slate -->
+<!-- 04: 공급망 통합 운영 — Dark Slate -->
 <section class="ws ws4">
-  <div class="ws-inner">
+  <div class="wsi">
     <div class="rv">
-      <div class="ws-num">04 / 06 &nbsp;·&nbsp; 공급망 통합 운영</div>
-      <h2 class="ws-h" style="color:#fff;font-size:clamp(36px,3.5vw,60px);">하나의 파트너,<br>전체 공급망.</h2>
-      <p class="ws-sub">단일 창구로 전 과정을 책임지는 End-to-End 운영 파트너입니다.</p>
+      <div class="wnum">04 / 06</div>
+      <h2 class="wh" style="font-size:clamp(40px,4vw,68px);">하나의 파트너,<br>전체 공급망.</h2>
+      <p class="wsub">산지부터 납품까지 — 단일 파트너가 전 과정을 책임집니다.</p>
     </div>
-    <div class="ws4-flow rv d1">
-      <div class="flow-step"><span class="flow-n">01</span><div><div class="flow-t">산지 수급</div><div class="flow-d">전국 주산지 직거래 네트워크</div></div><span class="flow-arr">→</span></div>
-      <div class="flow-step"><span class="flow-n">02</span><div><div class="flow-t">품질관리</div><div class="flow-d">규격 검수 · 선별 기준 적용</div></div><span class="flow-arr">→</span></div>
-      <div class="flow-step"><span class="flow-n">03</span><div><div class="flow-t">생산·포장</div><div class="flow-d">가공·라벨링·표준화 운영</div></div><span class="flow-arr">→</span></div>
-      <div class="flow-step"><span class="flow-n">04</span><div><div class="flow-t">출고·물류</div><div class="flow-d">재고 관리 · 배송 준비</div></div><span class="flow-arr">→</span></div>
-      <div class="flow-step"><span class="flow-n">05</span><div><div class="flow-t">납품·사후관리</div><div class="flow-d">납기 준수 · 피드백 반영</div></div><span class="flow-arr" style="color:var(--ltb);">✓</span></div>
+    <div class="flowlist rv d1">
+      <div class="flowitem"><span class="fln">01</span><div><div class="flt">산지 수급</div><div class="fld">전국 주산지 직거래 네트워크</div></div><span class="fla">→</span></div>
+      <div class="flowitem"><span class="fln">02</span><div><div class="flt">품질관리</div><div class="fld">규격 검수 · 선별</div></div><span class="fla">→</span></div>
+      <div class="flowitem"><span class="fln">03</span><div><div class="flt">생산·포장</div><div class="fld">가공 · 라벨링 · 표준화</div></div><span class="fla">→</span></div>
+      <div class="flowitem"><span class="fln">04</span><div><div class="flt">출고·물류</div><div class="fld">재고관리 · 배송 준비</div></div><span class="fla">→</span></div>
+      <div class="flowitem"><span class="fln">05</span><div><div class="flt">납품·사후관리</div><div class="fld">납기 준수 · 피드백 반영</div></div><span class="fla" style="color:var(--ltb)">✓</span></div>
     </div>
   </div>
 </section>
 
-<!-- WS5: 현장 실행력 — Near black, numbers bold -->
+<!-- 05: 현장 실행력 — Near-Black + Numbers -->
 <section class="ws ws5">
-  <div class="ws-inner">
+  <div class="wsi">
     <div class="rv">
-      <div class="ws-num">05 / 06 &nbsp;·&nbsp; 현장 중심 실행력</div>
-      <h2 class="ws-h" style="color:#fff;font-size:clamp(36px,3.5vw,60px);">계획이 아닌<br>실행입니다.</h2>
-      <p class="ws-sub" style="color:rgba(255,255,255,.35);">현장에서 바로 해결하는 조직. 보고보다 실행이 먼저입니다.</p>
+      <div class="wnum">05 / 06</div>
+      <h2 class="wh" style="font-size:clamp(40px,4vw,68px);color:#fff;">계획이 아닌<br>실행입니다.</h2>
+      <p class="wsub" style="color:rgba(255,255,255,.32);">현장에서 바로 해결하는 조직.</p>
     </div>
-    <div class="ws5-nums rv d1">
-      <div class="ws5-num">
-        <div class="ws5-num-v">15<span>톤</span></div>
-        <div class="ws5-num-l">14명이 처리하는<br>일 평균 물량</div>
-      </div>
-      <div class="ws5-num ws5-divider" style="border-left:1px solid rgba(255,255,255,.06);padding-left:24px;">
-        <div class="ws5-num-v">6<span>단계</span></div>
-        <div class="ws5-num-l">단일 파트너가<br>책임지는 프로세스</div>
-      </div>
-      <div class="ws5-num" style="border-top:1px solid rgba(255,255,255,.06);padding-top:28px;">
-        <div class="ws5-num-v">24<span>h</span></div>
-        <div class="ws5-num-l">긴급 발주<br>대응 체계</div>
-      </div>
-      <div class="ws5-num" style="border-top:1px solid rgba(255,255,255,.06);border-left:1px solid rgba(255,255,255,.06);padding-top:28px;padding-left:24px;">
-        <div class="ws5-num-v">365<span>일</span></div>
-        <div class="ws5-num-l">연중 안정<br>공급 보장</div>
-      </div>
+    <div class="ws5nums rv d1">
+      <div class="ws5n"><div class="ws5nv">15<span>톤</span></div><div class="ws5nl">14명이 처리하는<br>일 평균 물량</div></div>
+      <div class="ws5n ws5sep-v"><div class="ws5nv">6<span>단계</span></div><div class="ws5nl">단일 파트너<br>통합 프로세스</div></div>
+      <div class="ws5n ws5sep-h"><div class="ws5nv">24<span>h</span></div><div class="ws5nl">긴급 발주<br>대응 체계</div></div>
+      <div class="ws5n ws5sep-h ws5sep-v"><div class="ws5nv">365<span>일</span></div><div class="ws5nl">연중 안정<br>공급 보장</div></div>
     </div>
   </div>
 </section>
 
-<!-- WS6: 빠른 의사결정 — Ink with ring -->
+<!-- 06: 빠른 의사결정 — Ink + Ring -->
 <section class="ws ws6">
-  <div class="ws-inner">
-    <div class="ws6-ring rv">
-      <svg class="ws6-ring-svg" viewBox="0 0 240 240">
-        <circle cx="120" cy="120" r="108" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1"/>
-        <circle cx="120" cy="120" r="90" fill="none" stroke="rgba(109,196,34,.08)" stroke-width="1"/>
-        <circle cx="120" cy="120" r="72" fill="none" stroke="rgba(109,196,34,.14)" stroke-width="1"/>
-        <!-- Rotating arc -->
-        <circle cx="120" cy="120" r="108" fill="none" stroke="rgba(109,196,34,.5)" stroke-width="1.5" stroke-dasharray="60 620" stroke-dashoffset="0">
-          <animateTransform attributeName="transform" type="rotate" from="0 120 120" to="360 120 120" dur="8s" repeatCount="indefinite"/>
+  <div class="wsi">
+    <div class="ws6ring rv">
+      <svg class="ws6rsvg" viewBox="0 0 220 220">
+        <circle cx="110" cy="110" r="104" fill="none" stroke="rgba(255,255,255,.04)" stroke-width="1"/>
+        <circle cx="110" cy="110" r="86" fill="none" stroke="rgba(109,196,34,.07)" stroke-width="1"/>
+        <circle cx="110" cy="110" r="68" fill="none" stroke="rgba(109,196,34,.12)" stroke-width="1"/>
+        <circle cx="110" cy="110" r="104" fill="none" stroke="rgba(109,196,34,.48)" stroke-width="1.5" stroke-dasharray="58 600">
+          <animateTransform attributeName="transform" type="rotate" from="0 110 110" to="360 110 110" dur="8s" repeatCount="indefinite"/>
         </circle>
-        <!-- Dots on rings -->
-        <circle cx="228" cy="120" r="4" fill="var(--ltb)">
-          <animateTransform attributeName="transform" type="rotate" from="0 120 120" to="360 120 120" dur="8s" repeatCount="indefinite"/>
-        </circle>
-        <circle cx="210" cy="120" r="3" fill="rgba(109,196,34,.4)">
-          <animateTransform attributeName="transform" type="rotate" from="180 120 120" to="540 120 120" dur="5s" repeatCount="indefinite"/>
-        </circle>
+        <circle cx="214" cy="110" r="4" fill="var(--ltb)"><animateTransform attributeName="transform" type="rotate" from="0 110 110" to="360 110 110" dur="8s" repeatCount="indefinite"/></circle>
+        <circle cx="196" cy="110" r="3" fill="rgba(109,196,34,.38)"><animateTransform attributeName="transform" type="rotate" from="180 110 110" to="540 110 110" dur="5s" repeatCount="indefinite"/></circle>
       </svg>
-      <div class="ws6-center">Flat Org<span>수평적 조직 구조</span></div>
+      <div class="ws6rc"><div class="ws6rc-t">Flat Org</div><div class="ws6rc-s">수평적 조직 구조</div></div>
     </div>
     <div class="rv d1">
-      <div class="ws-num" style="color:rgba(255,255,255,.2);">06 / 06 &nbsp;·&nbsp; 빠른 의사결정</div>
-      <h2 class="ws-h" style="color:#fff;font-size:clamp(36px,3.5vw,60px);">불필요한 단계<br>없이 실행합니다.</h2>
-      <p class="ws-sub">수평적 조직으로 긴급 상황에 즉각 대응. 고객사 요청에서 실행까지 최단 경로로 움직입니다.</p>
+      <div class="wnum">06 / 06</div>
+      <h2 class="wh" style="color:#fff;font-size:clamp(36px,3.5vw,60px);">불필요한 단계<br>없이 실행합니다.</h2>
+      <p class="wsub">수평적 조직 — 고객 요청에서 실행까지 최단 경로.</p>
     </div>
   </div>
 </section>
 
 </div><!-- /why -->
 
-<!-- ══ PROCESS ══ -->
+<!-- ═══ PROCESS ═══ -->
 <section id="process">
-  <div class="proc-in">
-    <div class="rv"><div class="ey">Process</div><h2 class="proc-h">공급망 전 과정을<br>책임집니다</h2></div>
-    <div class="proc-tr">
-      <div class="proc-st rv"><div class="proc-d">01</div><div class="proc-nm">산지</div><div class="proc-sb">직접<br>네트워크</div></div>
-      <div class="proc-st rv d1"><div class="proc-d">02</div><div class="proc-nm">수급</div><div class="proc-sb">예측<br>& 조달</div></div>
-      <div class="proc-st rv d2"><div class="proc-d hi">03</div><div class="proc-nm">품질관리</div><div class="proc-sb">검수<br>& 선별</div></div>
-      <div class="proc-st rv d3"><div class="proc-d">04</div><div class="proc-nm">생산</div><div class="proc-sb">포장<br>& 라벨링</div></div>
-      <div class="proc-st rv d4"><div class="proc-d">05</div><div class="proc-nm">출고</div><div class="proc-sb">재고<br>& 배송</div></div>
-      <div class="proc-st rv d4"><div class="proc-d">06</div><div class="proc-nm">납품</div><div class="proc-sb">납기<br>& 사후관리</div></div>
+  <div class="procin">
+    <div class="rv"><div class="ey">Process</div><h2 class="proch">공급망 전 과정을<br>책임집니다</h2></div>
+    <div class="proct">
+      <div class="procs rv"><div class="procd">01</div><div class="procn">산지</div><div class="procb">직접<br>네트워크</div></div>
+      <div class="procs rv d1"><div class="procd">02</div><div class="procn">수급</div><div class="procb">예측<br>& 조달</div></div>
+      <div class="procs rv d2"><div class="procd hi">03</div><div class="procn">품질관리</div><div class="procb">검수<br>& 선별</div></div>
+      <div class="procs rv d3"><div class="procd">04</div><div class="procn">생산</div><div class="procb">포장<br>& 라벨링</div></div>
+      <div class="procs rv d4"><div class="procd">05</div><div class="procn">출고</div><div class="procb">재고<br>& 배송</div></div>
+      <div class="procs rv d4"><div class="procd">06</div><div class="procn">납품</div><div class="procb">납기<br>& 사후관리</div></div>
     </div>
   </div>
 </section>
 
-<!-- ══ CONTACT ══ -->
+<!-- ═══ CONTACT ═══ -->
 <section id="contact">
   <div class="rv">
-    <div class="c-ey">Get in touch</div>
-    <h2 class="c-h">공급망 파트너를<br>찾고 계신가요?</h2>
-    <p class="c-sub">귀사의 공급망 현황을 알려주세요. SEEDit이 최적의 방안을 제안드립니다.</p>
-    <div class="c-bds"><span class="c-bd">공급망 위탁 운영</span><span class="c-bd">품질관리 컨설팅</span><span class="c-bd">산지 수급 협력</span></div>
+    <div class="cey">Get in touch</div>
+    <h2 class="ch">공급망 파트너를<br>찾고 계신가요?</h2>
+    <p class="csub">귀사의 공급망 현황을 알려주세요. SEEDit이 최적의 방안을 제안드립니다.</p>
+    <div class="cbds"><span class="cbd">공급망 위탁 운영</span><span class="cbd">품질관리 컨설팅</span><span class="cbd">산지 수급 협력</span></div>
   </div>
   <form class="cf rv d1" onsubmit="handleSubmit(event)">
-    <div class="cf-r">
-      <div class="ff"><label>회사명</label><input type="text" placeholder="(주)회사명"></div>
-      <div class="ff"><label>담당자명</label><input type="text" placeholder="홍길동"></div>
-    </div>
-    <div class="cf-r">
-      <div class="ff"><label>연락처</label><input type="tel" placeholder="010-0000-0000"></div>
-      <div class="ff"><label>이메일</label><input type="email" placeholder="name@company.com"></div>
-    </div>
+    <div class="cfr"><div class="ff"><label>회사명</label><input type="text" placeholder="(주)회사명"></div><div class="ff"><label>담당자명</label><input type="text" placeholder="홍길동"></div></div>
+    <div class="cfr"><div class="ff"><label>연락처</label><input type="tel" placeholder="010-0000-0000"></div><div class="ff"><label>이메일</label><input type="email" placeholder="name@company.com"></div></div>
     <div class="ff"><label>문의 유형</label><select><option value="">선택해 주세요</option><option>공급망 위탁 운영</option><option>품질관리 컨설팅</option><option>산지 수급 협력</option><option>기타 문의</option></select></div>
     <div class="ff"><label>문의 내용</label><textarea placeholder="현재 공급망 운영 현황 및 문의 사항을 적어주세요."></textarea></div>
-    <button type="submit" class="cf-sub">문의 보내기</button>
+    <button type="submit" class="cfsub">문의 보내기</button>
   </form>
 </section>
 
 <footer>
-  <div class="f-logo">SEED<span>it</span></div>
-  <div class="f-copy">© 2025 SEEDit Inc. Agricultural SCM Operating Partner</div>
-  <div class="f-ls"><a href="#">개인정보처리방침</a><a href="#">이용약관</a></div>
+  <div class="flogo">SEED<span>it</span></div>
+  <div class="fcopy">© 2025 SEEDit Inc. Agricultural SCM Operating Partner</div>
+  <div class="fls"><a href="#">개인정보처리방침</a><a href="#">이용약관</a></div>
 </footer>
 
 <script>
-/* ── HERO CANVAS: Dense SCM network ── */
+/* ── HERO CANVAS ── */
 (function(){
-  const cv=document.getElementById('hc');
-  if(!cv)return;
-  const cx2=cv.getContext('2d');
+  const cv=document.getElementById('hc');if(!cv)return;
+  const ctx=cv.getContext('2d');
   let W,H,pts=[],nodes=[],sec=[],fr=0;
   const L=a=>`rgba(109,196,34,${a})`;
-  const W2=a=>`rgba(255,255,255,${a})`;
+  const WA=a=>`rgba(255,255,255,${a})`;
   const ST=[{l:'산지',rx:.10,ic:'farm'},{l:'품질검수',rx:.24,ic:'check'},{l:'선별포장',rx:.40,ic:'box'},{l:'물류',rx:.58,ic:'truck'},{l:'출고',rx:.74,ic:'shelf'},{l:'데이터',rx:.90,ic:'data'}];
 
   function resize(){W=cv.width=cv.offsetWidth;H=cv.height=cv.offsetHeight;init();}
 
   function init(){
     nodes=ST.map((s,i)=>({rx:s.rx,x:s.rx*W,y:H*.52,l:s.l,ic:s.ic,pulse:i*Math.PI/3,a:.58-i*.03}));
-    sec=[];for(let i=0;i<5;i++){const rx=ST[i].rx+(ST[i+1].rx-ST[i].rx)/2;sec.push({rx,x:rx*W,y:H*.52+(i%2===0?-55:55),a:.18,pulse:Math.PI+i*.7});}
-    pts=[];for(let i=0;i<180;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.12,r:Math.random()*1.2+.2,a:Math.random()*.11+.02,p:Math.random()*Math.PI*2});
+    sec=[];
+    for(let i=0;i<5;i++){const rx=ST[i].rx+(ST[i+1].rx-ST[i].rx)/2;sec.push({rx,x:rx*W,y:H*.52+(i%2===0?-55:55),a:.18,pulse:Math.PI+i*.7});}
+    pts=[];
+    for(let i=0;i<180;i++)pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.2,vy:(Math.random()-.5)*.12,r:Math.random()*1.2+.2,a:Math.random()*.11+.02,p:Math.random()*Math.PI*2});
   }
 
-  function icon(x,y,t,a){
-    cx2.save();cx2.strokeStyle=L(a);cx2.lineWidth=1;cx2.lineCap='round';cx2.lineJoin='round';cx2.translate(x,y);
+  function drawIcon(x,y,t,a){
+    ctx.save();ctx.strokeStyle=L(a);ctx.lineWidth=1;ctx.lineCap='round';ctx.lineJoin='round';ctx.translate(x,y);
     switch(t){
-      case'farm':cx2.beginPath();cx2.moveTo(0,6);cx2.bezierCurveTo(-6,0,-6,-8,0,-10);cx2.bezierCurveTo(6,-8,6,0,0,6);cx2.stroke();cx2.beginPath();cx2.moveTo(0,6);cx2.lineTo(0,-4);cx2.stroke();break;
-      case'check':cx2.strokeRect(-6,-8,12,14);cx2.beginPath();cx2.moveTo(-3,-1);cx2.lineTo(0,3);cx2.lineTo(5,-4);cx2.stroke();break;
-      case'box':cx2.strokeRect(-6,-7,12,12);cx2.beginPath();cx2.moveTo(-6,0);cx2.lineTo(6,0);cx2.moveTo(0,-7);cx2.lineTo(0,0);cx2.stroke();break;
-      case'truck':cx2.strokeRect(-8,-5,11,8);cx2.beginPath();cx2.moveTo(3,-5);cx2.lineTo(8,-5);cx2.lineTo(8,3);cx2.lineTo(3,3);cx2.stroke();cx2.beginPath();cx2.arc(-4,5,2.5,0,Math.PI*2);cx2.stroke();cx2.beginPath();cx2.arc(5,5,2.5,0,Math.PI*2);cx2.stroke();break;
-      case'shelf':for(let r=0;r<3;r++){cx2.beginPath();cx2.moveTo(-6,-6+r*5);cx2.lineTo(6,-6+r*5);cx2.stroke();}cx2.beginPath();cx2.moveTo(-6,-6);cx2.lineTo(-6,8);cx2.moveTo(6,-6);cx2.lineTo(6,8);cx2.stroke();break;
-      case'data':[[-5,8],[-1,12],[3,6],[7,10]].forEach(([dx,dh])=>{cx2.beginPath();cx2.moveTo(dx,6);cx2.lineTo(dx,-dh+6);cx2.stroke();});break;
+      case'farm':ctx.beginPath();ctx.moveTo(0,6);ctx.bezierCurveTo(-6,0,-6,-8,0,-10);ctx.bezierCurveTo(6,-8,6,0,0,6);ctx.stroke();ctx.beginPath();ctx.moveTo(0,6);ctx.lineTo(0,-4);ctx.stroke();break;
+      case'check':ctx.strokeRect(-6,-8,12,14);ctx.beginPath();ctx.moveTo(-3,-1);ctx.lineTo(0,3);ctx.lineTo(5,-4);ctx.stroke();break;
+      case'box':ctx.strokeRect(-6,-7,12,12);ctx.beginPath();ctx.moveTo(-6,0);ctx.lineTo(6,0);ctx.moveTo(0,-7);ctx.lineTo(0,0);ctx.stroke();break;
+      case'truck':ctx.strokeRect(-8,-5,11,8);ctx.beginPath();ctx.moveTo(3,-5);ctx.lineTo(8,-5);ctx.lineTo(8,3);ctx.lineTo(3,3);ctx.stroke();ctx.beginPath();ctx.arc(-4,5,2.5,0,Math.PI*2);ctx.stroke();ctx.beginPath();ctx.arc(5,5,2.5,0,Math.PI*2);ctx.stroke();break;
+      case'shelf':for(let r=0;r<3;r++){ctx.beginPath();ctx.moveTo(-6,-6+r*5);ctx.lineTo(6,-6+r*5);ctx.stroke();}ctx.beginPath();ctx.moveTo(-6,-6);ctx.lineTo(-6,8);ctx.moveTo(6,-6);ctx.lineTo(6,8);ctx.stroke();break;
+      case'data':[[-5,8],[-1,12],[3,6],[7,10]].forEach(([dx,dh])=>{ctx.beginPath();ctx.moveTo(dx,6);ctx.lineTo(dx,-dh+6);ctx.stroke();});break;
     }
-    cx2.restore();
+    ctx.restore();
   }
 
   function draw(){
-    cx2.clearRect(0,0,W,H);fr++;
+    ctx.clearRect(0,0,W,H);fr++;
     nodes.forEach(n=>n.x=n.rx*W);sec.forEach(n=>n.x=n.rx*W);
-    /* grid */cx2.strokeStyle=W2(.016);cx2.lineWidth=.5;
-    for(let x=0;x<W;x+=72){cx2.beginPath();cx2.moveTo(x,0);cx2.lineTo(x,H);cx2.stroke();}
-    for(let y=0;y<H;y+=72){cx2.beginPath();cx2.moveTo(0,y);cx2.lineTo(W,y);cx2.stroke();}
-    /* backbone */cx2.setLineDash([3,9]);cx2.strokeStyle=W2(.05);cx2.lineWidth=1;cx2.beginPath();cx2.moveTo(nodes[0].x,nodes[0].y);nodes.forEach(n=>cx2.lineTo(n.x,n.y));cx2.stroke();cx2.setLineDash([]);
-    /* secondary */sec.forEach((sn,i)=>{cx2.setLineDash([2,6]);cx2.strokeStyle=W2(.04);cx2.lineWidth=.7;cx2.beginPath();cx2.moveTo(nodes[i].x,nodes[i].y);cx2.lineTo(sn.x,sn.y);cx2.lineTo(nodes[i+1].x,nodes[i+1].y);cx2.stroke();cx2.setLineDash([]);const p=Math.sin(fr*.035+sn.pulse)*.5+.5;cx2.beginPath();cx2.arc(sn.x,sn.y,4+p*2,0,Math.PI*2);cx2.strokeStyle=L(.12+p*.06);cx2.lineWidth=1;cx2.stroke();cx2.beginPath();cx2.arc(sn.x,sn.y,2,0,Math.PI*2);cx2.fillStyle=L(.2+p*.1);cx2.fill();});
-    /* pulses */for(let i=0;i<nodes.length-1;i++){const a=nodes[i],b=nodes[i+1];for(let p=0;p<3;p++){const t=((fr*.0028+i*.18+p*.33)%1);const fi=Math.min(t*5,1),fo=Math.min((1-t)*5,1),al=fi*fo*(.48-i*.03);cx2.beginPath();cx2.arc(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,2+Math.sin(t*Math.PI)*2.2,0,Math.PI*2);cx2.fillStyle=L(al);cx2.fill();}}
-    /* particle connections */for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);if(d<72){cx2.beginPath();cx2.strokeStyle=L(.025*(1-d/72));cx2.lineWidth=.35;cx2.moveTo(pts[i].x,pts[i].y);cx2.lineTo(pts[j].x,pts[j].y);cx2.stroke();}}
-    /* node→particle */nodes.forEach(n=>pts.forEach(p=>{const dx=n.x-p.x,dy=n.y-p.y,d=Math.sqrt(dx*dx+dy*dy);if(d<110){cx2.beginPath();cx2.strokeStyle=L(.032*(1-d/110));cx2.lineWidth=.35;cx2.moveTo(n.x,n.y);cx2.lineTo(p.x,p.y);cx2.stroke();}}));
-    /* particles */pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;cx2.beginPath();cx2.arc(p.x,p.y,p.r,0,Math.PI*2);cx2.fillStyle=L(p.a);cx2.fill();});
-    /* main nodes */nodes.forEach((n,i)=>{const pulse=Math.sin(fr*.038+n.pulse)*.5+.5;const g=cx2.createRadialGradient(n.x,n.y,0,n.x,n.y,52);g.addColorStop(0,L(.13+pulse*.07));g.addColorStop(1,L(0));cx2.beginPath();cx2.arc(n.x,n.y,52,0,Math.PI*2);cx2.fillStyle=g;cx2.fill();cx2.setLineDash([4,4]);cx2.beginPath();cx2.arc(n.x,n.y,32+pulse*4,0,Math.PI*2);cx2.strokeStyle=L(.1+pulse*.06);cx2.lineWidth=1;cx2.stroke();cx2.setLineDash([]);cx2.beginPath();cx2.arc(n.x,n.y,20,0,Math.PI*2);cx2.strokeStyle=L(.22+pulse*.1);cx2.lineWidth=1;cx2.stroke();cx2.beginPath();cx2.arc(n.x,n.y,5+pulse*2,0,Math.PI*2);cx2.fillStyle=L(n.a);cx2.fill();icon(n.x,n.y-2,n.ic,n.a*.85);cx2.font='300 10px Inter,sans-serif';cx2.fillStyle=W2(.18);cx2.textAlign='center';cx2.fillText(n.l,n.x,n.y+52);cx2.font='500 9px Inter,sans-serif';cx2.fillStyle=W2(.09);cx2.fillText(`0${i+1}`,n.x,n.y-44);});
+    /* grid */ctx.strokeStyle=WA(.016);ctx.lineWidth=.5;
+    for(let x=0;x<W;x+=72){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
+    for(let y=0;y<H;y+=72){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
+    /* backbone */ctx.setLineDash([3,9]);ctx.strokeStyle=WA(.05);ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(nodes[0].x,nodes[0].y);nodes.forEach(n=>ctx.lineTo(n.x,n.y));ctx.stroke();ctx.setLineDash([]);
+    /* secondary */sec.forEach((sn,i)=>{
+      ctx.setLineDash([2,6]);ctx.strokeStyle=WA(.04);ctx.lineWidth=.7;
+      ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(sn.x,sn.y);ctx.lineTo(nodes[i+1].x,nodes[i+1].y);ctx.stroke();ctx.setLineDash([]);
+      const p=Math.sin(fr*.035+sn.pulse)*.5+.5;
+      ctx.beginPath();ctx.arc(sn.x,sn.y,4+p*2,0,Math.PI*2);ctx.strokeStyle=L(.12+p*.06);ctx.lineWidth=1;ctx.stroke();
+      ctx.beginPath();ctx.arc(sn.x,sn.y,2,0,Math.PI*2);ctx.fillStyle=L(.2+p*.1);ctx.fill();
+    });
+    /* pulses */for(let i=0;i<nodes.length-1;i++){
+      const a=nodes[i],b=nodes[i+1];
+      for(let p=0;p<3;p++){const t=((fr*.0028+i*.18+p*.33)%1);const fi=Math.min(t*5,1),fo=Math.min((1-t)*5,1),al=fi*fo*(.48-i*.03);
+        ctx.beginPath();ctx.arc(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,2+Math.sin(t*Math.PI)*2.2,0,Math.PI*2);ctx.fillStyle=L(al);ctx.fill();}
+    }
+    /* particle-particle */for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
+      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<70){ctx.beginPath();ctx.strokeStyle=L(.024*(1-d/70));ctx.lineWidth=.35;ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();}
+    }
+    /* node-particle */nodes.forEach(n=>pts.forEach(p=>{
+      const dx=n.x-p.x,dy=n.y-p.y,d=Math.sqrt(dx*dx+dy*dy);
+      if(d<108){ctx.beginPath();ctx.strokeStyle=L(.03*(1-d/108));ctx.lineWidth=.32;ctx.moveTo(n.x,n.y);ctx.lineTo(p.x,p.y);ctx.stroke();}
+    }));
+    /* particles */pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=L(p.a);ctx.fill();});
+    /* nodes */nodes.forEach((n,i)=>{
+      const pulse=Math.sin(fr*.038+n.pulse)*.5+.5;
+      const g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,52);g.addColorStop(0,L(.13+pulse*.07));g.addColorStop(1,L(0));
+      ctx.beginPath();ctx.arc(n.x,n.y,52,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
+      ctx.setLineDash([4,4]);ctx.beginPath();ctx.arc(n.x,n.y,32+pulse*4,0,Math.PI*2);ctx.strokeStyle=L(.1+pulse*.06);ctx.lineWidth=1;ctx.stroke();ctx.setLineDash([]);
+      ctx.beginPath();ctx.arc(n.x,n.y,20,0,Math.PI*2);ctx.strokeStyle=L(.22+pulse*.1);ctx.lineWidth=1;ctx.stroke();
+      ctx.beginPath();ctx.arc(n.x,n.y,5+pulse*2,0,Math.PI*2);ctx.fillStyle=L(n.a);ctx.fill();
+      drawIcon(n.x,n.y-2,n.ic,n.a*.85);
+      ctx.font='300 10px Inter,sans-serif';ctx.fillStyle=WA(.18);ctx.textAlign='center';ctx.fillText(n.l,n.x,n.y+52);
+      ctx.font='500 9px Inter,sans-serif';ctx.fillStyle=WA(.09);ctx.fillText(`0${i+1}`,n.x,n.y-44);
+    });
   }
   function loop(){requestAnimationFrame(loop);draw();}
   window.addEventListener('resize',resize);resize();loop();
 })();
 
 /* ── NAV dark mode ── */
-const nav=document.getElementById('nav'),hw=document.getElementById('hw');
-if(nav&&hw){new IntersectionObserver(e=>e.forEach(x=>nav.classList.toggle('dk',x.isIntersecting)),{threshold:.05}).observe(hw);}
+const navEl=document.getElementById('nav'),hwEl=document.getElementById('hw');
+if(navEl&&hwEl){new IntersectionObserver(e=>e.forEach(x=>navEl.classList.toggle('dk',x.isIntersecting)),{threshold:.05}).observe(hwEl);}
 
-/* ── Framework tooltip ── */
-const FW=[{w:'Supply',t:'공급망 경쟁력'},{w:'Efficiency',t:'린 운영'},{w:'Expansion',t:'성장 확장'},{w:'Data',t:'데이터 기반'},{w:'Innovation',t:'지속 개선'},{w:'Technology',t:'SCM 디지털화'}];
-const FCX=[95,285,475,665,855,1045];
-function showTip(evt,idx){
-  const tip=document.getElementById('fwTip'),svg=document.getElementById('fwSvg');
-  if(!tip||!svg)return;
-  const sr=svg.getBoundingClientRect(),pr=svg.parentElement.getBoundingClientRect(),sc=sr.width/1140,nx=FCX[idx]*sc,tw=190;
-  let left=sr.left-pr.left+nx-tw/2;left=Math.max(8,Math.min(left,pr.width-tw-8));
-  tip.style.left=left+'px';tip.style.top=(sr.top-pr.top-72)+'px';
-  document.getElementById('fwTw').textContent=FW[idx].w;document.getElementById('fwTt').textContent=FW[idx].t;
-  tip.classList.add('show');
+/* ── Framework: hover tooltip (short label only) ── */
+const FW_DATA=[
+  {w:'Supply',      kr:'공급망 경쟁력'},
+  {w:'Efficiency',  kr:'운영 효율'},
+  {w:'Expertise',   kr:'경험이 경쟁력'},
+  {w:'Dynamic',     kr:'젊고 빠른 조직'},
+  {w:'Integration', kr:'하나로 연결'},
+  {w:'Trust',       kr:'함께 성장'},
+];
+let fwTimer=null;
+function hoverFw(evt,idx){
+  clearTimeout(fwTimer);
+  const panel=document.getElementById('fwhover');
+  const word=document.getElementById('fhword');
+  const kr=document.getElementById('fhkr');
+  if(!panel||!word||!kr)return;
+  panel.classList.add('fading');
+  fwTimer=setTimeout(()=>{
+    kr.textContent=FW_DATA[idx].kr;
+    word.textContent=FW_DATA[idx].w;
+    panel.classList.remove('fading');
+  },100);
+  // also highlight node
+  document.querySelectorAll('.fn').forEach((g,i)=>g.classList.toggle('act',i===idx));
 }
-function hideTip(){const t=document.getElementById('fwTip');if(t)t.classList.remove('show');}
+function leaveFw(){
+  document.querySelectorAll('.fn').forEach(g=>g.classList.remove('act'));
+}
+
+/* Framework: click removed — static grid */
 
 /* ── Scroll reveal ── */
-new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.07}).observe;
 const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.07});
 document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
 
 /* ── Form ── */
 function handleSubmit(e){
-  e.preventDefault();const b=e.target.querySelector('.cf-sub');
+  e.preventDefault();const b=e.target.querySelector('.cfsub');
   b.textContent='전송 완료 ✓';b.style.background='var(--leaf)';b.disabled=true;
   setTimeout(()=>{b.textContent='문의 보내기';b.style.background='';b.disabled=false;e.target.reset();},3000);
 }
