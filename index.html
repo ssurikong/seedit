@@ -34,15 +34,38 @@ nav.dk .nc{background:#fff;color:var(--ink);}
 
 /* ═══ HERO ═══ */
 #hw{position:relative;height:100vh;min-height:680px;background:var(--ink);overflow:hidden;}
-#hc{position:absolute;inset:0;width:100%;height:100%;z-index:0;}
-#hov{position:absolute;inset:0;z-index:1;background:linear-gradient(108deg,rgba(9,21,16,.96) 0%,rgba(9,21,16,.82) 32%,rgba(9,21,16,.38) 58%,rgba(9,21,16,.04) 100%);}
-#hw::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(transparent,rgba(9,21,16,.72));z-index:2;pointer-events:none;}
-#hero{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;justify-content:center;padding:0 56px;max-width:740px;}
+#hbgimg{
+  position:absolute;inset:0;width:100%;height:100%;z-index:0;
+  background-image:url('https://images.unsplash.com/photo-1616911821230-b7ca42658b64?auto=format&fit=crop&w=2400&q=80');
+  background-size:cover;
+  background-position:center 38%;
+  opacity:.35;
+  filter:brightness(.6) saturate(.85) contrast(1.05);
+}
+#hc{position:absolute;inset:0;width:100%;height:100%;z-index:1;}
+#hov{position:absolute;inset:0;z-index:2;background:linear-gradient(108deg,rgba(9,21,16,.96) 0%,rgba(9,21,16,.82) 32%,rgba(9,21,16,.38) 58%,rgba(9,21,16,.04) 100%);}
+#hw::after{content:'';position:absolute;bottom:0;left:0;right:0;height:200px;background:linear-gradient(transparent,rgba(9,21,16,.72));z-index:3;pointer-events:none;}
+#hero{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;justify-content:center;padding:0 56px;max-width:740px;}
 .hk{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--ltb);margin-bottom:28px;display:flex;align-items:center;gap:10px;}
 .hk::before{content:'';width:22px;height:1px;background:var(--ltb);}
-h1{font-size:clamp(40px,5vw,72px);font-weight:900;line-height:1.0;letter-spacing:-.04em;color:#fff;margin-bottom:22px;max-width:700px;}
+h1{font-size:clamp(40px,5vw,72px);font-weight:600;line-height:1.25;letter-spacing:-.03em;color:#fff;margin-bottom:22px;max-width:700px;}
 h1 em{font-style:normal;color:var(--ltb);}
-.hs{font-size:17px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7;max-width:380px;margin-bottom:44px;}
+
+/* ── Hero title animation: fade in ── */
+@keyframes heroFadeIn{
+  from{opacity:0;}
+  to{opacity:1;}
+}
+.h1-line{
+  display:inline-block;
+  opacity:0;
+  animation:heroFadeIn 1.6s ease-in-out forwards;
+}
+.h1-line:nth-of-type(1){animation-delay:0s;}
+.h1-line:nth-of-type(2){animation-delay:.28s;}
+.h1-line:nth-of-type(3){animation-delay:.56s;}
+
+.hs{font-size:17px;font-weight:300;color:rgba(255,255,255,.4);line-height:1.7;max-width:640px;margin-bottom:44px;white-space:nowrap;}
 .ha{display:flex;gap:16px;align-items:center;}
 .bw{font-family:var(--en);font-size:14px;font-weight:600;background:#fff;color:var(--ink);padding:14px 30px;border-radius:10px;text-decoration:none;transition:opacity .15s,transform .2s var(--ease);}
 .bw:hover{opacity:.88;transform:translateY(-2px);}
@@ -59,38 +82,55 @@ h1 em{font-style:normal;color:var(--ltb);}
 .hml{font-size:12px;color:rgba(255,255,255,.28);font-weight:300;}
 .hbadge{font-family:var(--en);font-size:10px;font-weight:600;letter-spacing:.6px;text-transform:uppercase;background:rgba(109,196,34,.16);color:var(--ltb);padding:4px 10px;border-radius:20px;display:inline-block;margin-bottom:8px;}
 /* Scroll cue */
-.hscr{position:absolute;bottom:40px;left:56px;z-index:3;display:flex;align-items:center;gap:12px;}
+.hscr{position:absolute;bottom:40px;left:56px;z-index:4;display:flex;align-items:center;gap:12px;}
 .hsl{width:1px;height:40px;background:linear-gradient(to bottom,rgba(255,255,255,.28),transparent);animation:sl 2.4s ease-in-out infinite;}
 @keyframes sl{0%,100%{opacity:.18;transform:scaleY(.4) translateY(-8px);}55%{opacity:1;transform:none;}}
 .hscr span{font-family:var(--en);font-size:10px;letter-spacing:2.5px;color:rgba(255,255,255,.14);text-transform:uppercase;}
 
 /* ═══ ABOUT ═══ */
 #about{
-  padding:180px 56px;
   max-width:1380px;margin:0 auto;
+  padding:0 56px;
   border-top:1px solid var(--g100);
-  display:flex;justify-content:center;
+  justify-content:center;
 }
+#about{
+  position:relative;
+  min-height:64vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding-bottom:0;
+  overflow:hidden;
+  background:#ffffff;
+}
+
 .about-center{
-  max-width:780px;
+  position:relative;
+  z-index:1;
+  max-width:900px;
   margin:0 auto;
   text-align:left;
-  padding-top:40px;
+  padding-top:14vh;
 }
-.ey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--leaf);margin-bottom:24px;}
-.sh{font-size:clamp(32px,4vw,52px);letter-spacing:-1.5px;line-height:1.15;color:var(--ink);}
+.ey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--leaf);}
+.sh{font-size:clamp(40px,5.2vw,68px);letter-spacing:-1.5px;line-height:1.15;color:#111;}
 .sh-one-line{white-space:nowrap;}
-.sh-bold{font-weight:800;}
-.sh-light{font-weight:400;color:var(--g600);}
-.ab{margin-top:28px;font-size:16px;color:var(--g600);font-weight:300;line-height:1.85;}
-.ab-large{
-  font-size:24px;
-  line-height:1.8;
-  opacity:.85;
-  font-weight:300;
-  color:var(--ink);
-  max-width:640px;
+.sh-bold{font-weight:800;color:#111;}
+.sh-light{font-weight:300;color:#111;}
+/* Reveal-on-scroll: translateY + opacity, Apple/Linear style */
+.reveal-line{
+  display:inline-block;
+  opacity:0;
+  transform:translateY(40px);
+  transition:opacity 1.92s cubic-bezier(.22,1,.36,1),
+             transform 1.92s cubic-bezier(.22,1,.36,1);
 }
+.about-center.in-view .reveal-line{
+  opacity:1;
+  transform:translateY(0);
+}
+.about-center.in-view .reveal-line[data-delay="200"]{transition-delay:.36s;}
 
 /* ═══ FRAMEWORK ═══ */
 #framework{background:var(--ink);padding:80px 0 64px;overflow:hidden;}
@@ -121,20 +161,30 @@ h1 em{font-style:normal;color:var(--ltb);}
 .fc{stroke:rgba(255,255,255,.07);stroke-width:1;stroke-dasharray:4 7;fill:none;}
 .fp{fill:none;stroke-width:1.5;stroke-dasharray:16 220;}
 
-
-
-
-
 /* ═══ WHY — 6 STORY SECTIONS ═══ */
 /* Each section = full-width poster */
 .ws{position:relative;overflow:hidden;}
 
 /* S1 — 수도권 즉시 대응 — Deep forest green */
-.ws1{background:linear-gradient(140deg,#091810 0%,#0e2a16 55%,#0c2314 100%);min-height:80vh;display:flex;align-items:center;}
+.ws1{background:#ffffff;min-height:80vh;display:flex;align-items:center;}
 .ws1 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-/* S2 — 24h 긴급 — Pure black */
-.ws2{background:#0a0a0a;min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;}
-.ws2 .wsi{max-width:1380px;margin:0 auto;padding:100px 56px;}
+/* S2 — 24h 긴급 — Pure black with animated background */
+.ws2{background:#0a0a0a;min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
+.ws2::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:radial-gradient(circle at 50% 50%, rgba(109,196,34,.03) 0%, transparent 70%);
+  z-index:0;
+}
+.ws2 .wsi{max-width:1380px;margin:0 auto;padding:100px 56px;position:relative;z-index:2;}
+/* Animated supply chain background */
+#ws2-canvas{
+  position:absolute;
+  inset:0;
+  z-index:1;
+  opacity:.35;
+}
 /* S3 — 산지 네트워크 — Forest deep */
 .ws3{background:linear-gradient(160deg,#081510 0%,#0d2016 55%,#0b1c13 100%);min-height:80vh;display:flex;align-items:center;}
 .ws3 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
@@ -151,6 +201,52 @@ h1 em{font-style:normal;color:var(--ltb);}
 /* Shared text elements */
 .wnum{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.18);margin-bottom:24px;}
 .wh{font-size:clamp(44px,5vw,80px);font-weight:900;line-height:.96;letter-spacing:-3.5px;color:#fff;margin-bottom:18px;}
+.ws1 .wnum{color:rgba(9,21,16,.35);}
+.ws1 .wh{color:#0a1a10;}
+.ws1 .wsub{color:rgba(9,21,16,.55);}
+.ws1 .wtag{border-color:rgba(9,21,16,.18);color:rgba(9,21,16,.55);}
+
+.ws1-fly{
+  display:inline-block;
+  opacity:0;
+  transform:translateX(-60px);
+  filter:blur(4px);
+  animation:ws1FlyIn .91s cubic-bezier(.16,1,.3,1) forwards;
+  animation-delay:var(--fly-delay,0s);
+  animation-play-state:paused;
+}
+.ws1.in-view .ws1-fly{
+  animation-play-state:running;
+}
+.ws1-line-accent{
+  color:#4d9912;
+}
+.ws1-type{
+  opacity:0;
+  min-height:1.2em;
+}
+.ws1.in-view .ws1-type{
+  opacity:1;
+  transition:opacity .2s;
+}
+.ws1-type-cursor{
+  display:inline-block;
+  width:2px;
+  height:1em;
+  background:rgba(9,21,16,.4);
+  margin-left:2px;
+  vertical-align:middle;
+  animation:ws1Blink .8s step-end infinite;
+}
+@keyframes ws1Blink{
+  0%,50%{opacity:1;}
+  51%,100%{opacity:0;}
+}
+@keyframes ws1FlyIn{
+  0%{opacity:0;transform:translateX(-60px);filter:blur(4px);}
+  60%{opacity:1;filter:blur(0);}
+  100%{opacity:1;transform:translateX(0);filter:blur(0);}
+}
 .wsub{font-size:16px;font-weight:300;color:rgba(255,255,255,.38);line-height:1.72;max-width:380px;}
 .wtag{display:inline-block;margin-top:24px;font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;border:1px solid rgba(255,255,255,.14);color:rgba(255,255,255,.38);padding:7px 16px;border-radius:20px;}
 
@@ -347,12 +443,13 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 @media(max-width:768px){
   /* Typography */
   h1{font-size:clamp(34px,9vw,48px);letter-spacing:-.03em;word-break:keep-all;}
+  .hs{white-space:normal;max-width:100%;}
   .wh{font-size:clamp(36px,9vw,52px);letter-spacing:-2px;word-break:keep-all;}
-  .sh{font-size:clamp(26px,7vw,38px);word-break:keep-all;}
+  .sh{font-size:clamp(30px,9vw,46px);word-break:keep-all;}
   .sh-one-line{white-space:normal;}
-  #about{padding:100px 24px;}
-  .about-center{padding-top:0;}
-  .ab-large{font-size:18px;line-height:1.7;}
+  #about{padding:0 24px;min-height:48vh;}
+  .about-center{padding-top:10vh;}
+
 
   /* Process: 1-col */
   .proct{grid-template-columns:1fr;gap:12px;}
@@ -400,22 +497,25 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
     <li><a href="#about">About</a></li>
     <li><a href="#framework">Framework</a></li>
     <li><a href="#why">Why SEEDit</a></li>
-    <li><a href="#process">Process</a></li>
   </ul>
   <a href="#contact" class="nc">문의하기</a>
 </nav>
 
 <!-- ═══ HERO ═══ -->
 <div id="hw">
+  <div id="hbgimg"></div>
   <canvas id="hc"></canvas>
   <div id="hov"></div>
   <div id="hero">
     <div class="hk">Agricultural SCM Operating Partner</div>
-    <h1>품질을 관리하고,<br><em>공급망을</em><br>운영합니다.</h1>
-    <p class="hs">산지 수급 · 품질관리 · 생산 · 물류<br>공급망 전 과정을 직접 운영합니다.</p>
+    <h1>
+      <span class="h1-line">품질을 관리하고,</span><br>
+      <span class="h1-line"><em>공급망을</em></span><br>
+      <span class="h1-line">운영합니다.</span>
+    </h1>
+    <p class="hs">산지 수급 · 품질관리 · 생산 · 물류 — 공급망 전 과정을 직접 운영합니다.</p>
     <div class="ha">
-      <a href="#contact" class="bw">파트너십 문의</a>
-      <a href="#about" class="bg">더 알아보기<svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="margin-left:4px"><path d="M2 7h10M8 3l4 4-4 4"/></svg></a>
+      <a href="#contact" class="bw">회사소개서 다운로드</a>
     </div>
   </div>
 
@@ -425,51 +525,15 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 <!-- ═══ ABOUT ═══ -->
 <div style="border-top:1px solid var(--g100)">
 <section id="about">
-  <div class="rv about-center">
-    <div class="ey">About SEEDit</div>
-    <h2 class="sh sh-one-line"><span class="sh-bold">공급망 운영,</span> <span class="sh-light">그 자체입니다.</span></h2>
-    <p class="ab ab-large">산지 수급부터 품질관리, 생산, 출고까지<br>공급망 전 과정을 운영하는 SCM 전문기업입니다.</p>
+  
+  <div class="about-center">
+    <h2 class="sh sh-one-line">
+      <span class="sh-bold reveal-line" data-delay="0">공급망 운영,</span>
+      <span class="sh-light reveal-line" data-delay="200">그 자체입니다.</span>
+    </h2>
   </div>
 </section>
 </div>
-
-<!-- ═══ FRAMEWORK ═══ -->
-<section id="framework">
-  <div class="fwtop rv">
-    <div><div class="fwey">SEEDit Framework</div><h2 class="fwh">SEEDit의<br>운영 철학</h2></div>
-    
-  </div>
-
-  <!-- Network nodes -->
-  <div class="fwnet rv d1" id="fwnet" style="position:relative;">
-    <svg id="fwsvg" viewBox="0 0 1140 270" width="100%" style="display:block;overflow:visible;">
-      <line class="fc" x1="162" y1="100" x2="218" y2="100"/>
-      <line class="fc" x1="352" y1="100" x2="408" y2="100"/>
-      <line class="fc" x1="542" y1="100" x2="598" y2="100"/>
-      <line class="fc" x1="732" y1="100" x2="788" y2="100"/>
-      <line class="fc" x1="922" y1="100" x2="978" y2="100"/>
-      <line class="fp" x1="162" y1="100" x2="218" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="0"><animate attributeName="stroke-dashoffset" from="0" to="-232" dur="2s" repeatCount="indefinite"/></line>
-      <line class="fp" x1="352" y1="100" x2="408" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-40"><animate attributeName="stroke-dashoffset" from="-40" to="-272" dur="2s" repeatCount="indefinite"/></line>
-      <line class="fp" x1="542" y1="100" x2="598" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-80"><animate attributeName="stroke-dashoffset" from="-80" to="-312" dur="2s" repeatCount="indefinite"/></line>
-      <line class="fp" x1="732" y1="100" x2="788" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-120"><animate attributeName="stroke-dashoffset" from="-120" to="-352" dur="2s" repeatCount="indefinite"/></line>
-      <line class="fp" x1="922" y1="100" x2="978" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-160"><animate attributeName="stroke-dashoffset" from="-160" to="-392" dur="2s" repeatCount="indefinite"/></line>
-      <g class="fn" id="fn0"><circle cx="95" cy="100" r="82" class="ro"/><circle cx="95" cy="100" r="66" class="rm"/><text x="95" y="100" class="gl">S</text><text x="95" y="176" class="wl">SUPPLY</text></g>
-      <g class="fn" id="fn1"><circle cx="285" cy="100" r="82" class="ro"/><circle cx="285" cy="100" r="66" class="rm"/><text x="285" y="100" class="gl">E</text><text x="285" y="176" class="wl">EFFICIENCY</text></g>
-      <g class="fn" id="fn2"><circle cx="475" cy="100" r="82" class="ro"/><circle cx="475" cy="100" r="66" class="rm"/><text x="475" y="100" class="gl">E</text><text x="475" y="176" class="wl">EXPERTISE</text></g>
-      <g class="fn" id="fn3"><circle cx="665" cy="100" r="82" class="ro"/><circle cx="665" cy="100" r="66" class="rm"/><text x="665" y="100" class="gl">D</text><text x="665" y="176" class="wl">DYNAMIC</text></g>
-      <g class="fn" id="fn4"><circle cx="855" cy="100" r="82" class="ro"/><circle cx="855" cy="100" r="66" class="rm"/><text x="855" y="100" class="gl">i</text><text x="855" y="176" class="wl">INTEGRATION</text></g>
-      <g class="fn" id="fn5"><circle cx="1045" cy="100" r="82" class="ro"/><circle cx="1045" cy="100" r="66" class="rm"/><text x="1045" y="100" class="gl">t</text><text x="1045" y="176" class="wl">TRUST</text></g>
-      <!-- keyword labels: hidden by default, shown on click -->
-      <text id="fk0" x="95"   y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">공급망 경쟁력</text>
-      <text id="fk1" x="285"  y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">운영 효율성</text>
-      <text id="fk2" x="475"  y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">경험이 경쟁력</text>
-      <text id="fk3" x="665"  y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">젊고 빠른 조직</text>
-      <text id="fk4" x="855"  y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">하나로 연결</text>
-      <text id="fk5" x="1045" y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">함께 성장</text>
-    </svg>
-  </div>
-
-</section>
 
 <!-- ═══ WHY — 6 POSTER SECTIONS ═══ -->
 <div id="why">
@@ -478,82 +542,138 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 <section class="ws ws1">
   <div class="wsi">
     <div class="rv">
-      <div class="wnum">01 / 06</div>
-      <h2 class="wh">수도권,<br>즉시.</h2>
-      <p class="wsub">수도권 운영거점 기반 — 당일 납기 대응이 가능합니다.</p>
-      <span class="wtag">Location Advantage</span>
+      <h2 class="wh">
+        <span class="ws1-fly ws1-line" style="--fly-delay:.1s">수도권,</span><br>
+        <span class="ws1-fly ws1-line ws1-line-accent" style="--fly-delay:.1s">즉시.</span>
+      </h2>
+      <p class="wsub ws1-type" id="ws1TypeText" data-text="수도권 운영거점 기반 — 당일 납기 대응이 가능합니다."></p>
     </div>
     <div class="rv d1" style="display:flex;align-items:center;justify-content:center;">
-      <svg viewBox="0 0 480 400" width="100%" style="max-width:520px;">
+      <svg viewBox="-90 -70 700 530" width="100%" style="max-width:640px;">
         <defs>
-          <radialGradient id="rg1" cx="50%" cy="55%" r="50%">
-            <stop offset="0%" stop-color="rgba(109,196,34,.18)"/>
-            <stop offset="100%" stop-color="rgba(109,196,34,0)"/>
+          <radialGradient id="rg1" cx="50%" cy="50%" r="55%">
+            <stop offset="0%" stop-color="rgba(74,140,28,.10)"/>
+            <stop offset="100%" stop-color="rgba(74,140,28,0)"/>
           </radialGradient>
+          <marker id="seedArrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse">
+            <path d="M2 1L8 5L2 9" fill="none" stroke="rgba(74,140,28,.55)" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+          </marker>
         </defs>
-        <!-- Glow -->
-        <circle cx="240" cy="210" r="130" fill="url(#rg1)"/>
 
-        <!-- Connection lines — thicker, brighter -->
-        <line x1="240" y1="210" x2="100" y2="108" stroke="rgba(109,196,34,.45)" stroke-width="2" stroke-dasharray="6 5"/>
-        <line x1="240" y1="210" x2="372" y2="108" stroke="rgba(109,196,34,.45)" stroke-width="2" stroke-dasharray="6 5"/>
-        <line x1="240" y1="210" x2="72"  y2="268" stroke="rgba(109,196,34,.38)" stroke-width="2" stroke-dasharray="6 5"/>
-        <line x1="240" y1="210" x2="404" y2="278" stroke="rgba(109,196,34,.38)" stroke-width="2" stroke-dasharray="6 5"/>
-        <line x1="240" y1="210" x2="240" y2="44"  stroke="rgba(109,196,34,.32)" stroke-width="1.5" stroke-dasharray="6 5"/>
+        <circle cx="310" cy="190" r="150" fill="url(#rg1)"/>
 
-        <!-- Outer nodes — large, readable -->
-        <g>
-          <circle cx="100" cy="108" r="28" fill="rgba(12,28,18,.95)" stroke="rgba(109,196,34,.65)" stroke-width="2"/>
-          <text x="100" y="104" text-anchor="middle" font-size="13" fill="rgba(255,255,255,.9)" font-family="Inter,sans-serif" font-weight="600">인천</text>
-          <text x="100" y="120" text-anchor="middle" font-size="11" fill="rgba(109,196,34,.7)" font-family="Inter,sans-serif">서부</text>
-        </g>
-        <g>
-          <circle cx="372" cy="108" r="28" fill="rgba(12,28,18,.95)" stroke="rgba(109,196,34,.65)" stroke-width="2"/>
-          <text x="372" y="104" text-anchor="middle" font-size="13" fill="rgba(255,255,255,.9)" font-family="Inter,sans-serif" font-weight="600">서울</text>
-          <text x="372" y="120" text-anchor="middle" font-size="11" fill="rgba(109,196,34,.7)" font-family="Inter,sans-serif">동부</text>
-        </g>
-        <g>
-          <circle cx="72"  cy="268" r="24" fill="rgba(12,28,18,.95)" stroke="rgba(109,196,34,.5)" stroke-width="2"/>
-          <text x="72" y="264" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.85)" font-family="Inter,sans-serif" font-weight="600">경기</text>
-          <text x="72" y="279" text-anchor="middle" font-size="11" fill="rgba(109,196,34,.65)" font-family="Inter,sans-serif">남부</text>
-        </g>
-        <g>
-          <circle cx="404" cy="278" r="24" fill="rgba(12,28,18,.95)" stroke="rgba(109,196,34,.5)" stroke-width="2"/>
-          <text x="404" y="274" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.85)" font-family="Inter,sans-serif" font-weight="600">경기</text>
-          <text x="404" y="289" text-anchor="middle" font-size="11" fill="rgba(109,196,34,.65)" font-family="Inter,sans-serif">동부</text>
-        </g>
-        <g>
-          <circle cx="240" cy="44"  r="22" fill="rgba(12,28,18,.95)" stroke="rgba(109,196,34,.45)" stroke-width="1.5"/>
-          <text x="240" y="48"  text-anchor="middle" font-size="12" fill="rgba(255,255,255,.75)" font-family="Inter,sans-serif" font-weight="500">서울</text>
+        <!-- Central-region map silhouette, shifted left so it extends past the left edge -->
+        <g transform="translate(-51,-68)">
+        <path d="M 270 45
+                 L 305 30
+                 L 330 55
+                 L 365 50
+                 L 395 70
+                 L 440 65
+                 L 480 80
+                 L 510 75
+                 L 545 95
+                 L 575 130
+                 L 600 165
+                 L 615 200
+                 L 600 235
+                 L 615 270
+                 L 595 305
+                 L 605 340
+                 L 575 365
+                 L 580 400
+                 L 545 425
+                 L 520 460
+                 L 480 450
+                 L 445 480
+                 L 400 470
+                 L 360 490
+                 L 315 480
+                 L 270 485
+                 L 230 465
+                 L 185 470
+                 L 145 445
+                 L 100 450
+                 L 70 415
+                 L 35 420
+                 L 20 385
+                 L -10 360
+                 L 15 330
+                 L -15 300
+                 L 25 270
+                 L 5 235
+                 L 35 200
+                 L 15 165
+                 L 50 145
+                 L 60 105
+                 L 95 100
+                 L 115 65
+                 L 155 70
+                 L 180 40
+                 L 220 55
+                 L 270 45 Z"
+              fill="rgba(74,140,28,.06)"/>
         </g>
 
-        <!-- SEEDit Hub — large, prominent -->
-        <circle cx="240" cy="210" r="52" fill="rgba(9,21,16,.97)" stroke="rgba(109,196,34,.8)" stroke-width="2.5"/>
-        <circle cx="240" cy="210" r="38" fill="rgba(9,21,16,.0)" stroke="rgba(109,196,34,.25)" stroke-width="1"/>
-        <!-- Pulse ring -->
-        <circle cx="240" cy="210" r="52" fill="none" stroke="rgba(109,196,34,.35)" stroke-width="2">
-          <animate attributeName="r" values="52;68;52" dur="2.8s" repeatCount="indefinite"/>
-          <animate attributeName="opacity" values=".35;0;.35" dur="2.8s" repeatCount="indefinite"/>
+        <!-- Connectors: start at hub edge, end just outside each pill (no overlap) -->
+        <path d="M 294 143 Q 285 110, 272 80" fill="none" stroke="rgba(74,140,28,.45)" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#seedArrow)"/>
+        <path d="M 350 159 Q 380 138, 406 116" fill="none" stroke="rgba(74,140,28,.45)" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#seedArrow)"/>
+        <path d="M 260 187 Q 185 182, 106 178" fill="none" stroke="rgba(74,140,28,.42)" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#seedArrow)"/>
+        <path d="M 273 224 Q 230 262, 185 304" fill="none" stroke="rgba(74,140,28,.4)" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#seedArrow)"/>
+
+        <g>
+          <rect x="216" y="32" width="96" height="50" rx="14" fill="#101e14" />
+          <text x="264" y="56" text-anchor="middle" font-size="17" fill="#ffffff" font-family="Inter,sans-serif" font-weight="700">서울</text>
+          <text x="264" y="73" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.55)" font-family="Inter,sans-serif" font-weight="400">도심</text>
+        </g>
+        <g>
+          <rect x="388" y="68" width="96" height="50" rx="14" fill="#101e14" />
+          <text x="436" y="92" text-anchor="middle" font-size="17" fill="#ffffff" font-family="Inter,sans-serif" font-weight="700">경기</text>
+          <text x="436" y="109" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.55)" font-family="Inter,sans-serif" font-weight="400">동북부</text>
+        </g>
+        <g>
+          <rect x="14" y="150" width="96" height="50" rx="14" fill="#101e14" />
+          <text x="62" y="174" text-anchor="middle" font-size="17" fill="#ffffff" font-family="Inter,sans-serif" font-weight="700">인천</text>
+          <text x="62" y="191" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.55)" font-family="Inter,sans-serif" font-weight="400">서부</text>
+        </g>
+        <g>
+          <rect x="112" y="302" width="96" height="50" rx="14" fill="#101e14" />
+          <text x="160" y="326" text-anchor="middle" font-size="17" fill="#ffffff" font-family="Inter,sans-serif" font-weight="700">평택</text>
+          <text x="160" y="343" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.55)" font-family="Inter,sans-serif" font-weight="400">남서부</text>
+        </g>
+
+        <circle cx="272" cy="80" r="4" fill="rgba(74,140,28,.85)"/>
+        <circle cx="406" cy="116" r="4" fill="rgba(74,140,28,.85)"/>
+        <circle cx="106" cy="178" r="4" fill="rgba(74,140,28,.85)"/>
+        <circle cx="185" cy="304" r="4" fill="rgba(74,140,28,.85)"/>
+
+        <circle cx="310" cy="190" r="58" fill="none" stroke="rgba(74,140,28,.3)" stroke-width="1" stroke-dasharray="2 4"/>
+        <circle cx="310" cy="190" r="50" fill="none" stroke="rgba(109,196,34,.55)" stroke-width="2">
+          <animate attributeName="r" values="50;66;50" dur="2.6s" repeatCount="indefinite"/>
+          <animate attributeName="opacity" values=".55;0;.55" dur="2.6s" repeatCount="indefinite"/>
         </circle>
-        <text x="240" y="204" text-anchor="middle" font-size="17" fill="rgba(109,196,34,1)" font-family="Inter,sans-serif" font-weight="800" letter-spacing="-0.5">SEEDit</text>
-        <text x="240" y="223" text-anchor="middle" font-size="11" fill="rgba(255,255,255,.45)" font-family="Inter,sans-serif">운영거점</text>
+        <circle cx="310" cy="190" r="44" fill="#0d1f12" stroke="rgba(109,196,34,.9)" stroke-width="2.5"/>
+        <circle cx="310" cy="190" r="36" fill="none" stroke="rgba(109,196,34,.25)" stroke-width="1"/>
+        <text x="310" y="184" text-anchor="middle" font-size="16" fill="#ffffff" font-family="Inter,sans-serif" font-weight="800">용인</text>
+        <text x="310" y="201" text-anchor="middle" font-size="10" fill="rgba(109,196,34,.85)" font-family="Inter,sans-serif" font-weight="600" letter-spacing="0.5">거점</text>
 
-        <!-- Distance labels on lines -->
-        <text x="164" y="148" text-anchor="middle" font-size="10" fill="rgba(109,196,34,.55)" font-family="Inter,sans-serif">당일 납기</text>
-        <text x="316" y="152" text-anchor="middle" font-size="10" fill="rgba(109,196,34,.55)" font-family="Inter,sans-serif">당일 납기</text>
+        <circle r="3" fill="rgba(109,196,34,.95)">
+          <animateMotion dur="1.8s" repeatCount="indefinite" path="M 294 143 Q 285 110, 272 80"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="1.8s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="3" fill="rgba(109,196,34,.95)">
+          <animateMotion dur="1.8s" begin="0.35s" repeatCount="indefinite" path="M 350 159 Q 380 138, 406 116"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="1.8s" begin="0.35s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="3" fill="rgba(109,196,34,.95)">
+          <animateMotion dur="1.8s" begin="0.7s" repeatCount="indefinite" path="M 260 187 Q 185 182, 106 178"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="1.8s" begin="0.7s" repeatCount="indefinite"/>
+        </circle>
+        <circle r="3" fill="rgba(109,196,34,.95)">
+          <animateMotion dur="1.8s" begin="1.05s" repeatCount="indefinite" path="M 273 224 Q 230 262, 185 304"/>
+          <animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.1;0.85;1" dur="1.8s" begin="1.05s" repeatCount="indefinite"/>
+        </circle>
       </svg>
-    </div>
-  </div>
-</section>
-
-<!-- 02: 24h 긴급 — Pure Black + Big Type -->
-<section class="ws ws2">
-  <div class="wsi">
-    <div class="ws2big" aria-hidden="true">24H<em>24H</em></div>
-    <div class="rv">
-      <div class="wnum">02 / 06</div>
-      <h2 class="wh" style="font-size:clamp(36px,4vw,60px);">어떤 긴급 상황도<br>24시간 내 처리합니다.</h2>
-      <p class="wsub" style="margin:0 auto;">수평적 의사결정 구조 — 긴급 수주 즉각 처리.</p>
     </div>
   </div>
 </section>
@@ -562,7 +682,6 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 <section class="ws ws3">
   <div class="wsi">
     <div class="rv">
-      <div class="wnum">03 / 06</div>
       <h2 class="wh">전국 산지,<br>직접 연결.</h2>
       <p class="wsub">중간 단계 없이 전국 주산지와 직거래. 가격·물량·품질을 동시에 통제합니다.</p>
       <span class="wtag">Direct Network</span>
@@ -627,278 +746,54 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
   </div>
 </section>
 
-<!-- 04: 공급망 통합 운영 — Dark Slate -->
-<section class="ws ws4">
+<!-- 02: 24h 긴급 — Pure Black + Big Type -->
+<section class="ws ws2">
+  <canvas id="ws2-canvas"></canvas>
   <div class="wsi">
+    <div class="ws2big" aria-hidden="true">24H<em>24H</em></div>
     <div class="rv">
-      <div class="wnum">04 / 06</div>
-      <h2 class="wh" style="font-size:clamp(40px,4vw,68px);">하나의 파트너,<br>전체 공급망.</h2>
-      <p class="wsub">산지부터 납품까지 — 단일 파트너가 전 과정을 책임집니다.</p>
-    </div>
-    <div class="flowlist rv d1">
-
-      <div class="flowitem">
-        <div class="fli-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/>
-          </svg>
-        </div>
-        <div class="fli-body">
-          <span class="fln">01</span>
-          <div class="flt">산지 수급</div>
-          <div class="fld">전국 주산지 직거래 네트워크로 안정적 원물 확보</div>
-        </div>
-        <div class="fla"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div>
-      </div>
-
-      <div class="flowitem">
-        <div class="fli-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-          </svg>
-        </div>
-        <div class="fli-body">
-          <span class="fln">02</span>
-          <div class="flt">품질관리</div>
-          <div class="fld">규격 검수 · 선별 기준 적용 · 품질 일관성 보장</div>
-        </div>
-        <div class="fla"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div>
-      </div>
-
-      <div class="flowitem">
-        <div class="fli-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
-          </svg>
-        </div>
-        <div class="fli-body">
-          <span class="fln">03</span>
-          <div class="flt">생산·포장</div>
-          <div class="fld">가공 · 라벨링 · 표준화된 포장 공정 운영</div>
-        </div>
-        <div class="fla"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div>
-      </div>
-
-      <div class="flowitem">
-        <div class="fli-icon">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/>
-            <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-          </svg>
-        </div>
-        <div class="fli-body">
-          <span class="fln">04</span>
-          <div class="flt">출고·물류</div>
-          <div class="fld">재고 관리 · 배송 준비 · 출고 전 과정 통제</div>
-        </div>
-        <div class="fla"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h10M8 3l4 4-4 4"/></svg></div>
-      </div>
-
-      <div class="flowitem">
-        <div class="fli-icon" style="background:rgba(109,196,34,.18);border-color:rgba(109,196,34,.45);">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-            <polyline points="20 6 9 17 4 12"/>
-          </svg>
-        </div>
-        <div class="fli-body">
-          <span class="fln">05</span>
-          <div class="flt">납품·사후관리</div>
-          <div class="fld">납기 100% 준수 · 피드백 반영 · 지속 개선</div>
-        </div>
-        <div class="fla" style="border-color:rgba(109,196,34,.5);color:var(--ltb);">
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><polyline points="2 7 6 11 12 3"/></svg>
-        </div>
-      </div>
-
+      <h2 class="wh" style="font-size:clamp(36px,4vw,60px);">어떤 긴급 상황도<br>24시간 내 처리합니다.</h2>
+      <p class="wsub" style="margin:0 auto;">수평적 의사결정 구조 — 긴급 수주 즉각 처리.</p>
     </div>
   </div>
 </section>
 
-<!-- 05: 현장 실행력 — Near-Black + Numbers -->
-<section class="ws ws5">
-  <div class="wsi">
-    <div class="rv">
-      <div class="wnum">05 / 06</div>
-      <h2 class="wh" style="font-size:clamp(40px,4vw,68px);color:#fff;">계획이 아닌<br>실행입니다.</h2>
-      <p class="wsub" style="color:rgba(255,255,255,.32);">현장에서 바로 해결하는 조직.</p>
-    </div>
-    <div class="ws5nums rv d1">
-      <div class="ws5n"><div class="ws5nv">15<span class="ws5nv-u">톤</span></div><div class="ws5nl">14명이 처리하는<br>일 평균 물량</div></div>
-      <div class="ws5n ws5sep-v"><div class="ws5nv">6<span class="ws5nv-u">단계</span></div><div class="ws5nl">단일 파트너<br>통합 프로세스</div></div>
-      <div class="ws5n ws5sep-h"><div class="ws5nv">24<span class="ws5nv-u">h</span></div><div class="ws5nl">긴급 발주<br>대응 체계</div></div>
-      <div class="ws5n ws5sep-h ws5sep-v"><div class="ws5nv">365<span class="ws5nv-u">일</span></div><div class="ws5nl">연중 안정<br>공급 보장</div></div>
-    </div>
+</div><!-- /why --><!-- ═══ FRAMEWORK ═══ -->
+<section id="framework">
+  <div class="fwtop rv">
+    <div><div class="fwey">SEEDit Framework</div><h2 class="fwh">SEEDit의 운영 철학</h2></div>
+    
   </div>
-</section>
 
-<!-- 06: 빠른 의사결정 — Ink + Ring -->
-<section class="ws ws6">
-  <div class="wsi">
-    <div class="ws6ring rv">
-      <svg class="ws6rsvg" viewBox="-36 -36 412 412" style="width:420px;height:420px;">
-        <!-- Outer rings -->
-        <circle cx="170" cy="170" r="158" fill="none" stroke="rgba(255,255,255,.05)" stroke-width="1.5"/>
-        <circle cx="170" cy="170" r="132" fill="none" stroke="rgba(109,196,34,.1)"  stroke-width="1.5"/>
-        <circle cx="170" cy="170" r="106" fill="none" stroke="rgba(109,196,34,.18)" stroke-width="1.5"/>
-
-        <!-- Rotating arc — thicker -->
-        <circle cx="170" cy="170" r="158" fill="none" stroke="rgba(109,196,34,.55)" stroke-width="3" stroke-dasharray="90 900">
-          <animateTransform attributeName="transform" type="rotate" from="0 170 170" to="360 170 170" dur="7s" repeatCount="indefinite"/>
-        </circle>
-        <!-- Moving dot on outer ring -->
-        <circle cx="328" cy="170" r="7" fill="var(--ltb)">
-          <animateTransform attributeName="transform" type="rotate" from="0 170 170" to="360 170 170" dur="7s" repeatCount="indefinite"/>
-        </circle>
-        <!-- Slower inner dot -->
-        <circle cx="302" cy="170" r="5" fill="rgba(109,196,34,.5)">
-          <animateTransform attributeName="transform" type="rotate" from="180 170 170" to="540 170 170" dur="4.5s" repeatCount="indefinite"/>
-        </circle>
-
-        <!-- 고객요청 — top (cy moved inward: 12→36) -->
-        <g>
-          <circle cx="170" cy="36" r="24" fill="rgba(10,24,16,.95)" stroke="rgba(109,196,34,.5)" stroke-width="2"/>
-          <text x="170" y="32"  text-anchor="middle" font-size="12" fill="rgba(255,255,255,.85)" font-family="Inter,sans-serif" font-weight="600">고객</text>
-          <text x="170" y="46" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.85)" font-family="Inter,sans-serif" font-weight="600">요청</text>
-        </g>
-        <!-- 즉시검토 — right (cx moved inward: 328→304) -->
-        <g>
-          <circle cx="304" cy="170" r="24" fill="rgba(10,24,16,.95)" stroke="rgba(109,196,34,.45)" stroke-width="2"/>
-          <text x="304" y="166" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-weight="600">즉시</text>
-          <text x="304" y="180" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-weight="600">검토</text>
-        </g>
-        <!-- 의사결정 — bottom (cy moved inward: 328→304) -->
-        <g>
-          <circle cx="170" cy="304" r="24" fill="rgba(10,24,16,.95)" stroke="rgba(109,196,34,.45)" stroke-width="2"/>
-          <text x="170" y="300" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-weight="600">의사</text>
-          <text x="170" y="314" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-weight="600">결정</text>
-        </g>
-        <!-- 즉시실행 — left (cx moved inward: 12→36) -->
-        <g>
-          <circle cx="36" cy="170" r="24" fill="rgba(10,24,16,.95)" stroke="rgba(109,196,34,.45)" stroke-width="2"/>
-          <text x="36" y="174" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.8)" font-family="Inter,sans-serif" font-weight="600">즉시 실행</text>
-        </g>
-
-        <!-- Center hub -->
-        <circle cx="170" cy="170" r="64" fill="rgba(9,21,16,.97)" stroke="rgba(109,196,34,.7)" stroke-width="2.5"/>
-        <text x="170" y="162" text-anchor="middle" font-size="24" fill="rgba(109,196,34,1)" font-family="Inter,sans-serif" font-weight="900">Flat</text>
-        <text x="170" y="184" text-anchor="middle" font-size="15" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif" font-weight="300">수평 조직</text>
-      </svg>
-      <div class="ws6rc" style="margin-top:8px;">
-        <div class="ws6rc-t" style="font-size:16px;">고객 요청 → 즉시 실행</div>
-        <div class="ws6rc-s">불필요한 보고 단계 없는 의사결정</div>
-      </div>
-    </div>
-    <div class="rv d1">
-      <div class="wnum">06 / 06</div>
-      <h2 class="wh" style="color:#fff;font-size:clamp(36px,3.5vw,60px);">불필요한 단계<br>없이 실행합니다.</h2>
-      <p class="wsub">수평적 조직 — 고객 요청에서 실행까지 최단 경로.</p>
-    </div>
+  <!-- Network nodes -->
+  <div class="fwnet rv d1" id="fwnet" style="position:relative;">
+    <svg id="fwsvg" viewBox="0 0 1140 270" width="100%" style="display:block;overflow:visible;">
+      <line class="fc" x1="162" y1="100" x2="218" y2="100"/>
+      <line class="fc" x1="352" y1="100" x2="408" y2="100"/>
+      <line class="fc" x1="542" y1="100" x2="598" y2="100"/>
+      <line class="fc" x1="732" y1="100" x2="788" y2="100"/>
+      <line class="fc" x1="922" y1="100" x2="978" y2="100"/>
+      <line class="fp" x1="162" y1="100" x2="218" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="0"><animate attributeName="stroke-dashoffset" from="0" to="-232" dur="2s" repeatCount="indefinite"/></line>
+      <line class="fp" x1="352" y1="100" x2="408" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-40"><animate attributeName="stroke-dashoffset" from="-40" to="-272" dur="2s" repeatCount="indefinite"/></line>
+      <line class="fp" x1="542" y1="100" x2="598" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-80"><animate attributeName="stroke-dashoffset" from="-80" to="-312" dur="2s" repeatCount="indefinite"/></line>
+      <line class="fp" x1="732" y1="100" x2="788" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-120"><animate attributeName="stroke-dashoffset" from="-120" to="-352" dur="2s" repeatCount="indefinite"/></line>
+      <line class="fp" x1="922" y1="100" x2="978" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-160"><animate attributeName="stroke-dashoffset" from="-160" to="-392" dur="2s" repeatCount="indefinite"/></line>
+      <g class="fn" id="fn0"><circle cx="95" cy="100" r="82" class="ro"/><circle cx="95" cy="100" r="66" class="rm"/><text x="95" y="100" class="gl">S</text><text x="95" y="176" class="wl">SUPPLY</text></g>
+      <g class="fn" id="fn1"><circle cx="285" cy="100" r="82" class="ro"/><circle cx="285" cy="100" r="66" class="rm"/><text x="285" y="100" class="gl">E</text><text x="285" y="176" class="wl">EFFICIENCY</text></g>
+      <g class="fn" id="fn2"><circle cx="475" cy="100" r="82" class="ro"/><circle cx="475" cy="100" r="66" class="rm"/><text x="475" y="100" class="gl">E</text><text x="475" y="176" class="wl">EXPERTISE</text></g>
+      <g class="fn" id="fn3"><circle cx="665" cy="100" r="82" class="ro"/><circle cx="665" cy="100" r="66" class="rm"/><text x="665" y="100" class="gl">D</text><text x="665" y="176" class="wl">DYNAMIC</text></g>
+      <g class="fn" id="fn4"><circle cx="855" cy="100" r="82" class="ro"/><circle cx="855" cy="100" r="66" class="rm"/><text x="855" y="100" class="gl">i</text><text x="855" y="176" class="wl">INTEGRATION</text></g>
+      <g class="fn" id="fn5"><circle cx="1045" cy="100" r="82" class="ro"/><circle cx="1045" cy="100" r="66" class="rm"/><text x="1045" y="100" class="gl">t</text><text x="1045" y="176" class="wl">TRUST</text></g>
+      <!-- keyword labels: hidden by default, shown on click -->
+      <text id="fk0" x="95"   y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">공급망 경쟁력</text>
+      <text id="fk1" x="285"  y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">운영 효율성</text>
+      <text id="fk2" x="475"  y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">경험이 경쟁력</text>
+      <text id="fk3" x="665"  y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">젊고 빠른 조직</text>
+      <text id="fk4" x="855"  y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">하나로 연결</text>
+      <text id="fk5" x="1045" y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">함께 성장</text>
+    </svg>
   </div>
-</section>
 
-</div><!-- /why -->
-
-<!-- ═══ PROCESS ═══ -->
-<section id="process">
-  <div class="procin">
-    <div class="rv"><div class="ey">Process</div><h2 class="proch">공급망 전 과정을<br>책임집니다</h2></div>
-    <div class="proct">
-
-      <!-- 01 산지 수급 -->
-      <div class="procs rv">
-        <div class="proc-head">
-          <div class="proc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M12 2a7 7 0 0 1 7 7c0 5-7 13-7 13S5 14 5 9a7 7 0 0 1 7-7z"/><circle cx="12" cy="9" r="2.5"/>
-            </svg>
-          </div>
-          <span class="proc-badge">01</span>
-        </div>
-        <div class="procn">산지 수급</div>
-        <div class="procb">전국 주산지 직거래 네트워크로 안정적인 원물을 확보합니다.</div>
-        <div class="procwm">01</div>
-      </div>
-
-      <!-- 02 품질관리 -->
-      <div class="procs rv d1 hi-step">
-        <div class="proc-head">
-          <div class="proc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0 1 12 2.944a11.955 11.955 0 0 1-8.618 3.04A12.02 12.02 0 0 0 3 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-            </svg>
-          </div>
-          <span class="proc-badge">02</span>
-        </div>
-        <div class="procn">품질관리</div>
-        <div class="procb">규격 기준에 따른 입고 검수와 선별로 품질 일관성을 보장합니다.</div>
-        <div class="procwm">02</div>
-      </div>
-
-      <!-- 03 생산·포장 -->
-      <div class="procs rv d2">
-        <div class="proc-head">
-          <div class="proc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-              <polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/>
-            </svg>
-          </div>
-          <span class="proc-badge">03</span>
-        </div>
-        <div class="procn">생산·포장</div>
-        <div class="procb">가공·포장·라벨링을 표준화된 공정으로 운영합니다.</div>
-        <div class="procwm">03</div>
-      </div>
-
-      <!-- 04 출고·물류 -->
-      <div class="procs rv d3">
-        <div class="proc-head">
-          <div class="proc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="1" y="3" width="15" height="13" rx="1"/><path d="M16 8h4l3 3v5h-7V8z"/>
-              <circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
-            </svg>
-          </div>
-          <span class="proc-badge">04</span>
-        </div>
-        <div class="procn">출고·물류</div>
-        <div class="procb">재고 관리부터 배송 준비까지 출고 전 과정을 통제합니다.</div>
-        <div class="procwm">04</div>
-      </div>
-
-      <!-- 05 납품 -->
-      <div class="procs rv d4">
-        <div class="proc-head">
-          <div class="proc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <polyline points="20 6 9 17 4 12"/>
-            </svg>
-          </div>
-          <span class="proc-badge">05</span>
-        </div>
-        <div class="procn">납품</div>
-        <div class="procb">납기를 100% 준수하고 사후 피드백까지 책임집니다.</div>
-        <div class="procwm">05</div>
-      </div>
-
-      <!-- 06 데이터·피드백 -->
-      <div class="procs rv d4">
-        <div class="proc-head">
-          <div class="proc-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/>
-            </svg>
-          </div>
-          <span class="proc-badge">06</span>
-        </div>
-        <div class="procn">데이터·개선</div>
-        <div class="procb">운영 데이터를 분석해 공급망 전체를 지속적으로 최적화합니다.</div>
-        <div class="procwm">06</div>
-      </div>
-
-    </div>
-  </div>
 </section>
 
 <!-- ═══ CONTACT ═══ -->
@@ -959,44 +854,10 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 
   function draw(){
     ctx.clearRect(0,0,W,H);fr++;
-    nodes.forEach(n=>n.x=n.rx*W);sec.forEach(n=>n.x=n.rx*W);
-    /* grid */ctx.strokeStyle=WA(.016);ctx.lineWidth=.5;
+    /* grid only — backbone, pulses, secondary nodes, and particle network removed */
+    ctx.strokeStyle=WA(.016);ctx.lineWidth=.5;
     for(let x=0;x<W;x+=72){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
     for(let y=0;y<H;y+=72){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
-    /* backbone */ctx.setLineDash([3,9]);ctx.strokeStyle=WA(.1);ctx.lineWidth=1.2;
-    ctx.beginPath();ctx.moveTo(nodes[0].x,nodes[0].y);nodes.forEach(n=>ctx.lineTo(n.x,n.y));ctx.stroke();ctx.setLineDash([]);
-    /* secondary */sec.forEach((sn,i)=>{
-      ctx.setLineDash([2,6]);ctx.strokeStyle=WA(.08);ctx.lineWidth=1;
-      ctx.beginPath();ctx.moveTo(nodes[i].x,nodes[i].y);ctx.lineTo(sn.x,sn.y);ctx.lineTo(nodes[i+1].x,nodes[i+1].y);ctx.stroke();ctx.setLineDash([]);
-      const p=Math.sin(fr*.035+sn.pulse)*.5+.5;
-      ctx.beginPath();ctx.arc(sn.x,sn.y,4+p*2,0,Math.PI*2);ctx.strokeStyle=L(.2+p*.1);ctx.lineWidth=1.5;ctx.stroke();
-      ctx.beginPath();ctx.arc(sn.x,sn.y,2,0,Math.PI*2);ctx.fillStyle=L(.3+p*.12);ctx.fill();
-    });
-    /* pulses */for(let i=0;i<nodes.length-1;i++){
-      const a=nodes[i],b=nodes[i+1];
-      for(let p=0;p<3;p++){const t=((fr*.0028+i*.18+p*.33)%1);const fi=Math.min(t*5,1),fo=Math.min((1-t)*5,1),al=fi*fo*(.48-i*.03);
-        ctx.beginPath();ctx.arc(a.x+(b.x-a.x)*t,a.y+(b.y-a.y)*t,2+Math.sin(t*Math.PI)*2.2,0,Math.PI*2);ctx.fillStyle=L(al);ctx.fill();}
-    }
-    /* particle-particle */for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){
-      const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<70){ctx.beginPath();ctx.strokeStyle=L(.024*(1-d/70));ctx.lineWidth=.35;ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.stroke();}
-    }
-    /* node-particle */nodes.forEach(n=>pts.forEach(p=>{
-      const dx=n.x-p.x,dy=n.y-p.y,d=Math.sqrt(dx*dx+dy*dy);
-      if(d<108){ctx.beginPath();ctx.strokeStyle=L(.03*(1-d/108));ctx.lineWidth=.32;ctx.moveTo(n.x,n.y);ctx.lineTo(p.x,p.y);ctx.stroke();}
-    }));
-    /* particles */pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=L(p.a);ctx.fill();});
-    /* nodes */nodes.forEach((n,i)=>{
-      const pulse=Math.sin(fr*.038+n.pulse)*.5+.5;
-      const g=ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,52);g.addColorStop(0,L(.22+pulse*.12));g.addColorStop(1,L(0));
-      ctx.beginPath();ctx.arc(n.x,n.y,52,0,Math.PI*2);ctx.fillStyle=g;ctx.fill();
-      ctx.setLineDash([4,4]);ctx.beginPath();ctx.arc(n.x,n.y,32+pulse*4,0,Math.PI*2);ctx.strokeStyle=L(.2+pulse*.12);ctx.lineWidth=1.5;ctx.stroke();ctx.setLineDash([]);
-      ctx.beginPath();ctx.arc(n.x,n.y,20,0,Math.PI*2);ctx.strokeStyle=L(.35+pulse*.15);ctx.lineWidth=1.5;ctx.stroke();
-      ctx.beginPath();ctx.arc(n.x,n.y,5+pulse*2,0,Math.PI*2);ctx.fillStyle=L(Math.min(n.a*1.5,.85));ctx.fill();
-      drawIcon(n.x,n.y-2,n.ic,Math.min(n.a*1.4,.8));
-      ctx.font='400 10px Inter,sans-serif';ctx.fillStyle=WA(.32);ctx.textAlign='center';ctx.fillText(n.l,n.x,n.y+52);
-      ctx.font='600 9px Inter,sans-serif';ctx.fillStyle=WA(.18);ctx.fillText(`0${i+1}`,n.x,n.y-44);
-    });
   }
   function loop(){requestAnimationFrame(loop);draw();}
   window.addEventListener('resize',resize);resize();loop();
@@ -1087,6 +948,146 @@ if(navEl&&hwEl){new IntersectionObserver(e=>e.forEach(x=>navEl.classList.toggle(
 /* ── Scroll reveal ── */
 const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.07});
 document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+
+/* ── About section: title reveal — replays every time it scrolls into view ── */
+(function(){
+  const aboutCenter = document.querySelector('.about-center');
+  if (!aboutCenter) return;
+
+  // rootMargin pulls the trigger line up so it fires only once the element's
+  // top edge has actually scrolled up into the lower part of the viewport.
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        aboutCenter.classList.add('in-view');
+      } else {
+        // Leaving the trigger zone resets the animation so it replays
+        // the next time the user scrolls back into this section.
+        aboutCenter.classList.remove('in-view');
+      }
+    });
+  }, {
+    threshold: 0,
+    rootMargin: '0px 0px -40% 0px'
+  });
+
+  observer.observe(aboutCenter);
+})();
+
+/* ── ws1: replay slide-in + typewriter animation on every scroll entry ── */
+(function(){
+  const ws1 = document.querySelector('.ws1');
+  if (!ws1) return;
+  const flyEls = ws1.querySelectorAll('.ws1-fly');
+  const typeEl = document.getElementById('ws1TypeText');
+  const fullText = typeEl ? typeEl.getAttribute('data-text') : '';
+  let typeTimer = null;
+
+  function runTypewriter(){
+    if (!typeEl) return;
+    clearInterval(typeTimer);
+    typeEl.textContent = '';
+    typeEl.style.opacity = '1';
+    let i = 0;
+    const startDelay = 1050;
+    setTimeout(() => {
+      typeTimer = setInterval(() => {
+        i++;
+        typeEl.textContent = fullText.slice(0, i);
+        if (i >= fullText.length) {
+          clearInterval(typeTimer);
+        }
+      }, 28);
+    }, startDelay);
+  }
+
+  function restart(){
+    flyEls.forEach(el => {
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = '';
+    });
+    ws1.classList.add('in-view');
+    runTypewriter();
+  }
+
+  function reset(){
+    ws1.classList.remove('in-view');
+    clearInterval(typeTimer);
+    if (typeEl) {
+      typeEl.style.opacity = '0';
+      typeEl.textContent = '';
+    }
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        restart();
+      } else {
+        reset();
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px -35% 0px' });
+
+  obs.observe(ws1);
+})();
+
+/* ── WS2: Animated supply chain background ── */
+(function(){
+  const canvas = document.getElementById('ws2-canvas');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let animationId;
+
+  function resize(){
+    canvas.width = canvas.offsetWidth;
+    canvas.height = canvas.offsetHeight;
+  }
+
+  const items = ['당근', '대파', '고구마', '감자', '양상추', '무'];
+  let particles = [];
+  let time = 0;
+
+  function initParticles(){
+    particles = [];
+    for(let i = 0; i < 8; i++){
+      particles.push({
+        x: -50,
+        y: Math.random() * canvas.height,
+        item: items[i % items.length],
+        delay: i * 0.8,
+        progress: i * 0.8
+      });
+    }
+  }
+
+  function draw(){
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    time += 0.016;
+
+    particles.forEach(p => {
+      p.progress = (time - p.delay) % 7;
+      const x = (p.progress / 7) * (canvas.width + 100) - 50;
+      
+      if(p.progress >= 0 && p.progress <= 7){
+        ctx.save();
+        ctx.font = 'bold 20px "Noto Sans KR"';
+        ctx.fillStyle = `rgba(109,196,34,${0.3 + Math.sin(p.progress * Math.PI / 3.5) * 0.2})`;
+        ctx.textAlign = 'center';
+        ctx.fillText(p.item, x, p.y);
+        ctx.restore();
+      }
+    });
+
+    animationId = requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', resize);
+  resize();
+  initParticles();
+  draw();
+})();
 
 /* ── Form ── */
 function handleSubmit(e){
