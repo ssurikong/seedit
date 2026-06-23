@@ -177,6 +177,20 @@ h1 em{font-style:normal;color:var(--ltb);}
   background:radial-gradient(circle at 50% 50%, rgba(109,196,34,.03) 0%, transparent 70%);
   z-index:0;
 }
+  .ws2-video{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    z-index:0;
+    opacity:.35;
+}
+
+.ws2 .wsi{
+    position:relative;
+    z-index:2;
+}
 .ws2 .wsi{max-width:1380px;margin:0 auto;padding:100px 56px;position:relative;z-index:2;}
 /* Animated supply chain background */
 #ws2-canvas{
@@ -748,7 +762,14 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 
 <!-- 02: 24h 긴급 — Pure Black + Big Type -->
 <section class="ws ws2">
-  <canvas id="ws2-canvas"></canvas>
+
+<video class="ws2-video"
+       autoplay
+       muted
+       loop
+       playsinline>
+    <source src="video.mp4" type="video/mp4">
+</video>
   <div class="wsi">
     <div class="ws2big" aria-hidden="true">24H<em>24H</em></div>
     <div class="rv">
@@ -1033,34 +1054,6 @@ document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
   obs.observe(ws1);
 })();
 
-/* ── WS2: Animated supply chain background ── */
-(function(){
-  const canvas = document.getElementById('ws2-canvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let animationId;
-
-  function resize(){
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-
-  const items = ['당근', '대파', '고구마', '감자', '양상추', '무'];
-  let particles = [];
-  let time = 0;
-
-  function initParticles(){
-    particles = [];
-    for(let i = 0; i < 8; i++){
-      particles.push({
-        x: -50,
-        y: Math.random() * canvas.height,
-        item: items[i % items.length],
-        delay: i * 0.8,
-        progress: i * 0.8
-      });
-    }
-  }
 
   function draw(){
     ctx.clearRect(0, 0, canvas.width, canvas.height);
