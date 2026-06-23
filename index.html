@@ -88,15 +88,16 @@ h1 em{font-style:normal;color:var(--ltb);}
 .hscr span{font-family:var(--en);font-size:10px;letter-spacing:2.5px;color:rgba(255,255,255,.14);text-transform:uppercase;}
 
 /* ═══ ABOUT ═══ */
-#about{
-  max-width:1380px;margin:0 auto;
+#about {
+  margin:0 auto;
   padding:0 56px;
   border-top:1px solid var(--g100);
   justify-content:center;
 }
 #about{
   position:relative;
-  min-height:64vh;
+  min-height:80vh;
+border-bottom:1px solid rgba(0,0,0,.08);
   display:flex;
   align-items:center;
   justify-content:center;
@@ -132,11 +133,36 @@ h1 em{font-style:normal;color:var(--ltb);}
 }
 .about-center.in-view .reveal-line[data-delay="200"]{transition-delay:.36s;}
 
+
+
+#about::after{
+content:'';
+position:absolute;
+inset:0;
+background:
+linear-gradient(to bottom,
+rgba(228,236,227,.85) 0%,
+rgba(244,246,241,.45) 18%,
+rgba(255,255,255,0) 45%),
+radial-gradient(circle at 25% 20%, rgba(46,102,9,.010) 0, rgba(46,102,9,0) 180px),
+radial-gradient(circle at 75% 35%, rgba(46,102,9,.008) 0, rgba(46,102,9,0) 220px);
+pointer-events:none;
+}
+.about-center{
+position:relative;
+z-index:2;
+width:100%;
+max-width:none;
+padding:18vh 80px 0;
+box-sizing:border-box;
+}
+
+
 /* ═══ FRAMEWORK ═══ */
 #framework{background:var(--ink);padding:80px 0 64px;overflow:hidden;}
 .fwtop{max-width:1380px;margin:0 auto;padding:0 56px 48px;display:flex;justify-content:space-between;align-items:flex-end;}
-.fwey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:16px;}
-.fwh{font-size:clamp(32px,3vw,44px);font-weight:900;letter-spacing:-1.5px;color:#fff;line-height:1.12;}
+.fwey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:6px;}
+.fwh{font-size:clamp(32px,3vw,36px);font-weight:900;letter-spacing:-2px;color:#fff;line-height:1.05;}
 .fwdesc{font-size:13px;color:rgba(255,255,255,.2);max-width:190px;text-align:right;line-height:1.85;font-weight:300;}
 
 /* Network SVG stage */
@@ -147,8 +173,8 @@ h1 em{font-style:normal;color:var(--ltb);}
 .fn .ro{fill:none;stroke:rgba(255,255,255,.06);transition:stroke .2s;}
 .fn .rm{fill:rgba(255,255,255,.04);stroke:rgba(255,255,255,.1);stroke-width:1;transition:fill .2s,stroke .2s,stroke-width .2s;}
 .fn .gl{font-family:Inter,sans-serif;font-size:66px;font-weight:900;fill:rgba(255,255,255,.2);dominant-baseline:central;text-anchor:middle;transition:fill .2s;letter-spacing:-3px;}
-.fn .wl{font-family:Inter,sans-serif;font-size:11px;font-weight:500;fill:rgba(255,255,255,.18);letter-spacing:.6px;text-anchor:middle;transition:fill .2s;}
-.fn .fn-sub{font-family:Inter,sans-serif;font-size:11px;font-weight:500;fill:rgba(255,255,255,.18);letter-spacing:.6px;text-anchor:middle;}
+.fn .wl{font-family:Inter,sans-serif;font-size:11px;font-weight:300;fill:rgba(255,255,255,.18);letter-spacing:.6px;text-anchor:middle;transition:fill .2s;}
+.fn .fn-sub{font-family:Inter,sans-serif;font-size:11px;font-weight:300;fill:rgba(255,255,255,.18);letter-spacing:.6px;text-anchor:middle;}
 .fn-kw{pointer-events:none;}
 .fn:hover .ro{stroke:rgba(109,196,34,.38);}
 .fn:hover .rm{fill:rgba(109,196,34,.1);stroke:rgba(109,196,34,.48);}
@@ -167,7 +193,7 @@ h1 em{font-style:normal;color:var(--ltb);}
 
 /* S1 — 수도권 즉시 대응 — Deep forest green */
 .ws1{background:#ffffff;min-height:80vh;display:flex;align-items:center;}
-.ws1 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.ws1 .wsi{padding-bottom:18vh;max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
 /* S2 — 24h 긴급 — Pure black with animated background */
 .ws2{background:#0a0a0a;min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
 .ws2::before{
@@ -186,7 +212,25 @@ h1 em{font-style:normal;color:var(--ltb);}
   opacity:.35;
 }
 /* S3 — 산지 네트워크 — Forest deep */
-.ws3{background:linear-gradient(160deg,#081510 0%,#0d2016 55%,#0b1c13 100%);min-height:80vh;display:flex;align-items:center;}
+.ws3{background:#081510;position:relative;overflow:hidden;min-height:80vh;display:flex;align-items:center;}
+
+.ws3::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:260px;
+background:linear-gradient(to bottom,
+#000 0%,
+rgba(0,0,0,.92) 25%,
+rgba(0,0,0,0) 100%);
+z-index:1;
+pointer-events:none;
+}
+.ws3-video{z-index:0;}
+.ws3 .wsi{position:relative;z-index:2;}
+
 .ws3 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
 /* S4 — 공급망 통합 — Dark slate */
 .ws4{background:#0d1117;min-height:80vh;display:flex;align-items:center;}
@@ -209,10 +253,12 @@ h1 em{font-style:normal;color:var(--ltb);}
 .ws1-fly{
   display:inline-block;
   opacity:0;
-  transform:translateX(-60px);
+  transform:translate3d(-60px,0,0);
   filter:blur(4px);
+  will-change:transform,opacity;
   animation:ws1FlyIn .91s cubic-bezier(.16,1,.3,1) forwards;
   animation-delay:var(--fly-delay,0s);
+  animation-fill-mode:forwards;
   animation-play-state:paused;
 }
 .ws1.in-view .ws1-fly{
@@ -254,8 +300,8 @@ h1 em{font-style:normal;color:var(--ltb);}
 .wsvg{width:100%;display:block;}
 
 /* WS2 big number */
-.ws2big{font-family:var(--en);font-size:clamp(100px,18vw,240px);font-weight:900;line-height:.82;letter-spacing:-12px;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.1);margin-bottom:40px;position:relative;user-select:none;}
-.ws2big em{position:absolute;inset:0;color:var(--ltb);-webkit-text-stroke:0;clip-path:inset(0 100% 0 0);animation:unveil 3.5s ease-in-out infinite;}
+.ws2big{padding:0 40px;box-sizing:border-box;font-family:var(--en);font-size:clamp(100px,18vw,230px);font-weight:900;line-height:.82;letter-spacing:-12px;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.05);margin-bottom:40px;position:relative;user-select:none;}
+.ws2big em{position:absolute;inset:0;color:#6dc422;-webkit-text-stroke:0;clip-path:inset(0 100% 0 0);animation:unveil 3.5s ease-in-out infinite;}
 @keyframes unveil{0%,15%{clip-path:inset(0 100% 0 0);}55%,70%{clip-path:inset(0 0% 0 0);}100%{clip-path:inset(0 100% 0 0);}}
 
 /* WS4 flow steps */
@@ -265,7 +311,7 @@ h1 em{font-style:normal;color:var(--ltb);}
   padding:28px 32px;
   border:1px solid rgba(255,255,255,.08);
   border-radius:14px;
-  background:rgba(255,255,255,.03);
+  background:rgba(255,255,255,.05);
   transition:background .2s,border-color .2s,transform .2s;
   min-height:100px;
 }
@@ -303,7 +349,7 @@ h1 em{font-style:normal;color:var(--ltb);}
 /* WS5 numbers */
 .ws5nums{display:grid;grid-template-columns:1fr 1fr;gap:0;}
 .ws5n{padding:28px;transition:background .15s;}
-.ws5n:hover{background:rgba(255,255,255,.03);}
+.ws5n:hover{background:rgba(255,255,255,.05);}
 .ws5nv{font-family:var(--en);font-size:46px;font-weight:800;color:#fff;letter-spacing:-2px;line-height:1;margin-bottom:8px;white-space:nowrap;}
 .ws5nv-u{font-size:20px;font-weight:700;color:var(--ltb);letter-spacing:0;margin-left:6px;vertical-align:baseline;}
 .ws5nv span{color:var(--ltb);font-size:24px;}
@@ -396,7 +442,7 @@ h1 em{font-style:normal;color:var(--ltb);}
 .cf{display:flex;flex-direction:column;gap:14px;}
 .cfr{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .ff{display:flex;flex-direction:column;gap:7px;}
-.ff label{font-family:var(--en);font-size:11px;font-weight:500;color:var(--g600);letter-spacing:.3px;}
+.ff label{font-family:var(--en);font-size:11px;font-weight:300;color:var(--g600);letter-spacing:.3px;}
 .ff input,.ff textarea,.ff select{font-family:var(--kr);font-size:14px;font-weight:300;background:var(--g50);border:1px solid var(--g100);border-radius:10px;padding:13px 16px;color:var(--ink);outline:none;appearance:none;transition:border-color .15s,box-shadow .15s,background .15s;}
 .ff input:focus,.ff textarea:focus,.ff select:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(9,21,16,.07);background:#fff;}
 .ff textarea{min-height:110px;resize:none;}
@@ -486,6 +532,91 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
   .ws5nv{font-size:32px;}
   .fwnet{padding:0 8px;}
 }
+
+.ws2-title{
+display:flex;
+flex-direction:column;
+align-items:center;
+line-height:1.1;
+}
+.ws2-title .line1{
+font-size:clamp(36px,4vw,60px);
+font-weight:300;
+letter-spacing:-0.03em;
+margin-bottom:6px;
+color:#fff;
+}
+.ws2-title .line2{
+font-size:clamp(36px,4vw,60px);
+font-weight:800;
+letter-spacing:-0.04em;
+color:#fff;
+}
+
+
+#about{
+width:100vw !important;
+max-width:none !important;
+margin:0 !important;
+position:relative;
+overflow:hidden;
+}
+
+.about-center{
+max-width:1380px !important;
+margin:0 auto !important;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding-top:18vh;
+}
+
+
+#about,
+#flow-section,
+#framework{
+  scroll-margin-top: 120px;
+}
+
+
+/* About section premium background */
+#about::before{
+content:'';
+position:absolute;
+top:0;
+left:0;
+right:0;
+height:180px;
+background:linear-gradient(
+to bottom,
+rgba(237,241,236,.95) 0%,
+rgba(248,249,247,.65) 55%,
+rgba(255,255,255,0) 100%
+);
+pointer-events:none;
+}
+
+#about::after{
+content:'';
+position:absolute;
+left:-180px;
+bottom:-180px;
+width:520px;
+height:520px;
+border-radius:50%;
+background:radial-gradient(circle,
+rgba(76,130,44,.025) 0%,
+rgba(76,130,44,.01) 45%,
+rgba(255,255,255,0) 75%);
+pointer-events:none;
+}
+
+#about{
+position:relative;
+border-bottom:1px solid rgba(0,0,0,.05);
+}
+
 </style>
 </head>
 <body>
@@ -495,8 +626,8 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
   <a href="#" class="nl"><img src="logo.png" alt="SEEDit" id="navLogo"></a>
   <ul class="nm">
     <li><a href="#about">About</a></li>
-    <li><a href="#framework">Framework</a></li>
-    <li><a href="#why">Why SEEDit</a></li>
+    <li><a href="#flow-section">Framework</a></li>
+    <li><a href="#framework">Why seed it</a></li>
   </ul>
   <a href="#contact" class="nc">문의하기</a>
 </nav>
@@ -515,7 +646,7 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
     </h1>
     <p class="hs">산지 수급 · 품질관리 · 생산 · 물류 — 공급망 전 과정을 직접 운영합니다.</p>
     <div class="ha">
-      <a href="#contact" class="bw">회사소개서 다운로드</a>
+      <a href="회사소개서_테스트.pptx" download class="bw">회사소개서 다운로드</a>
     </div>
   </div>
 
@@ -536,7 +667,7 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 </div>
 
 <!-- ═══ WHY — 6 POSTER SECTIONS ═══ -->
-<div id="why">
+<div id="philosophy-section">
 
 <!-- 01: 수도권 즉시 대응 — Deep Forest -->
 <section class="ws ws1">
@@ -679,7 +810,10 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 </section>
 
 <!-- 03: 산지 네트워크 — Forest -->
-<section class="ws ws3">
+<section id="flow-section" class="ws ws3">
+  <video class="ws3-video" autoplay muted loop playsinline>
+    <source src="video.mp4" type="video/mp4">
+  </video>
   <div class="wsi">
     <div class="rv">
       <h2 class="wh">전국 산지,<br>직접 연결.</h2>
@@ -748,12 +882,17 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 
 <!-- 02: 24h 긴급 — Pure Black + Big Type -->
 <section class="ws ws2">
-  <canvas id="ws2-canvas"></canvas>
+  
   <div class="wsi">
     <div class="ws2big" aria-hidden="true">24H<em>24H</em></div>
     <div class="rv">
-      <h2 class="wh" style="font-size:clamp(36px,4vw,60px);">어떤 긴급 상황도<br>24시간 내 처리합니다.</h2>
-      <p class="wsub" style="margin:0 auto;">수평적 의사결정 구조 — 긴급 수주 즉각 처리.</p>
+      
+<h2 class="ws2-title">
+  <span class="line1">어떤 긴급 상황도</span>
+  <span class="line2">24시간 내 처리합니다.</span>
+</h2>
+
+      
     </div>
   </div>
 </section>
@@ -761,7 +900,7 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 </div><!-- /why --><!-- ═══ FRAMEWORK ═══ -->
 <section id="framework">
   <div class="fwtop rv">
-    <div><div class="fwey">SEEDit Framework</div><h2 class="fwh">SEEDit의 운영 철학</h2></div>
+    <div><div class="fwey">OPERATING PHILOSOPHY</div><h2 class="fwh"><span style="font-size:1.75em;">운영 철학</span></h2></div>
     
   </div>
 
@@ -778,12 +917,12 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
       <line class="fp" x1="542" y1="100" x2="598" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-80"><animate attributeName="stroke-dashoffset" from="-80" to="-312" dur="2s" repeatCount="indefinite"/></line>
       <line class="fp" x1="732" y1="100" x2="788" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-120"><animate attributeName="stroke-dashoffset" from="-120" to="-352" dur="2s" repeatCount="indefinite"/></line>
       <line class="fp" x1="922" y1="100" x2="978" y2="100" stroke="rgba(109,196,34,.6)" stroke-dashoffset="-160"><animate attributeName="stroke-dashoffset" from="-160" to="-392" dur="2s" repeatCount="indefinite"/></line>
-      <g class="fn" id="fn0"><circle cx="95" cy="100" r="82" class="ro"/><circle cx="95" cy="100" r="66" class="rm"/><text x="95" y="100" class="gl">S</text><text x="95" y="176" class="wl">SUPPLY</text></g>
-      <g class="fn" id="fn1"><circle cx="285" cy="100" r="82" class="ro"/><circle cx="285" cy="100" r="66" class="rm"/><text x="285" y="100" class="gl">E</text><text x="285" y="176" class="wl">EFFICIENCY</text></g>
-      <g class="fn" id="fn2"><circle cx="475" cy="100" r="82" class="ro"/><circle cx="475" cy="100" r="66" class="rm"/><text x="475" y="100" class="gl">E</text><text x="475" y="176" class="wl">EXPERTISE</text></g>
-      <g class="fn" id="fn3"><circle cx="665" cy="100" r="82" class="ro"/><circle cx="665" cy="100" r="66" class="rm"/><text x="665" y="100" class="gl">D</text><text x="665" y="176" class="wl">DYNAMIC</text></g>
-      <g class="fn" id="fn4"><circle cx="855" cy="100" r="82" class="ro"/><circle cx="855" cy="100" r="66" class="rm"/><text x="855" y="100" class="gl">i</text><text x="855" y="176" class="wl">INTEGRATION</text></g>
-      <g class="fn" id="fn5"><circle cx="1045" cy="100" r="82" class="ro"/><circle cx="1045" cy="100" r="66" class="rm"/><text x="1045" y="100" class="gl">t</text><text x="1045" y="176" class="wl">TRUST</text></g>
+      <g class="fn" id="fn0"><circle cx="95" cy="100" r="82" class="ro"/><circle cx="95" cy="100" r="66" class="rm"/><text x="95" y="100" class="gl">S</text><text x="95" y="176" class="wl">supply</text></g>
+      <g class="fn" id="fn1"><circle cx="285" cy="100" r="82" class="ro"/><circle cx="285" cy="100" r="66" class="rm"/><text x="285" y="100" class="gl">E</text><text x="285" y="176" class="wl">efficiency</text></g>
+      <g class="fn" id="fn2"><circle cx="475" cy="100" r="82" class="ro"/><circle cx="475" cy="100" r="66" class="rm"/><text x="475" y="100" class="gl">E</text><text x="475" y="176" class="wl">expertise</text></g>
+      <g class="fn" id="fn3"><circle cx="665" cy="100" r="82" class="ro"/><circle cx="665" cy="100" r="66" class="rm"/><text x="665" y="100" class="gl">D</text><text x="665" y="176" class="wl">dynamic</text></g>
+      <g class="fn" id="fn4"><circle cx="855" cy="100" r="82" class="ro"/><circle cx="855" cy="100" r="66" class="rm"/><text x="855" y="100" class="gl">i</text><text x="855" y="176" class="wl">integration</text></g>
+      <g class="fn" id="fn5"><circle cx="1045" cy="100" r="82" class="ro"/><circle cx="1045" cy="100" r="66" class="rm"/><text x="1045" y="100" class="gl">t</text><text x="1045" y="176" class="wl">trust</text></g>
       <!-- keyword labels: hidden by default, shown on click -->
       <text id="fk0" x="95"   y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">공급망 경쟁력</text>
       <text id="fk1" x="285"  y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">운영 효율성</text>
@@ -801,7 +940,7 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
   <div class="rv">
     <div class="cey">Get in touch</div>
     <h2 class="ch">공급망 파트너를<br>찾고 계신가요?</h2>
-    <p class="csub">귀사의 공급망 현황을 알려주세요. SEEDit이 최적의 방안을 제안드립니다.</p>
+    <p class="csub">귀사의 공급망 현황을 알려주세요. seed it이 최적의 방안을 제안드립니다.</p>
     <div class="cbds"><span class="cbd">공급망 위탁 운영</span><span class="cbd">품질관리 컨설팅</span><span class="cbd">산지 수급 협력</span></div>
   </div>
   <form class="cf rv d1" onsubmit="handleSubmit(event)">
@@ -1098,3 +1237,56 @@ function handleSubmit(e){
 </script>
 </body>
 </html>
+
+<style>
+.ws3-video{
+position:absolute;
+inset:0;
+width:100%;
+height:100%;
+object-fit:cover;
+opacity:.25;
+filter:brightness(.45);
+z-index:0;
+}
+.ws3 .wsi{position:relative;z-index:2;}
+#ws2-canvas{display:none!important;}
+.ws2::before{display:none!important;}
+
+.ws2-title{
+display:flex;
+flex-direction:column;
+align-items:center;
+line-height:1.1;
+}
+.ws2-title .line1{
+font-size:clamp(36px,4vw,60px);
+font-weight:300;
+letter-spacing:-0.03em;
+margin-bottom:6px;
+color:#fff;
+}
+.ws2-title .line2{
+font-size:clamp(36px,4vw,60px);
+font-weight:800;
+letter-spacing:-0.04em;
+color:#fff;
+}
+
+
+#about,
+#flow-section,
+#framework{
+  scroll-margin-top: 120px;
+}
+
+</style>
+
+<style>.ws1 .wh{min-height:2.3em;}
+#about,
+#flow-section,
+#framework{
+  scroll-margin-top: 120px;
+}
+
+</style>
