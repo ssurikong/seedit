@@ -39,8 +39,8 @@ nav.dk .nc{background:#fff;color:var(--ink);}
   background-image:url('https://images.unsplash.com/photo-1616911821230-b7ca42658b64?auto=format&fit=crop&w=2400&q=80');
   background-size:cover;
   background-position:center 38%;
-  opacity:.35;
-  filter:brightness(.6) saturate(.85) contrast(1.05);
+  opacity:1;
+  filter:none;
 }
 #hc{position:absolute;inset:0;width:100%;height:100%;z-index:1;}
 #hov{position:absolute;inset:0;z-index:2;background:linear-gradient(108deg,rgba(9,21,16,.96) 0%,rgba(9,21,16,.82) 32%,rgba(9,21,16,.38) 58%,rgba(9,21,16,.04) 100%);}
@@ -88,31 +88,35 @@ h1 em{font-style:normal;color:var(--ltb);}
 .hscr span{font-family:var(--en);font-size:10px;letter-spacing:2.5px;color:rgba(255,255,255,.14);text-transform:uppercase;}
 
 /* ═══ ABOUT ═══ */
-#about {
-  margin:0 auto;
-  padding:0 56px;
-  border-top:1px solid var(--g100);
-  justify-content:center;
-}
+/* (원본에서 #about / .about-center 가 여러 번 쪼개져 선언되며 뒤 규칙이 앞을 덮어쓰던 것을
+    실제 최종 적용값 기준으로 하나로 통합) */
 #about{
   position:relative;
+  width:100vw;
+  max-width:none;
+  margin:0;
   min-height:80vh;
-border-bottom:1px solid rgba(0,0,0,.08);
   display:flex;
   align-items:center;
   justify-content:center;
+  padding:0 56px;
   padding-bottom:0;
   overflow:hidden;
   background:#ffffff;
+  border-bottom:1px solid rgba(0,0,0,.05);
 }
-
 .about-center{
   position:relative;
-  z-index:1;
-  max-width:900px;
+  z-index:2;
+  width:100%;
+  max-width:1380px;
   margin:0 auto;
-  text-align:left;
-  padding-top:14vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:18vh 80px 0;
+  box-sizing:border-box;
 }
 .ey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--leaf);}
 .sh{font-size:clamp(40px,5.2vw,68px);letter-spacing:-1.5px;line-height:1.15;color:#111;}
@@ -133,36 +137,42 @@ border-bottom:1px solid rgba(0,0,0,.08);
 }
 .about-center.in-view .reveal-line[data-delay="200"]{transition-delay:.36s;}
 
-
-
+/* About section premium background */
+#about::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  height:180px;
+  background:linear-gradient(
+    to bottom,
+    rgba(237,241,236,.95) 0%,
+    rgba(248,249,247,.65) 55%,
+    rgba(255,255,255,0) 100%
+  );
+  pointer-events:none;
+}
 #about::after{
-content:'';
-position:absolute;
-inset:0;
-background:
-linear-gradient(to bottom,
-rgba(228,236,227,.85) 0%,
-rgba(244,246,241,.45) 18%,
-rgba(255,255,255,0) 45%),
-radial-gradient(circle at 25% 20%, rgba(46,102,9,.010) 0, rgba(46,102,9,0) 180px),
-radial-gradient(circle at 75% 35%, rgba(46,102,9,.008) 0, rgba(46,102,9,0) 220px);
-pointer-events:none;
+  content:'';
+  position:absolute;
+  left:-180px;
+  bottom:-180px;
+  width:520px;
+  height:520px;
+  border-radius:50%;
+  background:radial-gradient(circle,
+    rgba(76,130,44,.025) 0%,
+    rgba(76,130,44,.01) 45%,
+    rgba(255,255,255,0) 75%);
+  pointer-events:none;
 }
-.about-center{
-position:relative;
-z-index:2;
-width:100%;
-max-width:none;
-padding:18vh 80px 0;
-box-sizing:border-box;
-}
-
 
 /* ═══ FRAMEWORK ═══ */
 #framework{background:var(--ink);padding:80px 0 64px;overflow:hidden;}
 .fwtop{max-width:1380px;margin:0 auto;padding:0 56px 48px;display:flex;justify-content:space-between;align-items:flex-end;}
 .fwey{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.2);margin-bottom:6px;}
-.fwh{font-size:clamp(32px,3vw,36px);font-weight:900;letter-spacing:-2px;color:#fff;line-height:1.05;}
+.fwh{font-size:clamp(32px,3vw,52px);font-weight:900;letter-spacing:-2px;color:#fff;line-height:1.05;}
 .fwdesc{font-size:13px;color:rgba(255,255,255,.2);max-width:190px;text-align:right;line-height:1.85;font-weight:300;}
 
 /* Network SVG stage */
@@ -188,57 +198,62 @@ box-sizing:border-box;
 .fp{fill:none;stroke-width:1.5;stroke-dasharray:16 220;}
 
 /* ═══ WHY — 6 STORY SECTIONS ═══ */
-/* Each section = full-width poster */
 .ws{position:relative;overflow:hidden;}
 
-/* S1 — 수도권 즉시 대응 — Deep forest green */
+/* S1 — 수도권 즉시 대응 */
 .ws1{background:#ffffff;min-height:80vh;display:flex;align-items:center;}
 .ws1 .wsi{padding-bottom:18vh;max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-/* S2 — 24h 긴급 — Pure black with animated background */
+/* S2 — 24h 긴급 */
 .ws2{background:#0a0a0a;min-height:90vh;display:flex;align-items:center;justify-content:center;text-align:center;position:relative;overflow:hidden;}
-.ws2::before{
+.ws2 .wsi{max-width:1380px;margin:0 auto;padding:100px 56px;position:relative;z-index:2;}
+/* S3 — 산지 네트워크 */
+.ws3{background:#081510;position:relative;overflow:hidden;min-height:80vh;display:flex;align-items:center;}
+.ws3::before{
+  content:'';
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:260px;
+  background:linear-gradient(to bottom,
+    #000 0%,
+    rgba(0,0,0,.92) 25%,
+    rgba(0,0,0,0) 100%);
+  z-index:1;
+  pointer-events:none;
+}
+/* S3 left-side dark scrim for text legibility (matches hero #hov) */
+.ws3::after{
   content:'';
   position:absolute;
   inset:0;
-  background:radial-gradient(circle at 50% 50%, rgba(109,196,34,.03) 0%, transparent 70%);
-  z-index:0;
+  background:linear-gradient(108deg,
+    rgba(8,21,16,.92) 0%,
+    rgba(8,21,16,.78) 30%,
+    rgba(8,21,16,.32) 55%,
+    rgba(8,21,16,0) 78%);
+  z-index:1;
+  pointer-events:none;
 }
-.ws2 .wsi{max-width:1380px;margin:0 auto;padding:100px 56px;position:relative;z-index:2;}
-/* Animated supply chain background */
-#ws2-canvas{
+/* S3 background video */
+.ws3-video{
   position:absolute;
   inset:0;
-  z-index:1;
-  opacity:.35;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:1;
+  filter:none;
+  z-index:0;
 }
-/* S3 — 산지 네트워크 — Forest deep */
-.ws3{background:#081510;position:relative;overflow:hidden;min-height:80vh;display:flex;align-items:center;}
-
-.ws3::before{
-content:'';
-position:absolute;
-top:0;
-left:0;
-width:100%;
-height:260px;
-background:linear-gradient(to bottom,
-#000 0%,
-rgba(0,0,0,.92) 25%,
-rgba(0,0,0,0) 100%);
-z-index:1;
-pointer-events:none;
-}
-.ws3-video{z-index:0;}
-.ws3 .wsi{position:relative;z-index:2;}
-
-.ws3 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-/* S4 — 공급망 통합 — Dark slate */
+.ws3 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:2;}
+/* S4 — 공급망 통합 */
 .ws4{background:#0d1117;min-height:80vh;display:flex;align-items:center;}
 .ws4 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;}
-/* S5 — 현장 실행력 — Near-black */
+/* S5 — 현장 실행력 */
 .ws5{background:#0b0b0b;min-height:70vh;display:flex;align-items:center;}
 .ws5 .wsi{max-width:1380px;margin:0 auto;width:100%;padding:100px 56px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
-/* S6 — 빠른 의사결정 — Ink green */
+/* S6 — 빠른 의사결정 */
 .ws6{background:var(--ink);min-height:70vh;display:flex;align-items:center;justify-content:center;text-align:center;}
 .ws6 .wsi{max-width:1380px;margin:0 auto;padding:100px 56px;}
 
@@ -246,7 +261,7 @@ pointer-events:none;
 .wnum{font-family:var(--en);font-size:11px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.18);margin-bottom:24px;}
 .wh{font-size:clamp(44px,5vw,80px);font-weight:900;line-height:.96;letter-spacing:-3.5px;color:#fff;margin-bottom:18px;}
 .ws1 .wnum{color:rgba(9,21,16,.35);}
-.ws1 .wh{color:#0a1a10;}
+.ws1 .wh{color:#0a1a10;min-height:2.3em;}
 .ws1 .wsub{color:rgba(9,21,16,.55);}
 .ws1 .wtag{border-color:rgba(9,21,16,.18);color:rgba(9,21,16,.55);}
 
@@ -303,6 +318,27 @@ pointer-events:none;
 .ws2big{padding:0 40px;box-sizing:border-box;font-family:var(--en);font-size:clamp(100px,18vw,230px);font-weight:900;line-height:.82;letter-spacing:-12px;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.05);margin-bottom:40px;position:relative;user-select:none;}
 .ws2big em{position:absolute;inset:0;color:#6dc422;-webkit-text-stroke:0;clip-path:inset(0 100% 0 0);animation:unveil 3.5s ease-in-out infinite;}
 @keyframes unveil{0%,15%{clip-path:inset(0 100% 0 0);}55%,70%{clip-path:inset(0 0% 0 0);}100%{clip-path:inset(0 100% 0 0);}}
+
+/* WS2 title */
+.ws2-title{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  line-height:1.1;
+}
+.ws2-title .line1{
+  font-size:clamp(36px,4vw,60px);
+  font-weight:300;
+  letter-spacing:-0.03em;
+  margin-bottom:6px;
+  color:#fff;
+}
+.ws2-title .line2{
+  font-size:clamp(36px,4vw,60px);
+  font-weight:800;
+  letter-spacing:-0.04em;
+  color:#fff;
+}
 
 /* WS4 flow steps */
 .flowlist{display:flex;flex-direction:column;gap:10px;}
@@ -369,7 +405,6 @@ pointer-events:none;
 .procin{max-width:1380px;margin:0 auto;}
 .procin .ey{color:rgba(255,255,255,.28);}
 .proch{font-size:clamp(32px,3vw,44px);font-weight:900;letter-spacing:-2px;margin-bottom:64px;color:#fff;}
-/* 6-card grid */
 .proct{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
 .proct::before{display:none;}
 .procs{
@@ -389,7 +424,6 @@ pointer-events:none;
   transform:translateY(-4px);
   box-shadow:0 16px 44px rgba(0,0,0,.4);
 }
-/* Icon + step badge row */
 .proc-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px;}
 .proc-icon{
   width:44px;height:44px;border-radius:11px;
@@ -407,7 +441,6 @@ pointer-events:none;
 }
 .procs:hover .proc-badge{color:var(--ltb);background:rgba(109,196,34,.1);border-color:rgba(109,196,34,.25);}
 .procs:hover .proc-icon{background:rgba(109,196,34,.18);border-color:rgba(109,196,34,.4);}
-/* Watermark num */
 .procwm{
   position:absolute;bottom:-8px;right:12px;
   font-family:var(--en);font-size:88px;font-weight:900;
@@ -415,18 +448,14 @@ pointer-events:none;
   pointer-events:none;user-select:none;
 }
 .procs:hover .procwm{color:rgba(109,196,34,.07);}
-/* Step name */
 .procn{font-size:22px;font-weight:800;color:#fff;letter-spacing:-.5px;line-height:1.1;}
-/* Description */
 .procb{font-size:16px;color:rgba(255,255,255,.52);line-height:1.7;font-weight:300;}
-/* left accent bar */
 .procs::before{
   content:'';position:absolute;left:0;top:20px;bottom:20px;
   width:3px;background:rgba(255,255,255,.08);border-radius:0 3px 3px 0;
   transition:background .22s;
 }
 .procs:hover::before{background:var(--ltb);}
-/* Highlight step (03) */
 .procs.hi-step{border-color:rgba(109,196,34,.25);background:rgba(109,196,34,.06);}
 .procs.hi-step .proc-badge{color:var(--ltb);background:rgba(109,196,34,.1);border-color:rgba(109,196,34,.25);}
 .procs.hi-step .proc-icon{background:rgba(109,196,34,.18);border-color:rgba(109,196,34,.4);}
@@ -463,6 +492,13 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
 .rv.on{opacity:1;transform:none;}
 .d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
 
+/* scroll anchor offset for fixed nav */
+#about,
+#flow-section,
+#framework{
+  scroll-margin-top:120px;
+}
+
 /* ═══ MOBILE ═══ */
 /* ── TABLET 769~1024px ── */
 @media(max-width:1024px){
@@ -475,19 +511,16 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
   .fwnet{padding:0 14px;}
   .ws1 .wsi,.ws3 .wsi,.ws4 .wsi,.ws5 .wsi{grid-template-columns:1fr!important;padding:80px 24px!important;}
   .ws2 .wsi,.ws6 .wsi{padding:80px 24px!important;}
-  /* Tablet: 2-col process */
   #process{padding:80px 24px;}
   .proct{grid-template-columns:repeat(2,1fr);gap:14px;}
   .proct::before{display:none;}
   #contact{grid-template-columns:1fr;padding:80px 24px;gap:52px;}
   footer{flex-direction:column;gap:12px;text-align:center;padding:28px 24px;}.fls{display:none;}
-  /* ws6 ring mobile size */
   .ws6rsvg{width:340px!important;height:340px!important;}
 }
 
 /* ── MOBILE <=768px ── */
 @media(max-width:768px){
-  /* Typography */
   h1{font-size:clamp(34px,9vw,48px);letter-spacing:-.03em;word-break:keep-all;}
   .hs{white-space:normal;max-width:100%;}
   .wh{font-size:clamp(36px,9vw,52px);letter-spacing:-2px;word-break:keep-all;}
@@ -495,9 +528,6 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
   .sh-one-line{white-space:normal;}
   #about{padding:0 24px;min-height:48vh;}
   .about-center{padding-top:10vh;}
-
-
-  /* Process: 1-col */
   .proct{grid-template-columns:1fr;gap:12px;}
   .procs{
     min-height:auto;
@@ -507,16 +537,10 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
   .procb{font-size:15px;line-height:1.6;}
   .proc-icon{width:52px;height:52px;border-radius:13px;}
   .proc-icon svg{width:24px;height:24px;}
-
-  /* Form */
   .cfr{grid-template-columns:1fr;}
-
-  /* ws5 numbers */
   .ws5nums{grid-template-columns:1fr 1fr;}
   .ws5nv{font-size:38px;letter-spacing:-1.5px;}
   .ws5nv-u{font-size:17px;}
-
-  /* ws6 ring */
   .ws6rsvg{width:280px!important;height:280px!important;}
   .ws6ring{width:280px;}
 }
@@ -532,91 +556,6 @@ footer{border-top:1px solid var(--g100);padding:32px 56px;display:flex;justify-c
   .ws5nv{font-size:32px;}
   .fwnet{padding:0 8px;}
 }
-
-.ws2-title{
-display:flex;
-flex-direction:column;
-align-items:center;
-line-height:1.1;
-}
-.ws2-title .line1{
-font-size:clamp(36px,4vw,60px);
-font-weight:300;
-letter-spacing:-0.03em;
-margin-bottom:6px;
-color:#fff;
-}
-.ws2-title .line2{
-font-size:clamp(36px,4vw,60px);
-font-weight:800;
-letter-spacing:-0.04em;
-color:#fff;
-}
-
-
-#about{
-width:100vw !important;
-max-width:none !important;
-margin:0 !important;
-position:relative;
-overflow:hidden;
-}
-
-.about-center{
-max-width:1380px !important;
-margin:0 auto !important;
-display:flex;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding-top:18vh;
-}
-
-
-#about,
-#flow-section,
-#framework{
-  scroll-margin-top: 120px;
-}
-
-
-/* About section premium background */
-#about::before{
-content:'';
-position:absolute;
-top:0;
-left:0;
-right:0;
-height:180px;
-background:linear-gradient(
-to bottom,
-rgba(237,241,236,.95) 0%,
-rgba(248,249,247,.65) 55%,
-rgba(255,255,255,0) 100%
-);
-pointer-events:none;
-}
-
-#about::after{
-content:'';
-position:absolute;
-left:-180px;
-bottom:-180px;
-width:520px;
-height:520px;
-border-radius:50%;
-background:radial-gradient(circle,
-rgba(76,130,44,.025) 0%,
-rgba(76,130,44,.01) 45%,
-rgba(255,255,255,0) 75%);
-pointer-events:none;
-}
-
-#about{
-position:relative;
-border-bottom:1px solid rgba(0,0,0,.05);
-}
-
 </style>
 </head>
 <body>
@@ -654,9 +593,7 @@ border-bottom:1px solid rgba(0,0,0,.05);
 </div>
 
 <!-- ═══ ABOUT ═══ -->
-<div style="border-top:1px solid var(--g100)">
 <section id="about">
-  
   <div class="about-center">
     <h2 class="sh sh-one-line">
       <span class="sh-bold reveal-line" data-delay="0">공급망 운영,</span>
@@ -664,12 +601,11 @@ border-bottom:1px solid rgba(0,0,0,.05);
     </h2>
   </div>
 </section>
-</div>
 
 <!-- ═══ WHY — 6 POSTER SECTIONS ═══ -->
 <div id="philosophy-section">
 
-<!-- 01: 수도권 즉시 대응 — Deep Forest -->
+<!-- 01: 수도권 즉시 대응 -->
 <section class="ws ws1">
   <div class="wsi">
     <div class="rv">
@@ -693,7 +629,6 @@ border-bottom:1px solid rgba(0,0,0,.05);
 
         <circle cx="310" cy="190" r="150" fill="url(#rg1)"/>
 
-        <!-- Central-region map silhouette, shifted left so it extends past the left edge -->
         <g transform="translate(-51,-68)">
         <path d="M 270 45
                  L 305 30
@@ -746,7 +681,6 @@ border-bottom:1px solid rgba(0,0,0,.05);
               fill="rgba(74,140,28,.06)"/>
         </g>
 
-        <!-- Connectors: start at hub edge, end just outside each pill (no overlap) -->
         <path d="M 294 143 Q 285 110, 272 80" fill="none" stroke="rgba(74,140,28,.45)" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#seedArrow)"/>
         <path d="M 350 159 Q 380 138, 406 116" fill="none" stroke="rgba(74,140,28,.45)" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#seedArrow)"/>
         <path d="M 260 187 Q 185 182, 106 178" fill="none" stroke="rgba(74,140,28,.42)" stroke-width="1.6" stroke-dasharray="5 5" marker-end="url(#seedArrow)"/>
@@ -809,7 +743,7 @@ border-bottom:1px solid rgba(0,0,0,.05);
   </div>
 </section>
 
-<!-- 03: 산지 네트워크 — Forest -->
+<!-- 03: 산지 네트워크 -->
 <section id="flow-section" class="ws ws3">
   <video class="ws3-video" autoplay muted loop playsinline>
     <source src="video.mp4" type="video/mp4">
@@ -829,47 +763,39 @@ border-bottom:1px solid rgba(0,0,0,.05);
           </marker>
         </defs>
 
-        <!-- Header -->
         <text x="290" y="32" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.22)" font-family="Inter,sans-serif" letter-spacing="3">SUPPLY CHAIN FLOW</text>
         <line x1="70" y1="42" x2="510" y2="42" stroke="rgba(255,255,255,.07)" stroke-width="1"/>
 
-        <!-- Connector lines: gap between circles = 110-34-34=42px, line uses 44→66 (leaving 10px gap each side) -->
         <line x1="104" y1="130" x2="126" y2="130" stroke="rgba(109,196,34,.65)" stroke-width="2.5" marker-end="url(#arr)"/>
         <line x1="214" y1="130" x2="236" y2="130" stroke="rgba(109,196,34,.65)" stroke-width="2.5" marker-end="url(#arr)"/>
         <line x1="324" y1="130" x2="346" y2="130" stroke="rgba(109,196,34,.65)" stroke-width="2.5" marker-end="url(#arr)"/>
         <line x1="434" y1="130" x2="456" y2="130" stroke="rgba(109,196,34,.65)" stroke-width="2.5" marker-end="url(#arr)"/>
 
-        <!-- Node 1: 산지  cx=60 -->
         <circle cx="60" cy="130" r="34" fill="rgba(10,24,16,.96)" stroke="rgba(109,196,34,.7)" stroke-width="2.5"/>
         <text x="60" y="125" text-anchor="middle" font-size="15" fill="rgba(109,196,34,1)" font-family="Inter,sans-serif" font-weight="700">산지</text>
         <text x="60" y="141" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.42)" font-family="Inter,sans-serif">Origin</text>
         <text x="60" y="180" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif">전국 직거래</text>
 
-        <!-- Node 2: 선별  cx=170 -->
         <circle cx="170" cy="130" r="34" fill="rgba(10,24,16,.96)" stroke="rgba(109,196,34,.62)" stroke-width="2.5"/>
         <text x="170" y="125" text-anchor="middle" font-size="15" fill="rgba(109,196,34,.95)" font-family="Inter,sans-serif" font-weight="700">선별</text>
         <text x="170" y="141" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.42)" font-family="Inter,sans-serif">Sorting</text>
         <text x="170" y="180" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif">규격 검수</text>
 
-        <!-- Node 3: 가공  cx=280 -->
         <circle cx="280" cy="130" r="34" fill="rgba(10,24,16,.96)" stroke="rgba(109,196,34,.72)" stroke-width="2.5"/>
         <text x="280" y="125" text-anchor="middle" font-size="15" fill="rgba(109,196,34,1)" font-family="Inter,sans-serif" font-weight="700">가공</text>
         <text x="280" y="141" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.42)" font-family="Inter,sans-serif">Processing</text>
         <text x="280" y="180" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif">포장 · 라벨링</text>
 
-        <!-- Node 4: 물류  cx=390 -->
         <circle cx="390" cy="130" r="34" fill="rgba(10,24,16,.96)" stroke="rgba(109,196,34,.62)" stroke-width="2.5"/>
         <text x="390" y="125" text-anchor="middle" font-size="15" fill="rgba(109,196,34,.95)" font-family="Inter,sans-serif" font-weight="700">물류</text>
         <text x="390" y="141" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.42)" font-family="Inter,sans-serif">Logistics</text>
         <text x="390" y="180" text-anchor="middle" font-size="12" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif">재고 · 배송</text>
 
-        <!-- Node 5: 납품  cx=500  (highlighted) -->
         <circle cx="500" cy="130" r="34" fill="rgba(109,196,34,.16)" stroke="rgba(109,196,34,.9)" stroke-width="3"/>
         <text x="500" y="125" text-anchor="middle" font-size="15" fill="rgba(109,196,34,1)" font-family="Inter,sans-serif" font-weight="800">납품</text>
         <text x="500" y="141" text-anchor="middle" font-size="10" fill="rgba(255,255,255,.5)" font-family="Inter,sans-serif">Delivery</text>
         <text x="500" y="180" text-anchor="middle" font-size="12" fill="rgba(109,196,34,.82)" font-family="Inter,sans-serif">당일 납기</text>
 
-        <!-- Moving pulse dot -->
         <circle r="5" fill="rgba(109,196,34,.9)">
           <animateMotion dur="3.2s" repeatCount="indefinite"
             path="M60 130 L170 130 L280 130 L390 130 L500 130"/>
@@ -880,28 +806,25 @@ border-bottom:1px solid rgba(0,0,0,.05);
   </div>
 </section>
 
-<!-- 02: 24h 긴급 — Pure Black + Big Type -->
+<!-- 02: 24h 긴급 -->
 <section class="ws ws2">
-  
   <div class="wsi">
     <div class="ws2big" aria-hidden="true">24H<em>24H</em></div>
     <div class="rv">
-      
-<h2 class="ws2-title">
-  <span class="line1">어떤 긴급 상황도</span>
-  <span class="line2">24시간 내 처리합니다.</span>
-</h2>
-
-      
+      <h2 class="ws2-title">
+        <span class="line1">어떤 긴급 상황도</span>
+        <span class="line2">24시간 내 처리합니다.</span>
+      </h2>
     </div>
   </div>
 </section>
 
-</div><!-- /why --><!-- ═══ FRAMEWORK ═══ -->
+</div><!-- /why -->
+
+<!-- ═══ FRAMEWORK ═══ -->
 <section id="framework">
   <div class="fwtop rv">
-    <div><div class="fwey">OPERATING PHILOSOPHY</div><h2 class="fwh"><span style="font-size:1.75em;">운영 철학</span></h2></div>
-    
+    <div><div class="fwey">OPERATING PHILOSOPHY</div><h2 class="fwh"><span>운영 철학</span></h2></div>
   </div>
 
   <!-- Network nodes -->
@@ -923,7 +846,6 @@ border-bottom:1px solid rgba(0,0,0,.05);
       <g class="fn" id="fn3"><circle cx="665" cy="100" r="82" class="ro"/><circle cx="665" cy="100" r="66" class="rm"/><text x="665" y="100" class="gl">D</text><text x="665" y="176" class="wl">dynamic</text></g>
       <g class="fn" id="fn4"><circle cx="855" cy="100" r="82" class="ro"/><circle cx="855" cy="100" r="66" class="rm"/><text x="855" y="100" class="gl">i</text><text x="855" y="176" class="wl">integration</text></g>
       <g class="fn" id="fn5"><circle cx="1045" cy="100" r="82" class="ro"/><circle cx="1045" cy="100" r="66" class="rm"/><text x="1045" y="100" class="gl">t</text><text x="1045" y="176" class="wl">trust</text></g>
-      <!-- keyword labels: hidden by default, shown on click -->
       <text id="fk0" x="95"   y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">공급망 경쟁력</text>
       <text id="fk1" x="285"  y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">운영 효율성</text>
       <text id="fk2" x="475"  y="235" text-anchor="middle" font-family="Noto Sans KR,sans-serif" font-size="24" font-weight="800" fill="#6dc422" opacity="0" transform="translate(0,6)">경험이 경쟁력</text>
@@ -993,7 +915,6 @@ border-bottom:1px solid rgba(0,0,0,.05);
 
   function draw(){
     ctx.clearRect(0,0,W,H);fr++;
-    /* grid only — backbone, pulses, secondary nodes, and particle network removed */
     ctx.strokeStyle=WA(.016);ctx.lineWidth=.5;
     for(let x=0;x<W;x+=72){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,H);ctx.stroke();}
     for(let y=0;y<H;y+=72){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(W,y);ctx.stroke();}
@@ -1049,7 +970,6 @@ if(navEl&&hwEl){new IntersectionObserver(e=>e.forEach(x=>navEl.classList.toggle(
     g.addEventListener('mouseleave',function(){
       hideAll();
     });
-    // touch: show on tap, hide on next tap elsewhere
     g.addEventListener('touchend',function(e){
       e.preventDefault();
       e.stopPropagation();
@@ -1064,7 +984,6 @@ if(navEl&&hwEl){new IntersectionObserver(e=>e.forEach(x=>navEl.classList.toggle(
   }
 
   function init(){
-    // hide all on load
     for(var i=0;i<6;i++){
       var kw=document.getElementById('fk'+i);
       if(kw){
@@ -1073,7 +992,6 @@ if(navEl&&hwEl){new IntersectionObserver(e=>e.forEach(x=>navEl.classList.toggle(
       }
     }
     for(var j=0;j<6;j++) bind(j);
-    // hide all on outside tap (mobile)
     document.addEventListener('touchend',function(){ hideAll(); });
   }
 
@@ -1081,8 +999,6 @@ if(navEl&&hwEl){new IntersectionObserver(e=>e.forEach(x=>navEl.classList.toggle(
     document.addEventListener('DOMContentLoaded',init);
   } else { init(); }
 })();
-
-
 
 /* ── Scroll reveal ── */
 const ro=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('on');}),{threshold:.07});
@@ -1093,15 +1009,11 @@ document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
   const aboutCenter = document.querySelector('.about-center');
   if (!aboutCenter) return;
 
-  // rootMargin pulls the trigger line up so it fires only once the element's
-  // top edge has actually scrolled up into the lower part of the viewport.
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         aboutCenter.classList.add('in-view');
       } else {
-        // Leaving the trigger zone resets the animation so it replays
-        // the next time the user scrolls back into this section.
         aboutCenter.classList.remove('in-view');
       }
     });
@@ -1172,62 +1084,6 @@ document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
   obs.observe(ws1);
 })();
 
-/* ── WS2: Animated supply chain background ── */
-(function(){
-  const canvas = document.getElementById('ws2-canvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let animationId;
-
-  function resize(){
-    canvas.width = canvas.offsetWidth;
-    canvas.height = canvas.offsetHeight;
-  }
-
-  const items = ['당근', '대파', '고구마', '감자', '양상추', '무'];
-  let particles = [];
-  let time = 0;
-
-  function initParticles(){
-    particles = [];
-    for(let i = 0; i < 8; i++){
-      particles.push({
-        x: -50,
-        y: Math.random() * canvas.height,
-        item: items[i % items.length],
-        delay: i * 0.8,
-        progress: i * 0.8
-      });
-    }
-  }
-
-  function draw(){
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    time += 0.016;
-
-    particles.forEach(p => {
-      p.progress = (time - p.delay) % 7;
-      const x = (p.progress / 7) * (canvas.width + 100) - 50;
-      
-      if(p.progress >= 0 && p.progress <= 7){
-        ctx.save();
-        ctx.font = 'bold 20px "Noto Sans KR"';
-        ctx.fillStyle = `rgba(109,196,34,${0.3 + Math.sin(p.progress * Math.PI / 3.5) * 0.2})`;
-        ctx.textAlign = 'center';
-        ctx.fillText(p.item, x, p.y);
-        ctx.restore();
-      }
-    });
-
-    animationId = requestAnimationFrame(draw);
-  }
-
-  window.addEventListener('resize', resize);
-  resize();
-  initParticles();
-  draw();
-})();
-
 /* ── Form ── */
 function handleSubmit(e){
   e.preventDefault();const b=e.target.querySelector('.cfsub');
@@ -1237,56 +1093,3 @@ function handleSubmit(e){
 </script>
 </body>
 </html>
-
-<style>
-.ws3-video{
-position:absolute;
-inset:0;
-width:100%;
-height:100%;
-object-fit:cover;
-opacity:.25;
-filter:brightness(.45);
-z-index:0;
-}
-.ws3 .wsi{position:relative;z-index:2;}
-#ws2-canvas{display:none!important;}
-.ws2::before{display:none!important;}
-
-.ws2-title{
-display:flex;
-flex-direction:column;
-align-items:center;
-line-height:1.1;
-}
-.ws2-title .line1{
-font-size:clamp(36px,4vw,60px);
-font-weight:300;
-letter-spacing:-0.03em;
-margin-bottom:6px;
-color:#fff;
-}
-.ws2-title .line2{
-font-size:clamp(36px,4vw,60px);
-font-weight:800;
-letter-spacing:-0.04em;
-color:#fff;
-}
-
-
-#about,
-#flow-section,
-#framework{
-  scroll-margin-top: 120px;
-}
-
-</style>
-
-<style>.ws1 .wh{min-height:2.3em;}
-#about,
-#flow-section,
-#framework{
-  scroll-margin-top: 120px;
-}
-
-</style>
